@@ -1,42 +1,43 @@
 baseurl = "/"
 languageCode = "en-us"
-title = "A Hugo website"
-theme = "hugo-lithium"
+title = "ARCHIMED user documentation"
+theme = "learn"
 googleAnalytics = ""
 disqusShortname = ""
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 
-[permalinks]
-    post = "/:year/:month/:day/:slug/"
+# For search functionality
+[outputs]
+home = [ "HTML", "RSS", "JSON"]
 
-[[menu.main]]
-    name = "About"
-    url = "/about/"
-[[menu.main]]
-    name = "GitHub"
-    url = "https://github.com/rstudio/blogdown"
-[[menu.main]]
-    name = "Twitter"
-    url = "https://twitter.com/rstudio"
-
+#5F9EA0
+#F08080
+#008B8B
 [params]
-    description = "A website built through Hugo and blogdown."
-
-    # options for highlight.js (version, additional languages, and theme)
-    highlightjsVersion = "9.12.0"
-    highlightjsCDN = "//cdnjs.cloudflare.com/ajax/libs"
-    highlightjsLang = ["r", "yaml"]
-    highlightjsTheme = "github"
-
-    MathJaxCDN = "//cdnjs.cloudflare.com/ajax/libs"
-    MathJaxVersion = "2.7.5"
-
-    # path to the favicon, under "static"
-    favicon = "favicon.ico"
-
-    [params.logo]
-    url = "logo.png"
-    width = 50
-    height = 50
-    alt = "Logo"
+    editURL = "https://github.com/VEZY/archimed_website"
+    author = "R. VEZY"
+    description = "The user documentation for the ARCHIMED model"
+    # Shows a checkmark for visited pages on the menu
+    showVisitedLinks = true
+    # Disable search function. It will hide search bar
+    disableSearch = false
+    # Javascript and CSS cache are automatically busted when new version of site is generated.
+    # Set this to true to disable this behavior (some proxies don't handle well this optimization)
+    disableAssetsBusting = false
+    # Set this to true to disable copy-to-clipboard button for inline code.
+    disableInlineCopyToClipBoard = false
+    # A title for shortcuts in menu is set by default. Set this to true to disable it.
+    disableShortcutsTitle = false
+    # When using mulitlingual website, disable the switch language button.
+    disableLanguageSwitchingButton = false
+    # Hide breadcrumbs in the header and only show the current page title
+    disableBreadcrumb = true
+    # Hide Next and Previous page buttons normally displayed full height beside content
+    disableNextPrev = true
+    # Order sections in menu by "weight" or "title". Default to "weight"
+    ordersectionsby = "weight"
+    # Change default color scheme with a variant one. Can be "red", "blue", "green".
+    themeVariant = "archimed"
+    # Provide a list of custom css files to load relative from the `static/` folder in the site root.
+    custom_css = ["css/foo.css", "css/bar.css"]
 
