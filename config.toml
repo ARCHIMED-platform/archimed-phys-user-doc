@@ -10,9 +10,6 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 [outputs]
 home = [ "HTML", "RSS", "JSON"]
 
-#5F9EA0
-#F08080
-#008B8B
 [params]
     editURL = "https://github.com/VEZY/archimed_website"
     author = "R. VEZY"

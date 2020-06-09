@@ -1,0 +1,16 @@
+---
+chapter: false
+date: "2020-06-09T12:15:33+02:00"
+pre: <b>3. </b>
+title: Constant parameter file
+weight: 3
+---
+
+# `const.yml`
+
+This file lists all constants and their values used in ARCHIMED. The file is optional, and the example file provided in the `examples` folder lists the default values used in ARCHIMED.
+
+- `co2_to_heat_boundary_layer_conductance` is used to transform the boundary layer conductance to heat into the boundary layer conductance to $CO_2$ with the following equation:
+
+$$gbc_mol = gbh_mol / EnergyBalance.GBC_TO_GBH$$
+
