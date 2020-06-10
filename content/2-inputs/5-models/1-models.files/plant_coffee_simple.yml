@@ -1,0 +1,35 @@
+---
+Group: coffee
+Type:
+  Metamer:
+      Interception:
+          model: Translucent
+          transparency: 0
+          optical_properties:
+              PAR: 0.15
+              NIR: 0.9
+  Leaf:
+      Interception:
+            model: Translucent
+            transparency: 0
+            optical_properties:
+                PAR: 0.15
+                NIR: 0.9
+      Photosynthesis:
+            model: FarquharEnBalance
+            tempCRef: 25
+            jMaxRef: 250
+            vcMaxRef: 200
+            rdRef: 0.6
+            theta: 0.853
+            LWratio: 1.5
+            nFaceStomata: 1
+            leafEmissivity : 0.98
+            delta_T_init: -2 # °C initialisation of the leaf temperature in relation to Tair (Tleaf= Tair-delta_T_init)
+            epsilon: 0.1     # °C criteria for convergence of the leaf temperature computation (difference between previous Tleaf and current Tleaf)
+            iter_T_max: 10   # maximum number of iterations allowed for leaf temperature computation
+            iter_A_max: 50   # maximum number of iterations allowed for Assimilation and Conductance computation
+      StomatalConductance:
+            model: Medlyn
+            g0: -0.03
+            g1: 12

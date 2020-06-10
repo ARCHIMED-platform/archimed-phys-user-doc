@@ -1,0 +1,52 @@
+---
+chapter: false
+date: "2020-06-09T12:15:33+02:00"
+pre: <b>4.2. </b>
+title: Plant file
+weight: 6
+---
+
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<div id="opf" class="section level1">
+<h1><code>.opf</code></h1>
+<p>The <code>.opf</code> file extension stands for Open Plant Format. It allows to store the topology, the geometry and any other attribute of a plant. The format is heavily inspired by the MTG format (Multi-scale Tree Graph) for the topology representation.</p>
+<p>The file is encoded in the <code>XML</code> format, so many editors can render its structure. The <code>.opf</code> file describes vertices, faces, normals, texture coordinates, materials (colors), attributes and transformation matrices for the geometry.</p>
+<p>A very simple example of a virtual plant with two metamers and two leaves is available here:</p>
+<p>{{%attachments pattern="simple_OPF.opf" /%}}</p>
+<p>The file renders as follows:</p>
+<p><img src="/images/simple_opf.png" alt="Simple plant with two metamers and bearing one leaf each" />
+You don’t need to understand the structure of the <code>.opf</code> files if you’re not a developer. In this case, you can go directly to the next page. Otherwise, more the details are presented below.</p>
+<div id="structure" class="section level3">
+<h3>Structure</h3>
+<p>The file is designed with several parts:
+- meshBDD
+- materialBDD
+- shapeBDD
+- attributeBDD
+- topology</p>
+<div id="meshbdd" class="section level4">
+<h4>meshBDD</h4>
+<p>A plant is a collection of similar components repeated many times (<em>e.g.</em> thousands of leaves). The most efficient way to store a plant is to use reference meshes that describe the geometry of a given component (<em>e.g.</em> a leaf or a metamer), and then to transform this reference mesh to match the geometry of each component. This way reduce the amount of data written in the <code>.opf</code> file because the geometry of each component is only stored in a transformation matrix, applied to a mesh that is the same for many components of the same type.</p>
+<p>The MESHBDD node list all the reference meshes used to build the plant geometry. A mesh is reprensted by a <em>MESH</em> node.</p>
+<p>meshes with points, normals, textureCoords and faces.</p>
+</div>
+<div id="materialbdd" class="section level4">
+<h4>materialBDD</h4>
+<p>materials with emission, ambient, diffuse, specular and shininess.</p>
+</div>
+<div id="shapebdd" class="section level4">
+<h4>shapeBDD</h4>
+<p>shapes with name, meshIndex and materialIndex</p>
+</div>
+<div id="attributebdd" class="section level4">
+<h4>attributeBDD</h4>
+<p>A list of optional attributes.</p>
+</div>
+<div id="topology" class="section level4">
+<h4>topology</h4>
+<p>See the (<a href="http://amapstudio.cirad.fr/soft/xplo/private/opf_format">AMAPStudio documentation</a> for more information.</p>
+</div>
+</div>
+</div>

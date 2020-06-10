@@ -1,0 +1,162 @@
+---
+chapter: false
+date: "2020-06-09T12:15:33+02:00"
+pre: <b>5.1. </b>
+title: Simple model file
+weight: 9
+---
+
+In ARCIHMED, an object is defined by: 
+- its geometry, read from an `.opf` or a `.gwa` file;
+- (optionally) its topology, only read from an `.opf` file;
+- its functional group, read from an `.ops` file.
+
+The geometry (and topology) of an object is built using components (see the [opf documentation](../../4-scene/2-opf/)). For example a simple coffee tree can be built using two components: leaves and metamers (for the woody organs). Each component can have its own models and parameters. For example we know that metamers won't make any photosynthesis, so they don't have any photosynthesis model. 
+
+You can download the example file to follow along here: 
+
+{{%attachments pattern=\"plant_coffee_simple.yml\" /%}}
+
+## Description
+
+### Functional group
+
+The model files are in the `YAML` format, so they always start with a `---` line. Then comes the `Group` parameter that defines the name of the functional group of the given model file:
+
+```yml
+---
+Group: coffee
+```
+
+A functional group can be anything: *e.g.* a plant species, a family, a variety or even a progeny. The point being that each plant in a scene belongs to a functional group, and that all plants from a given functional group share the same component types and the same model properties defined in the model file of its functional group.
+
+### Component type
+
+The `Type` parameter defines the component types used to build the object (e.g. leaves and branches components are used to build a plant). The names of the components listed here should match the same names given in the `.opf` file. In the example given earlier in the [organization chapter](../../1-organisation/), the `.opf` file for a coffee tree gives two different components: leaf and metamer. A model file adapted for this `.opf` will list those components as follows:
+
+```yml
+---
+Group: coffee
+Type:
+  Metamer:
+      [...]
+  Leaf:
+      [...]
+```
+
+With the `[...]` further information not given here for clarity but that will be detailed hereafter.
+
+{{% notice warning %}}
+The name of the Type should match exactly the names given in the `.opf` file
+{{% /notice %}}
+
+### Processes
+
+For each component type, we can simulate at the moment three different processes:  
+- the light interception: `Interception`;  
+- the photosynthesis: `Photosynthesis`;  
+- and the stomatal conductance: `StomatalConductance`.
+
+If a process has to be simulated for a given component, it should be listed under the component name such as: 
+
+```yml
+---
+Group: coffee
+Type:
+  Metamer:
+      Interception:
+          [...]
+  Leaf:
+      Interception:
+          [...]
+      Photosynthesis:
+          [...]
+      StomatalConductance:
+        [...]
+```
+
+{{% notice warning %}}
+The name of the process should match exactly: Interception, Photosynthesis and StomatalConductance
+{{% /notice %}}
+
+In this example, only the light interception will be simulated for the `Metamer` type, and the light interception, photosynthesis and stomatal conductance will be simulated for the `Leaf` type.
+
+### Models
+
+The processes are simulated by dedicated models. There can be one or more models available to simulate a process, with a set of parameters for each.
+
+Here is a simple example of a model used to simulate the interception process for the `Metamer`:
+
+```yml
+---
+Group: coffee
+Type:
+  Metamer:
+      Interception:
+          model: Translucent
+          transparency: 0
+          optical_properties:
+              PAR: 0.15
+              NIR: 0.9
+  [...]
+```
+
+Here the light interception process is simulated using the `Translucent` model. This model has two main parameters:  
+- the `transparency`, which is set to 0 (the `Metamer` is not transparent at all);  
+- the `optical_properties` of the `Metamer`, defined for the PAR (0.15) and for the NIR (0.9).
+
+The `Leaf` component simulates the light interception too, but also add the photosynthesis and stomatal conductance. Here is an example parametrization for the models used:
+
+```yml
+Group: coffee                     # -> functional group
+Type:                             # -> component types
+  Metamer:                        # -> Metamer component (name must match OPF values)
+      [...]                       # -> further information not displayed here for clarity
+  Leaf:                           # -> Leaf component (name must match OPF values)
+      Interception:               # -> Light interception process
+        model: Translucent        # -> Name of the model used
+        transparency: 0           # -> Parameter name and value
+        optical_properties:       # -> Parameter with several values
+            PAR: 0.15             # -> First value for the optical_properties parameter (PAR)
+            NIR: 0.9              # -> Second value for parameter, here for NIR
+       Photosynthesis:            # -> Photosynthesis process
+        model: FarquharEnBalance  # -> Name of the model used
+        tempCRef: 25              # -> Parameter name and value
+        [...]
+      StomatalConductance:        # -> Stomatal conductance process
+          model: Medlyn           # -> Name of the model used
+          g0: -0.03               # -> Parameter name and value
+          g1: 12                  # -> Parameter name and value
+```
+
+So here we have a `coffee` as a functional group, and two component types called `Metamer` and `Leaf`, for which the `Interception` process will be simulated using the `Translucent` model that has 3 parameters - the transparency, the scattering factor for the PAR, and for the NIR - all parameterized with some values. The `Leaf` component type also simulates the `Photosynthesis` and the `StomatalConductance` processes, with a given model (`FarquharEnBalance` and `Medlyn` resp.) and their respective parameters.
+
+{{% notice info %}}
+A list of all models available for each process is available in the [next page](../2-models_list/).
+{{% /notice %}}
+
+Several models can be parameterized at the same time for each process using several model instances, in which case the input format is modified to:  
+
+```yaml
+[...]
+    StomatalConductance:        # -> Process
+        use: Medlyn_generic     # -> Name of the model instance to use
+        Medlyn_generic:         # -> Name of a model instance (free name)
+            model: Medlyn       # -> Name of the model used in the Medlyn_generic instance
+            g0: -0.03           # -> Parameter names and values
+            g1: 12
+        Medlyn_caturra:         # -> Name of a 2nd model instance (free name)
+            model: Medlyn       # -> Name of the model used in this instance
+            g0: -0.03
+            g1: 12.5
+        Yin-Struik_caturra:     # -> Name of a 3rd model instance (free name)
+            model: Yin-Struik   # -> Name of the model used in the instance
+            g0: 0.02089956
+            a1: 0.9
+            b1: 0.15
+[...]
+```
+
+Here for the conductance process, we have three model instances: `Medlyn_generic`, `Medlyn_caturra` and `Yin-Struik_caturra`. The first two model instances use the same model (*i.e.* `Medlyn`), but have a different name (`Medlyn_generic` and `Medlyn_caturra`) and different parameter values. The last one is an instance of the `Yin-Struik` model called `Yin-Struik_caturra`.
+This method allows to parameterize several models or the same model with different values on the same file, and to chose only one to use. This is especially useful when dealing with different possible parameterization in the same file, or to be able to easily share a file with different possible parametrizations.
+

@@ -1,0 +1,57 @@
+---
+chapter: false
+date: "2020-06-09T12:15:33+02:00"
+pre: <b>4.2. </b>
+title: Plant file
+weight: 6
+---
+
+# `.opf`
+
+The `.opf` file extension stands for Open Plant Format. It allows to store the topology, the geometry and any other attribute of a plant. The format is heavily inspired by the MTG format (Multi-scale Tree Graph) for the topology representation.
+
+The file is encoded in the `XML` format, so many editors can render its structure. The `.opf` file describes vertices, faces, normals, texture coordinates, materials (colors), attributes and transformation matrices for the geometry.
+
+A very simple example of a virtual plant with two metamers and two leaves is available here:
+
+{{%attachments pattern=\"simple_OPF.opf\" /%}}
+
+The file renders as follows:
+
+![Simple plant with two metamers and bearing one leaf each](/images/simple_opf.png)
+You don't need to understand the structure of the `.opf` files if you're not a developer. In this case, you can go directly to the next page. Otherwise, more the details are presented below.
+
+
+### Structure
+
+The file is designed with several parts:
+- meshBDD
+- materialBDD
+- shapeBDD
+- attributeBDD
+- topology
+
+#### meshBDD
+
+A plant is a collection of similar components repeated many times (*e.g.* thousands of leaves). The most efficient way to store a plant is to use reference meshes that describe the geometry of a given component (*e.g.* a leaf or a metamer), and then to transform this reference mesh to match the geometry of each component. This way reduce the amount of data written in the `.opf` file because the geometry of each component is only stored in a transformation matrix, applied to a mesh that is the same for many components of the same type.
+
+The MESHBDD node list all the reference meshes used to build the plant geometry. A mesh is reprensted by a *MESH* node. 
+
+meshes with points, normals, textureCoords and faces.
+
+#### materialBDD
+
+materials with emission, ambient, diffuse, specular and shininess.
+
+#### shapeBDD
+
+shapes with name, meshIndex and materialIndex
+
+#### attributeBDD
+
+A list of optional attributes.
+
+#### topology
+
+See the ([AMAPStudio documentation](http://amapstudio.cirad.fr/soft/xplo/private/opf_format) for more information.
+

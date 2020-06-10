@@ -1,0 +1,19 @@
+---
+chapter: false
+date: "2020-06-09T12:15:33+02:00"
+pre: <b>8. </b>
+title: Working with voxels
+weight: 16
+---
+
+More information soon about using voxel files. 
+
+```bash
+📦
+├── 📜config_vox.yml           # -> Same here, but for a voxel scene
+├── 📜const.yml                # -> constants used in the model
+├── 📜meteo.csv                # -> the meteorology file
+├── 📂model                    # -> all the models configuration files are listed in this folder
+│   └── 📜turbid_medium.yml    # An example config for a turbid medium (i.e. voxels)
+└── 📜soil.yml                  # An example soil file
+```

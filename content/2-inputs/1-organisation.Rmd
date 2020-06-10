@@ -10,12 +10,7 @@ weight: 1
 
 Several input files are mandatory for an ARCHIMED simulation: the general configuration file (`config.yml`), the meteorology data (`meteo.csv`), the models configuration (*e.g.* `plant_coffee.yml`), and the scene (e.g. `.ops` and `.opf` files). There is also an input file for the physical constants (`const.yml`) that is optional because ARCHIMED defines default values if not provided.
 
-
-An example folder containing several examples can be downloaded here:
-
-{{%attachments pattern=\"example_inputs.zip\" /%}}
-
-It is recommended to follow along with these files opened in your preferred editor. We recommend [Atom](https://atom.io/) or [VS Code](https://code.visualstudio.com/). They are both open source and have packages to view and edit YAML (`.yml`), CSV (`.csv`) and XML files (`.ops`, `.opf` and `.gwa`).
+It is recommended to follow along with the example files provided in the previous page opened in your preferred editor. We recommend [Atom](https://atom.io/) or [VS Code](https://code.visualstudio.com/). They are both open source and have packages to view and edit YAML (`.yml`), CSV (`.csv`) and XML files (`.ops`, `.opf` and `.gwa`).
 
 Here is a tree view of the files and folders with a little description for each:
 
@@ -38,4 +33,3 @@ Many input files use the YAML format. It is a data serialization language design
 {{% notice note %}}
 The names of the input files are not mandatory, but it is best to keep a rather standard naming nevertheless. For example `soil.yml` can become `soil_1.yml` or `soil_montpellier.yml`, but it is still recommended to keep "soil" in the name.
 {{% /notice %}}
-

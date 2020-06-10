@@ -1,0 +1,16 @@
+---
+chapter: false
+date: "2020-06-09T12:15:33+02:00"
+pre: <b>7. </b>
+title: Further examples
+weight: 15
+---
+
+More information soon about other examples.
+
+
+### Anchors
+
+More information about using anchors in `YAML` files soon.
+
+

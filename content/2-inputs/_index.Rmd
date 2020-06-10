@@ -3,7 +3,7 @@ chapter: true
 date: "2020-06-09T12:15:33+02:00"
 pre: <b>1. </b>
 title: Inputs
-weight: 5
+weight: 2
 ---
 
 ### Chapter 1
@@ -12,3 +12,7 @@ weight: 5
 
 A few files are required as ARCHIMED input: the general configuration,
 the meteorology data, the models configuration, and the scene. This chapter details the specifics of these files.
+
+An example folder for inputs can be downloaded here:
+
+{{%attachments pattern=\"example_inputs.zip\" /%}}

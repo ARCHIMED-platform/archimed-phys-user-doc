@@ -1,0 +1,23 @@
+---
+chapter: false
+date: "2020-06-09T12:15:33+02:00"
+pre: <b>5.2. </b>
+title: List of the models
+weight: 10
+---
+
+Here is a list of all models available for each process.
+
+
+
+## Interception
+
+...
+
+## Photosynthesis
+
+...
+
+## Stomatal Conductance
+
+...
