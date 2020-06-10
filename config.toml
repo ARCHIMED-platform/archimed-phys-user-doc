@@ -5,6 +5,7 @@ theme = "learn"
 googleAnalytics = ""
 disqusShortname = ""
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
+relativeurls = true
 
 # For search functionality
 [outputs]
