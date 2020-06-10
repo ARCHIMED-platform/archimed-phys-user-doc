@@ -1,0 +1,8 @@
+# T xmin ymin zmin xmax ymax flat
+T 0 0 0 2 2 flat
+
+#[Archimed] coffee
+
+#sceneId objectId FilePath x y z scale inclinationAzimut inclinationAngle rotation
+1	1	opf/P6_Ru_ii_L2P02.opf	0		0		0	0	0	0	0
+1	2	opf/P6_Ru_ii_L2P02.opf	1		1		0	0	0	0	0

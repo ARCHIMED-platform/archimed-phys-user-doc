@@ -1,0 +1,18 @@
+---
+chapter: false
+date: "2020-06-09T12:15:33+02:00"
+pre: <b>4.2. </b>
+title: Plant file
+weight: 6
+---
+
+# `.opf`
+
+They referenced by the OPS scene file.
+
+These files is in OPF or GWA format, see AmapStudio documentation ([OPF
+format](http://amapstudio.cirad.fr/soft/xplo/private/opf_format), [GWA
+format](http://amapstudio.cirad.fr/soft/xplo/private/the_gwa_format_-_geometry_with_attributes)).
+To sumerise, it is an XML format describing vertices, faces, normals,
+texture coordiantes, materials (colors), attributes and tranformation
+matrices.

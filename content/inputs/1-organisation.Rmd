@@ -10,9 +10,10 @@ weight: 1
 
 Several input files are mandatory for an ARCHIMED simulation: the general configuration file (`config.yml`), the meteorology data (`meteo.csv`), the models configuration (*e.g.* `plant_coffee.yml`), and the scene (e.g. `.ops` and `.opf` files). There is also an input file for the physical constants (`const.yml`) that is optional because ARCHIMED defines default values if not provided.
 
+
 An example folder containing several examples can be downloaded here:
 
-{{%attachments /%}}
+{{%attachments pattern=\"example_inputs.zip\" /%}}
 
 It is recommended to follow along with these files opened in your preferred editor. We recommend [Atom](https://atom.io/) or [VS Code](https://code.visualstudio.com/). They are both open source and have packages to view and edit YAML (`.yml`), CSV (`.csv`) and XML files (`.ops`, `.opf` and `.gwa`).
 
@@ -21,24 +22,15 @@ Here is a tree view of the files and folders with a little description for each:
 ```bash
 📦
 ├── 📜config.yml               # -> Here is the general configuration file
-├── 📜config_vox.yml           # -> Same here, but for a voxel scene
 ├── 📜const.yml                # -> constants used in the model
 ├── 📜meteo.csv                # -> the meteorology file
 ├── 📂model                    # -> all the models configuration files are listed in this folder
-│   ├── 📜light_interception_net.yml # An example model config for artificial nets
-│   ├── 📜plant_anchor_test.yml # An example config using anchors
-│   ├── 📜plant_coffee.yml      # An example config for a Coffea plant
-│   ├── 📜plant_coffee_future_implementations.yml # example of config with future implementations in ARCHIMED.
-│   ├── 📜plant_elaeis.yml      # An example config for an oil palm plant
-│   ├── 📜soil.yml              # An example config for a soil
-│   ├── 📜turbid_medium.yml     # An example config for a turbid medium (i.e. voxels)
-│   └── 📜virtual_sensor.yml    # An example config for virtual sensors
-├── 📂scene                     # -> all the 3D scenes files are listed in this folder
-│   ├── 📜cafeier.ops           # An example scene with one coffee
-│   ├── 📂opf                   # The folder that list the available `.opf` files for the plant geometry
-│   │   └── 📜P6_Ru_ii_L2P02.opf # An example coffee plant geometry ad topology
-│   └── 📜pavement.gwa          # An example pavement file (usually generated using the `soil.yml` file)
-└── 📜soil.yml                  # An example soil file
+│   └── 📜plant_coffee.yml     # An example config for a Coffea plant ARCHIMED.
+├── 📂scene                    # -> all the 3D scenes files are listed in this folder
+│   ├── 📜coffee.ops           # An example scene with one coffee
+│   └── 📂opf                  # The folder that list the available `.opf` files for the plant geometry
+│       └── 📜coffee.opf       # An example coffee plant geometry ad topology file)
+└── 📜soil.yml                 # An example soil file
 ```
 
 Many input files use the YAML format. It is a data serialization language designed to be directly writable and readable by humans. There are tons of resources on the web (*e.g.* [learnxinyminutes.com](https://learnxinyminutes.com/docs/yaml/), [Wikipedia](https://en.wikipedia.org/wiki/YAML), [this blog post](https://rollout.io/blog/yaml-tutorial-everything-you-need-get-started/)), but you should be fine just by seeing the files structure. 

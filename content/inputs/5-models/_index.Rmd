@@ -1,0 +1,11 @@
+---
+chapter: true
+date: "2020-06-09T12:15:33+02:00"
+pre: <b>4. </b>
+title: Models
+weight: 8
+---
+
+# Biophysical models
+
+ARCHIMED provides many biophysical models to compute the light interception, the energy balance and the photosynthesis of objects in the scene. This chapter describes how the models are configured.

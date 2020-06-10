@@ -12,5 +12,6 @@ This file lists all constants and their values used in ARCHIMED. The file is opt
 
 - `co2_to_heat_boundary_layer_conductance` is used to transform the boundary layer conductance to heat into the boundary layer conductance to $CO_2$ with the following equation:
 
-$$gbc_mol = gbh_mol / EnergyBalance.GBC_TO_GBH$$
+$$gb_{CO_2}=\frac{gb_{heat}}{co2\_to\_heat\_boundary\_layer\_conductance}$$
 
+... more information on other parameters are coming.

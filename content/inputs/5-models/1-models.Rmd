@@ -1,0 +1,132 @@
+---
+chapter: false
+date: "2020-06-09T12:15:33+02:00"
+pre: <b>4.1. </b>
+title: Simple model file
+weight: 9
+---
+
+In ARCIHMED, an object is defined by: 
+- its geometry, read from an `.opf` or a `.gwa` file;
+- (optionally) its topology, only read from an `.opf` file;
+- its functional group, read from an `.ops` file.
+
+The geometry (and topology) of an object is built using components (see the [opf documentation](../4-scene/2-opf.html)). For example a simple coffee tree can be built using two components: leaves and metamers (for the woody organs). Each component can have its own models and parameters. For example we know that metamers won't make any photosynthesis, so they don't have any photosynthesis model. 
+
+## Example 
+
+Here is the content of an example file for a scene with two coffee trees: 
+
+```
+# T xOrigin yOrigin zOrigin xSize ySize flat
+T 0 0 0 2 2 flat
+
+#[Archimed] coffee
+
+#sceneId objectId FilePath x y z scale inclinationAzimut inclinationAngle rotation
+1	1	opf/P6_Ru_ii_L2P02.opf	0		0		0	0	0	0	0
+1	2	opf/P6_Ru_ii_L2P02.opf	1		1		0	0	0	0	0
+```
+
+You can download the example file here: 
+
+{{%attachments pattern=\"plant_coffee.yml\" /%}}
+
+## Description
+
+Here is a step-by-step description of the content of the `.ops` file. 
+
+{{% notice tip %}}
+Comments can be added by starting a line with a hash sign: `#`.
+{{% /notice %}}
+
+The first line defines the terrain properties, with its boundaries in X and Y, the lower value for Z, and the slope:
+
+```
+T 0 0 0 2 2 flat
+```
+
+{{% notice note %}}
+The example `.ops` file attached has a comment line before this line to remember the order of the values.
+{{% /notice %}}
+
+The values in the terrain line defines respectively:  
+- `T` is used as an identifier for the terrain properties line. It is mandatory.  
+- The coordinates of the origin for X, Y and Z values. These values are typically set to 0.  
+- The coordinates of the boundaries in X and Y.  
+- The slope of the terrain. At the moment, only a `flat` scene is allowed in ARCHIMED. This is due to the toricity property of the scene, but future development will allow sloped terrains for non-toric scenes. 
+
+{{% notice warning %}}
+The terrain line is optional in AMAPStudio, but **mandatory** for ARCHIMED.
+{{% /notice %}}
+
+Then comes a special comment read by ARCHIMED but not AMAPStudio. It starts with a `#` so it is not read by AMAPStudio, and a special sign `[Archimed]`: 
+
+```
+#[Archimed] coffee
+```
+
+This special line defines the functional group of the plant(s) defined afterward. Here we have two plants that both are from the same group: coffee. This group name is used by ARCHIMED to link each plant to the group models (see the documentation about the models).
+
+Then comes the information to place the plants in the scene:
+
+```
+#sceneId objectId FilePath x y z scale inclinationAzimut inclinationAngle rotation
+1	1	opf/P6_Ru_ii_L2P02.opf	0		0		0	0	0	0	0
+1	2	opf/P6_Ru_ii_L2P02.opf	1		1		0	0	0	0	0
+```
+
+The first line is a comment here. The second and third lines describe a new plant in the scene. 
+Each line specifies ten values: 
+
+- the scene id: this value is mandatory, but not used by ARCHIMED (used by AMAPStudio);  
+- the object id (speaks for itself);  
+- the path to the 3D object file (`.opf` or `.gwa`);  
+- the coordinates of the object in the scene (x, y and z);  
+- the scaling factor of the object (not used, neither in ARCHIMED nor AMAPStudio);  
+- the inclination angle of the object in the azimuth;  
+- the inclination angle of the object in the zenith;  
+- and the object rotation around its main vertical axis;
+
+{{% notice warning %}}
+The parameters that are not used in ARCHIMED are still mandatory in the `.ops` file so the scene can be opened and used in AMAPStudio before and after a simulation.
+{{% /notice %}}
+
+## Several functional groups
+
+It is possible to add plants from different functional groups in the scene by chaining their functional group name and their positions such as:
+
+```
+#[Archimed] coffee
+
+#sceneId objectId FilePath x y z scale inclinationAzimut inclinationAngle rotation
+1	1	opf/coffee.opf	0		0		0	0	0	0	0
+1	2	opf/coffee.opf	1		1		0	0	0	0	0
+
+
+#[Archimed] elaeis
+
+#sceneId objectId FilePath x y z scale inclinationAzimut inclinationAngle rotation
+1	3	opf/elaeis.opf	0.5		0.5		0	0	0	0	0
+1	4	opf/elaeis.opf	1.5		1.5		0	0	0	0	0
+```
+
+You can find the example `.ops` file here:
+
+{{%attachments pattern=\"several_groups.ops\" /%}}
+
+## Further details
+
+One last row can be added to the `.ops` file for scene chaining in AMAPStudio. This line is optional and is not used by ARCHIMED anyway:
+
+```
+#motherId sceneId date
+-1	1	1
+```
+
+The first value gives the id of the parent scene, -1 for the first
+scene (no parent), the second value gives the id of the scene, and the last value gives the date of the scene.
+
+
+For more details, the AMAPStudio definition of the `.ops` file is available [here](http://amapstudio.cirad.fr/soft/simeo/private/the_open_plant_scene_ops_format).
+

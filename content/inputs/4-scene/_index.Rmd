@@ -1,0 +1,16 @@
+---
+chapter: true
+date: "2020-06-09T12:15:33+02:00"
+pre: <b>4. </b>
+title: 3D scene
+weight: 4
+---
+
+# 3D scene
+
+The 3D scene is defined using several files. First, individual objects are defined using: 
+
+- `.opf` files for plants. These files describe the geometry and topology of the plant;
+- `.gwa` objects for any other object, than defines its geometry.
+
+Then, a scene file (`.ops`) is used to place these individual objects in a 3D scene.
