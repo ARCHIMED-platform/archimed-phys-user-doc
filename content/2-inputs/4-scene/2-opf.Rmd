@@ -18,38 +18,202 @@ A very simple example of a virtual plant with two metamers and two leaves is ava
 
 The file renders as follows:
 
-![Simple plant with two metamers and bearing one leaf each](/images/simple_opf.png)
-You don't need to understand the structure of the `.opf` files if you're not a developer. In this case, you can go directly to the next page. Otherwise, more the details are presented below.
+<div class="sketchfab-embed-wrapper">
+<iframe title="A 3D model" width="640" height="480" src="https://sketchfab.com/models/2a699871f6f6459faa11c206bf81ae9a/embed?autospin=0.2&amp;autostart=1&amp;preload=1&amp;ui_controls=1&amp;ui_infos=1&amp;ui_inspector=1&amp;ui_stop=1&amp;ui_watermark=1&amp;ui_watermark_link=1" frameborder="0" allow="autoplay; fullscreen; vr" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+<p style="font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;">
+<a href="https://sketchfab.com/3d-models/a-simple-3d-plant-2a699871f6f6459faa11c206bf81ae9a?utm_medium=embed&utm_source=website&utm_campaign=share-popup" target="_blank" style="font-weight: bold; color: #1CAAD9;">A simple 3D plant</a>
+by <a href="https://sketchfab.com/rvezy?utm_medium=embed&utm_source=website&utm_campaign=share-popup" target="_blank" style="font-weight: bold; color: #1CAAD9;">rvezy</a>
+on <a href="https://sketchfab.com?utm_medium=embed&utm_source=website&utm_campaign=share-popup" target="_blank" style="font-weight: bold; color: #1CAAD9;">Sketchfab</a>
+</p>
+</div>
 
+You don't need to understand the details about the structure of the `.opf` files if you're not a developer. A standard use-case will be to make it using specialized softwares such as [XPlo](http://amapstudio.cirad.fr/soft/xplo/start), VPalm or [PRINCIPES](http://amapstudio.cirad.fr/soft/principes/start).
+
+In this case, you can go directly to the next page. Otherwise, more details are presented below.
 
 ### Structure
 
-The file is designed with several parts:
-- meshBDD
-- materialBDD
-- shapeBDD
-- attributeBDD
-- topology
+The `.opf` file is an `XML` file designed with several parts (*i.e.* XML nodes):
+- meshBDD  
+- materialBDD  
+- shapeBDD  
+- attributeBDD  
+- topology  
+
+Here is our example `.opf` minus the details inside each nodes (stripped information is denoted by `[...]`):
+
+```xml
+<?xml version="1.0" encoding="UTF-8" ?>
+<opf version="2.0" editable="true">
+	<meshBDD>
+	  [...]
+	</meshBDD>
+	<materialBDD>
+    [...]
+	</materialBDD>
+	<shapeBDD>
+	  [...]
+	</shapeBDD>
+	<attributeBDD>
+    [...]
+  </attributeBDD>
+	<topology class="Scene" scale="0" id="3">
+    [...]
+	</topology>
+</opf>
+```
+
+The details about each node is given below.
 
 #### meshBDD
 
-A plant is a collection of similar components repeated many times (*e.g.* thousands of leaves). The most efficient way to store a plant is to use reference meshes that describe the geometry of a given component (*e.g.* a leaf or a metamer), and then to transform this reference mesh to match the geometry of each component. This way reduce the amount of data written in the `.opf` file because the geometry of each component is only stored in a transformation matrix, applied to a mesh that is the same for many components of the same type.
+A plant is a collection of similar components repeated many times (*e.g.* thousands of leaves). The most efficient way to store a plant into a file is to use reference meshes that describe the average geometry of a given component (*e.g.* a leaf or a metamer), and then to transform this reference mesh to match precisely the geometry of each component. This method reduce the amount of data written in the `.opf` file because the geometry of each component is only stored in a `4*3` transformation matrix instead of a data heavy mesh. This matrix is then used to transform the reference mesh to match the geometry of a given component.
 
-The MESHBDD node list all the reference meshes used to build the plant geometry. A mesh is reprensted by a *MESH* node. 
+Hence, the `meshBDD` node from the `.opf` file lists all the reference meshes used to build the plant geometry. Here is the structure of the `meshBDD` from our example. Each reference mesh is represented by a `mesh` node with a given id, here we have three meshes with `id` 1, 2 and 0 respectively:
 
-meshes with points, normals, textureCoords and faces.
+```xml
+[...]
+	<meshBDD>
+			<mesh name="" shape="" Id="1" enableScale="true" >
+			  [...]
+			</mesh>
+			<mesh name="" shape="" Id="2" enableScale="false" >
+	      [...]
+	  	</mesh>
+		  <mesh name="" shape="" Id="0" enableScale="false" >
+		    [...]
+		  </mesh>
+	</meshBDD>
+[...]
+```
+{{% notice note %}}
+Our example could be built using 2 meshes only: a reference leaf and a reference internode. It was built using Xplo, and the software decided to use two different reference meshes and materials for the internode for some reason instead of adapting the transformation matrix.
+{{% /notice %}}
+
+Each mesh node lists itself five information:  
+- the points coordinates as a vector of the form `x1 y1 z1 x2 y2 z2 ...`;  
+- the normal coordinates as a vector of the same form and order than the points;  
+- the texture coordinates (`textureCoords`) as a vector of the form `u1 v1 u2 v2 ...`;  
+- and the faces, listing `face` nodes, each containing a vector of 3 integers referring to the points index used to build a face Point index are written as `i1 i2 i3`. The prefered way for a face is to be a triangle (*i.e.* reference 3 points).
+
+Here are more details about the first mesh:
+
+```xml
+		<mesh name="" shape="" Id="1" enableScale="true" >
+			<points>
+				0.10162586	-0.0012269035	-0.0	0.3519142	0.22452335	0.03067259	[...]
+			</points>
+			<normals>
+				-0.17780079	-0.25352615	0.9508477	-0.17780079	-0.25352615	0.9508477	[...]
+			</normals>
+			<textureCoords>
+				0.49726775	-0.38636366	0.010928948	0.003787874	0.0	0.46590912	[...]
+			</textureCoords>
+			<faces>
+				<face Id="0">
+					0	2	4
+				</face>
+				<face Id="1">
+					0	4	3
+				</face>
+				<face Id="2">
+					4	8	6
+				</face>
+				[...]
+			</faces>
+		</mesh>
+```
 
 #### materialBDD
 
-materials with emission, ambient, diffuse, specular and shininess.
+The `materialBDD` is used to declare the material properties for visualization purposes. This node is not used by ARCHIMED, but is still mandatory to follow the `.opf` standard. It is used when rendering the `.opf` in *e.g.* XPlo. 
 
-#### shapeBDD
+The `materialBDD` is rather short. It lists `material` nodes that declare the optical properties of each reference node: the emission, ambient, diffuse, specular and shininess.
 
-shapes with name, meshIndex and materialIndex
+The `materialBDD` of our example is as follows:
+
+```xml
+[...]
+	<materialBDD>
+		<material Id="1">
+			<emission>0.0	0.0	0.0	0.0	</emission>
+			<ambient>1.0	0.0	0.0	1.0	</ambient>
+			<diffuse>1.0	0.0	0.0	1.0	</diffuse>
+			<specular>1.0	0.0	0.0	1.0	</specular>
+			<shininess>10.0	</shininess>
+		</material>
+		<material Id="0">
+			<emission>0.0	0.0	0.0	0.0	</emission>
+			<ambient>1.0	0.8901961	0.0	1.0	</ambient>
+			<diffuse>1.0	0.8901961	0.0	1.0	</diffuse>
+			<specular>1.0	0.8901961	0.0	1.0	</specular>
+			<shininess>10.0	</shininess>
+		</material>
+	</materialBDD>
+[...]
+```
+Note that each `material` has an `Id`. This id can be different to the one provided in the `meshBDD` (see [next paragraph](#shapeBDD)).  It is used to link the material to the mesh from the `meshBDD` by its `Id`.
+
+Each material property (*e.g.* `emission`) stores a vector of 4 values for the red, green, blue, and alpha value (`[0-1]`).
+
+#### shapeBDD <a id="shapeBDD"></a>
+
+The `shapeBDD` is used to build a shape. A shape is an object that stores a mesh and a material. In other words, it is used to link each mesh to its material properties. Using `shape` is very powerful because it allows to recycle information whenever possible. For example different component types can have a different reference `mesh`, but share the same `material` properties. In this case, no need to create two identical `material` properties, we can just reference the same material instead when building the `shape`.
+
+Here is the `shapeBDD` of our example: 
+
+```xml
+[...]
+	<shapeBDD>
+		<shape Id="1">
+			<name> Mesh1</name>
+			<meshIndex>1</meshIndex>
+			<materialIndex>1</materialIndex>
+		</shape>
+		<shape Id="2">
+			<name> Mesh2</name>
+			<meshIndex>2</meshIndex>
+			<materialIndex>0</materialIndex>
+		</shape>
+		<shape Id="0">
+			<name> Mesh0</name>
+			<meshIndex>0</meshIndex>
+			<materialIndex>0</materialIndex>
+		</shape>
+	</shapeBDD>
+[...]
+```
+
+It lists 3 different shapes, with each a different reference mesh and material. 
+
+
 
 #### attributeBDD
 
-A list of optional attributes.
+Any kind of additional attributes (read "data") can be attached to a topology node (*i.e.* decomp, follow and branch, see next paragraph). The `attributeBDD` is used to define the `attribute` `name` and `class`, *i.e.* data type, `integer`, `float`, `string`, or AMAPStudio custom keyword (*e.g.* `Centimetre`).
+
+Here is the `attributeBDD` from our example: 
+
+```xml
+[...]
+	<attributeBDD>
+		<attribute name="XX" class="Double"/>
+		<attribute name="YY" class="Double"/>
+		<attribute name="ZZ" class="Double"/>
+		<attribute name="FileName" class="String"/>
+		<attribute name="Length" class="Centimetre"/>
+		<attribute name="Width" class="Centimetre"/>
+		<attribute name="XEuler" class="Double"/>
+	</attributeBDD>
+[...]
+```
+
+It declares seven optional `attributes` that can be optionally attached to a topology node. These attributes are generally computed by a software and attached to the `.opf`. For example ARCHIMED uses attributes to attach simulation outputs to `.opf`s from the scene, *e.g.* the intercepted PAR of each component. These attributes are handy for visualization purposes. 
+
+
+{{% notice warning %}}
+Note that attributes are **not** updated automatically when other data is modified. For example the example `attributeBDD` provides a "Length" `attribute`, which is used to get rapidly the length of the component. But if a user modified the actual lenght of a component of the `.opf` by modifying its transformation matrix, the "Length" `attribute` will not be updated to the new length. It is then important to keep in mind that `attribute`s are optional data attached to a node, but not necessarily up to date. 
+{{% /notice %}}
 
 #### topology
 
