@@ -13,9 +13,9 @@ This file lists the main configuration parameters for a simulation. It controls 
 Although entries in the configuration file are not ordered, the following
 example is organized in sections for clarity.
 
-A full working example is available in "../examples/config.yml". It is highly recommended to open this file to follow along.
+A full working example is available in the folder presented in the previous page ("config.yml"). It is highly recommended to open this file to follow along.
 
-#### Detailed parameters description
+### Input files
 
 At the beginning of the example file, we find the three parameters used to enter the path to the other files:
 
@@ -41,6 +41,8 @@ models:
 ```
 
 The `meteo` parameter points to a meteo file. See [this section](#meteo-data-file) for more details.
+
+### Simulation controls
 
 The next parameter allows to filter the meteorology steps from the configuration file if needed:
 
@@ -98,6 +100,8 @@ The `cache_radiation` parameter allows to cache in-memory the computation of lig
 
 > This option can be used to cache the radiation interception computation on disk for further simulations at another time, but it should be used on the exact same scene (same geometry).
 
+### Outputs 
+
 Then, the following parameters control the outputs from the model.
 In ARCHIMED, the outputs of the model are placed in a folder associated to a given simulation, which are all grouped in a more general output directory.
 
@@ -135,7 +139,7 @@ For example if we have two projects, one to simulate different planting designs 
 │   ├── 📂age_2
 │   │   └── ...
 │   └── 📂...
-└── 📜soil.yml                  # An example soil file
+└── 📜soil.yml
 ```
 
 Several files are written in each `simulation_directory`, but the user can control if some are needed or not.

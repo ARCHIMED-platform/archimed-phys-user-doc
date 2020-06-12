@@ -63,7 +63,7 @@ Then comes a special comment read by ARCHIMED but not AMAPStudio. It starts with
 #[Archimed] coffee
 ```
 
-This special line defines the functional group of the plant(s) defined afterward. Here we have two plants that both are from the same group: coffee. This group name is used by ARCHIMED to link each plant to the group models (see the documentation about the models).
+This special line defines the functional group of the plant(s) defined afterward. Here we have two plants that both are from the same group: coffee. This group name is used by ARCHIMED to link each plant to the group models (see the [documentation about the models](../../5-models/1-models/)).
 
 Then comes the information to place the plants in the scene:
 

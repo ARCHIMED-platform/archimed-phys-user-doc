@@ -13,7 +13,7 @@ weight: 9
 - its geometry, read from an <code>.opf</code> or a <code>.gwa</code> file;
 - (optionally) its topology, only read from an <code>.opf</code> file;
 - its functional group, read from an <code>.ops</code> file.</p>
-<p>The geometry (and topology) of an object is built using components (see the <a href="../../4-scene/2-opf/">opf documentation</a>). For example a simple coffee tree can be built using two components: leaves and metamers (for the woody organs). Each component can have its own models and parameters. For example we know that metamers won’t make any photosynthesis, so they don’t have any photosynthesis model.</p>
+<p>The geometry (and topology) of an object is built using components (see the <a href="../../4-scene/2-opf/">opf documentation</a>). For example a simple coffee tree can be built using two components: leaves and internodes. Each component can have its own models and parameters. For example we know that internodes won’t make any photosynthesis, so they don’t have any photosynthesis model.</p>
 <p>You can download the example file to follow along here:</p>
 <p>{{%attachments pattern="plant_coffee_simple.yml" /%}}</p>
 <div id="description" class="section level2">
@@ -27,7 +27,7 @@ Group: coffee</code></pre>
 </div>
 <div id="component-type" class="section level3">
 <h3>Component type</h3>
-<p>The <code>Type</code> parameter defines the component types used to build the object (e.g. leaves and branches components are used to build a plant). The names of the components listed here should match the same names given in the <code>.opf</code> file. In the example given earlier in the <a href="../../1-organisation/">organization chapter</a>, the <code>.opf</code> file for a coffee tree gives two different components: leaf and metamer. A model file adapted for this <code>.opf</code> will list those components as follows:</p>
+<p>The <code>Type</code> parameter defines the component types used to build the object (e.g. leaves and branches components are used to build a plant). The names of the components listed here should match the same names given in the <code>topology</code> node of the <code>.opf</code> file (see <a href="../../4-scene/2-opf/">the documentation about the opf files</a>). In the example given earlier in the <a href="../../1-organisation/">organization chapter</a>, the <code>.opf</code> file for a coffee tree gives two different components: <code>Leaf</code> and <code>Metamer</code> (read internode here). A model file adapted for this <code>.opf</code> will list those components as follows:</p>
 <pre class="yml"><code>---
 Group: coffee
 Type:
@@ -37,7 +37,7 @@ Type:
       [...]</code></pre>
 <p>With the <code>[...]</code> further information not given here for clarity but that will be detailed hereafter.</p>
 <p>{{% notice warning %}}
-The name of the Type should match exactly the names given in the <code>.opf</code> file
+The name of the Type should match exactly the names given in the <code>topology</code> node of the <code>.opf</code> file. Read <a href="../../4-scene/2-opf/">the documentation about the opf files</a> if in doubt.
 {{% /notice %}}</p>
 </div>
 <div id="processes" class="section level3">

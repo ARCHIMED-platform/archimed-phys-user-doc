@@ -2,11 +2,11 @@
 chapter: false
 date: "2020-06-09T12:15:33+02:00"
 pre: <b>7. </b>
-title: Further examples
+title: Power users
 weight: 15
 ---
 
-More information soon about other examples.
+More information soon about YAML anchors, more complex examples, advanced parameters...
 
 
 ### Anchors

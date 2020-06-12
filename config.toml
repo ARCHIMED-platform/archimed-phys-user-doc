@@ -31,8 +31,8 @@ relativeurls = true
 home = [ "HTML", "RSS", "JSON"]
 
 [params]
-    editURL = "https://github.com/VEZY/archimed_website"
-    author = "R. VEZY"
+    editURL = "https://github.com/VEZY/archimed_website/tree/master/content/"
+    author = "R. Vezy"
     description = "The user documentation for the ARCHIMED model"
     # Shows a checkmark for visited pages on the menu
     showVisitedLinks = true

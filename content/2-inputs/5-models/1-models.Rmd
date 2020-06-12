@@ -11,7 +11,7 @@ In ARCIHMED, an object is defined by:
 - (optionally) its topology, only read from an `.opf` file;
 - its functional group, read from an `.ops` file.
 
-The geometry (and topology) of an object is built using components (see the [opf documentation](../../4-scene/2-opf/)). For example a simple coffee tree can be built using two components: leaves and metamers (for the woody organs). Each component can have its own models and parameters. For example we know that metamers won't make any photosynthesis, so they don't have any photosynthesis model. 
+The geometry (and topology) of an object is built using components (see the [opf documentation](../../4-scene/2-opf/)). For example a simple coffee tree can be built using two components: leaves and internodes. Each component can have its own models and parameters. For example we know that internodes won't make any photosynthesis, so they don't have any photosynthesis model. 
 
 You can download the example file to follow along here: 
 
@@ -32,7 +32,7 @@ A functional group can be anything: *e.g.* a plant species, a family, a variety 
 
 ### Component type
 
-The `Type` parameter defines the component types used to build the object (e.g. leaves and branches components are used to build a plant). The names of the components listed here should match the same names given in the `.opf` file. In the example given earlier in the [organization chapter](../../1-organisation/), the `.opf` file for a coffee tree gives two different components: leaf and metamer. A model file adapted for this `.opf` will list those components as follows:
+The `Type` parameter defines the component types used to build the object (e.g. leaves and branches components are used to build a plant). The names of the components listed here should match the same names given in the `topology` node of the `.opf` file (see [the documentation about the opf files](../../4-scene/2-opf/)). In the example given earlier in the [organization chapter](../../1-organisation/), the `.opf` file for a coffee tree gives two different components: `Leaf` and `Metamer` (read internode here). A model file adapted for this `.opf` will list those components as follows:
 
 ```yml
 ---
@@ -47,7 +47,7 @@ Type:
 With the `[...]` further information not given here for clarity but that will be detailed hereafter.
 
 {{% notice warning %}}
-The name of the Type should match exactly the names given in the `.opf` file
+The name of the Type should match exactly the names given in the `topology` node of the `.opf` file. Read [the documentation about the opf files](../../4-scene/2-opf/) if in doubt.
 {{% /notice %}}
 
 ### Processes

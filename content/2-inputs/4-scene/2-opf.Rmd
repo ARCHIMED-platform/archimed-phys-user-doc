@@ -12,7 +12,7 @@ The `.opf` file extension stands for Open Plant Format. It allows to store the t
 
 The file is encoded in the `XML` format, so many editors can render its structure. The `.opf` file describes vertices, faces, normals, texture coordinates, materials (colors), attributes and transformation matrices for the geometry.
 
-A very simple example of a virtual plant with two metamers and two leaves is available here:
+A very simple example of a virtual plant with two metamers (two internodes bearing one leaf each) is available here:
 
 {{%attachments pattern=\"simple_OPF.opf\" /%}}
 
@@ -27,13 +27,15 @@ on <a href="https://sketchfab.com?utm_medium=embed&utm_source=website&utm_campai
 </p>
 </div>
 
-You don't need to understand the details about the structure of the `.opf` files if you're not a developer. A standard use-case will be to make it using specialized softwares such as [XPlo](http://amapstudio.cirad.fr/soft/xplo/start), VPalm or [PRINCIPES](http://amapstudio.cirad.fr/soft/principes/start).
+{{% notice info %}}
+You don't need to understand the details about the structure of the `.opf` files if you're not a developer. A standard use-case for users is to build plants using specialized software such as [XPlo](http://amapstudio.cirad.fr/soft/xplo/start), VPalm or [PRINCIPES](http://amapstudio.cirad.fr/soft/principes/start). If you're a standard user, please go to the next page (especially if it's your first time reading).
+{{% /notice %}}
 
-In this case, you can go directly to the next page. Otherwise, more details are presented below.
+If you are more curious (or don't like people telling you what to do), or need to develop around `.opf` files, more details are presented below.
 
 ### Structure
 
-The `.opf` file is an `XML` file designed with several parts (*i.e.* XML nodes):
+The `.opf` file is a simple `XML` file under the hood. It is designed with several parts (*i.e.* XML nodes):
 - meshBDD  
 - materialBDD  
 - shapeBDD  
@@ -67,7 +69,7 @@ The details about each node is given below.
 
 #### meshBDD
 
-A plant is a collection of similar components repeated many times (*e.g.* thousands of leaves). The most efficient way to store a plant into a file is to use reference meshes that describe the average geometry of a given component (*e.g.* a leaf or a metamer), and then to transform this reference mesh to match precisely the geometry of each component. This method reduce the amount of data written in the `.opf` file because the geometry of each component is only stored in a `4*3` transformation matrix instead of a data heavy mesh. This matrix is then used to transform the reference mesh to match the geometry of a given component.
+A plant is a collection of similar components repeated many times (*e.g.* thousands of leaves). The most efficient way to store a plant into a file is to use reference meshes that describe the average geometry of a given component (*e.g.* a leaf or an internode), and then to transform this reference mesh to match precisely the geometry of each component. This method reduce the amount of data written in the `.opf` file because the geometry of each component is only stored in a `4*3` transformation matrix instead of a data heavy mesh. This matrix is then used to transform the reference mesh to match the geometry of a given component.
 
 Hence, the `meshBDD` node from the `.opf` file lists all the reference meshes used to build the plant geometry. Here is the structure of the `meshBDD` from our example. Each reference mesh is represented by a `mesh` node with a given id, here we have three meshes with `id` 1, 2 and 0 respectively:
 
@@ -217,5 +219,88 @@ Note that attributes are **not** updated automatically when other data is modifi
 
 #### topology
 
-See the ([AMAPStudio documentation](http://amapstudio.cirad.fr/soft/xplo/private/opf_format) for more information.
+The `topology` node is used to describe the relational connection between the different components of a plant, *i.e.* the organization of the plant. The components used are a natural decomposition of the plant, *i.e.* an internode or a leaf that are used to decompose the plant in metamers, and **not** an artificial decomposition such as a set of 10 cm long sections of axes.
 
+![The leafy axis resulting from a succession of phytomers (or metamers) arising from apical bud growth and development. Drawing D. Barthélémy, CIRAD. [Source](http://greenlab.cirad.fr/GLUVED/html/P1_Prelim/Bota/Bota_struct_002.html)](/images/Bota_struct_002_Axis.png)
+
+The description follows the rules of the widely used Multi-scale Tree Graph (MTG). Please read the article from [Godin and Caraglio (1998)](https://www.sciencedirect.com/science/article/pii/S0022519397905610) for a nice introduction to the concept.
+
+But the `topology` node from the `.opf` enhance this concept by adding further attributes to each component, allowing a close coupling between the plant topology and geometry. 
+
+> From [Godin et al. (1999)](https://www.sciencedirect.com/science/article/pii/S030573649990923X) Topology deals  with  the  physical  connections  between  plant  components, while geometry includes the shape, size, orientation and spatial location of the components.
+
+For example, each component to be rendered in 3D has a `shapeIndex` that points to the reference shape used to build the geometry of the component, and a `geometry` node that stores the transformation matrix applied to the reference mesh to compute the geometry of the component. 
+
+The `topology` is built by a succession of components, and the link between them is described using three main keywords:  
+- `follow`, for a **succession** of growth units created by apical meristems;  
+- `branch` for a **ramification**;  
+- `decomp`, for a **decomposition**, *e.g* a reiteration;  
+
+Here is the `topology` from our example file, without the details: 
+
+```xml
+[...]
+	<topology class="Scene" scale="0" id="3">          # -> instantiate the topology with a scene (scale 0)
+		<decomp class="Individual" scale="1" id="2">     # -> instantiate an individual plant (scale 1)
+		  [...]
+			<decomp class="Axis" scale="2" id="4">         # -> instantiate the base axis of the plant
+			  [...]
+				<decomp class="Internode" scale="6" id="5">  # -> Start building the plant: first internode
+				  [...]
+					<branch class="Leaf" scale="2" id="6">     # -> The 1st internode bears a leaf, branched to it
+					  [...]
+					</branch>
+				</decomp>
+				<follow class="Internode" scale="6" id="10"> # -> The 2d internode follows the 1st internode
+				  [...]
+					<branch class="Leaf" scale="2" id="11">    # -> The 2d leaf is branched into the 2d internode
+					  [...]
+					</branch>
+				</follow>
+			</decomp>
+		</decomp>
+	</topology>
+[...]
+```
+
+We can build the topology of our plant only by using the three keywords provided by the MTG method. This method is very powerful and is sufficient to build any topology configuration, from very simple plants until the most complex ones.
+
+We see that each component is delimited by how it is connected to the previous one, and each one has also a `class`, a `scale` and an `id`. The `scale` is not very important for our purposes, but other two are:
+
+* The `class` is used to declare a `component type`. This type can be anything, *e.g.* a `leaf` or an `internode`, but also a `young_leaf` and an `old_leaf`. The `class` is especially important in ARCHIMED (compared to AMAPStudio) because it is then used to associate particular models and parameter values to each `component type`. We will see that later in the [documentation about the models](../../5-models/1-models/).
+
+* The `id` is used as a unique identifier for the components. It helps us find *e.g.* a particular leaf in the whole plant.
+
+#### geometry
+
+As said previously, the geometry of the plant is the shape, size, orientation and spatial location of the components. It is defined by linking several information together: the reference shape declared earlier (see [shapeBDD paragraph](#shapeBDD)), and a transformation matrix given as an attribute to each component from the `topology`. 
+
+The transformation matrix is declared in a `geometry` node. This node also declares the `shapeIndex` to point to the reference shape to use, and two nodes called `dUp` and `dDwn` used for mesh tapering (e.g. make a cone from a cylinder). The `geometry` of the first leaf from our example `.opf` file is as follows:
+
+```xml
+[...]
+  <branch class="Leaf" scale="2" id="6"> # -> declare a component (type: Leaf), branched to the previous component
+    <Length>10.0</Length>                # -> Add optional attribute Length
+  	<Width>6.0</Width>                   # -> Add optional attribute Width
+  	<geometry class="Mesh">              # -> Add a geometry node
+  	  <shapeIndex>1</shapeIndex>         # -> The shape 1 will be used as reference
+  		<mat>                              # -> The shape 1 will be transformed using this matrix
+  		  8.6602545	0.0	-0.5	-1.7484555E-7
+  			0.0	1.0	0.0	0.0
+  			5.0	0.0	0.86602545	4.0
+  		</mat>
+  		<dUp>6.0</dUp>                     # -> Add tapering to the upper part of the shape
+  		<dDwn>6.0</dDwn>                   # -> Add tapering to the lower part of the shape
+  	</geometry>
+  </branch>
+[...]
+```
+
+The transformation matrix is an homogeneous matrix reduced to a `4*3` matrix because the 4th row of the matrix is always the same: [0 0 0 1]. Please read [this wonderful resource](http://www.opengl-tutorial.org/beginners-tutorials/tutorial-3-matrices/) for a nice introduction to homogeneous coordinates, translation, scaling and rotation. This method allows to reduce the data needed to describe the geometry in the `.opf` for fast IO and low disk space usage. 
+{{% notice info %}}
+The `geometry` is not mandatory for all components. Some components are simply not rendered, such as the `Scene` for example. In this case a `geometry` can be optionally declared, but no `shapeIndex` is given.
+{{% /notice %}}
+
+#### Further ressources 
+
+See [this online course](http://greenlab.cirad.fr/GLUVED/html/P1_Prelim/Bota/Bota_archi_001.html) on the greenlab website and the ([AMAPStudio documentation](http://amapstudio.cirad.fr/soft/xplo/private/opf_format) for more information.
