@@ -3,7 +3,7 @@ chapter: false
 date: "2020-06-09T12:15:33+02:00"
 pre: <b>8. </b>
 title: Working with voxels
-weight: 16
+weight: 45
 ---
 
 More information soon about using voxel files. 

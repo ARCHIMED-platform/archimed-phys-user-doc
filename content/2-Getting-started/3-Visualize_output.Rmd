@@ -1,0 +1,16 @@
+---
+chapter: false
+date: "2020-06-09T12:15:33+02:00"
+pre: <b>0.2. </b>
+title: Visualization
+weight: 23
+---
+
+# Render the output
+
+After executing ARCHIMED in the example folder, the simulation outputs are found at this path: `./output/simdir`. There are several files here, and one is especially useful for visualizing the results in 3D: `coffee.opf`. 
+
+To render the results, please download XPlo from the [AMAPStudio website](http://amapstudio.cirad.fr/download). Then open XPlo, press `ctrl+I`, choose `opf`, and navigate to the location of `coffee.opf` and open it.
+
+Xplo will open and 3D render the example coffee. Now you can color the coffee components by any output variable by clicking on: `Geometry -> Colorizer`.
+

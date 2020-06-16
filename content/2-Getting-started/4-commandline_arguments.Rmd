@@ -1,0 +1,39 @@
+---
+chapter: false
+date: "2020-06-09T12:15:33+02:00"
+pre: <b>0.2. </b>
+title: Command line arguments
+weight: 24
+---
+
+# Command details
+
+We saw earlier that a simulation is started using the following command line:
+
+```shell
+java -jar archimed.jar config.yml
+```
+
+The `java -jar archimed.jar` part of the command just tells Java to execute the `archimed.jar` file, and the second one (`config.yml`) is an argument used to give the path to the configuration file to  ARCHIMED.
+
+But more options are also available from ARCHIMED. 
+
+To get all the options from ARCHIMED, you can consult the help by running it without any argument:
+
+```shell
+java -jar archimed.jar
+```
+
+It will return something as follow (depending on the version):
+
+```
+java -jar archimed.jar
+```
+
+
+
+### Open a terminal
+
+- For windows users: right click inside the folder while holding the shift key, and click on "open Powershell". It will open a Powershell prompt in the right folder. Then you can execute the command given above;  
+- For Mac users, press command + spacebar from the folder;  
+- For Linux users, well, you know already.

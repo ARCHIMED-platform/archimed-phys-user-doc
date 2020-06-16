@@ -3,16 +3,9 @@ chapter: false
 date: "2020-06-09T12:15:33+02:00"
 pre: <b>4.3. </b>
 title: Geometry file
-weight: 7
+weight: 37
 ---
 
 # `.gwa`
 
-They referenced by the OPS scene file.
-
-These files is in OPF or GWA format, see AmapStudio documentation ([OPF
-format](http://amapstudio.cirad.fr/soft/xplo/private/opf_format), [GWA
-format](http://amapstudio.cirad.fr/soft/xplo/private/the_gwa_format_-_geometry_with_attributes)).
-To sumerise, it is an XML format describing vertices, faces, normals,
-texture coordiantes, materials (colors), attributes and tranformation
-matrices.
+More information about the `.gwa` files are coming soon. In the mean time, please see [the AMAPStudio documentation](http://amapstudio.cirad.fr/soft/xplo/private/the_gwa_format_-_geometry_with_attributes)).

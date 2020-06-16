@@ -1,0 +1,40 @@
+---
+chapter: false
+date: "2020-06-09T12:15:33+02:00"
+pre: <b>0.2. </b>
+title: Run ARCHIMED
+weight: 22
+---
+
+# Run a simulation
+
+Then, open a terminal and run the following command:
+
+```shell
+java -jar archimed.jar config.yml
+```
+
+And that's it ! You ran an ARCHIMED simulation ! Note that it can take a minute to finish. 
+
+
+### Command details
+
+The `java -jar archimed.jar` part of the command just tells Java to execute the `archimed.jar` file. If your ARCHIMED `.jar` file is named differently, please name it properly, e.g.: 
+
+```shell
+java -jar archimed_custom_name.jar config.yml
+```
+
+The last argument (`config.yml`) is used by ARCHIMED itself. It is the path to the configuration file for the simulation. If you're executing ARCHIMED from a folder and the simulation files are in another, you can use this argument as a relative or absolute path, e.g.: 
+
+```shell
+java -jar archimed.jar C:/users/yourusername/test/config.yml
+```
+
+The argument can also be quoted, e.g. `"./test/config.yml"`
+
+### Open a terminal
+
+- For windows users: right click inside the folder while holding the shift key, and click on "open Powershell". It will open a Powershell prompt in the right folder. Then you can execute the command given above;  
+- For Mac users, press command + spacebar from the folder;  
+- For Linux users, well, you know already.

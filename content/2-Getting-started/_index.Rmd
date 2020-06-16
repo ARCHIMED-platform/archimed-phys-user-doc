@@ -1,0 +1,11 @@
+---
+chapter: true
+date: "2020-06-09T12:15:33+02:00"
+pre: <b>0. </b>
+title: Getting started
+weight: 20
+---
+
+### Chapter 0
+
+This chapter is all about making you first simulation. We believe running the model once before starting digging into the details is way more fun !
