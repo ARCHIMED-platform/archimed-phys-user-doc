@@ -9,8 +9,16 @@ weight: 44
 More information soon about YAML anchors, more complex examples, advanced parameters...
 
 
-### Anchors
+### YAML anchors
 
 More information about using anchors in `YAML` files soon.
 
 
+### Command line args
+
+More information about using the command line options from ARCHIMED soon.
+
+
+### Advanced parameters
+
+More information about using the advanced parameters soon.

@@ -14,3 +14,4 @@ To render the results, please download XPlo from the [AMAPStudio website](http:/
 
 Xplo will open and 3D render the example coffee. Now you can color the coffee components by any output variable by clicking on: `Geometry -> Colorizer`.
 
+

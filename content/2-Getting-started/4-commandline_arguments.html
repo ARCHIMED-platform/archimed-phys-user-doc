@@ -18,15 +18,24 @@ weight: 24
 <p>To get all the options from ARCHIMED, you can consult the help by running it without any argument:</p>
 <pre class="shell"><code>java -jar archimed.jar</code></pre>
 <p>It will return something as follow (depending on the version):</p>
-<pre><code>java -jar archimed.jar</code></pre>
-<div id="open-a-terminal" class="section level3">
-<h3>Open a terminal</h3>
-<ul>
-<li>For windows users: right click inside the folder while holding the shift key, and click on “open Powershell”. It will open a Powershell prompt in the right folder. Then you can execute the command given above;<br />
-</li>
-<li>For Mac users, press command + spacebar from the folder;<br />
-</li>
-<li>For Linux users, well, you know already.</li>
-</ul>
-</div>
+<pre><code>[INFO ] 2020-06-16 16:59:53.747 [main] ArchimedMain - build time 2020-06-16T13:30:26+0200
+[INFO ] 2020-06-16 16:59:53.749 [main] ArchimedMain - commit b7a83300256fc3cfc98b1f7088ae613600a61398 on branch wavebands
+[INFO ] 2020-06-16 16:59:53.749 [main] CommandLineOptions - parsing options
+usage: archimed &lt;property file&gt; [-d] [--exclude-objectid-output &lt;arg&gt;] [-h] [--meteo-substep-v1] [--meteo-sunpos-v1] [--no-area-ratio] [--no-meteo-overlap-check] [--no-reduced-pixtable] [--no-upperhit-pixtable] [-p] [--prop &lt;arg&gt;] [--scattering-end-method &lt;arg&gt;]
+
+Light interception and photosynthesis on 3D plant models
+
+-d,--debug                        debug mode
+   --exclude-objectid-output &lt;arg&gt;exclude given object id from file outputs
+-h,--help                         print detailed help
+   --meteo-substep-v1             meteo step subdivision method V1
+   --meteo-sunpos-v1              meteo step sun positioning method V1
+   --no-area-ratio                disable area ratio correction
+   --no-meteo-overlap-check       disable meteo time steps overlapping checking
+   --no-reduced-pixtable          do not use &#39;reduced&#39; pixel table
+   --no-upperhit-pixtable         do not use &#39;upper hit&#39; pixel table
+-p,--parallel                     enable parallel computations
+   --prop &lt;arg&gt;                   define/override configuration property, eg. --prop file=xxx
+   --scattering-end-method &lt;arg&gt;  scattering iteration ending method (0,1,2)```</code></pre>
+<p>You can run ARCHIMED with any of these options enabled, but at the moment it is best not digging into much details about this. We will see those details later in the <a href="../../2-inputs/7-power_users/">documentation for power users</a>.</p>
 </div>
