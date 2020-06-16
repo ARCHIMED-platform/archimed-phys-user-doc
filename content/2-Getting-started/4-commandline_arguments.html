@@ -13,11 +13,12 @@ weight: 24
 <h1>Command details</h1>
 <p>We saw earlier that a simulation is started using the following command line:</p>
 <pre class="shell"><code>java -jar archimed.jar config.yml</code></pre>
-<p>The <code>java -jar archimed.jar</code> part of the command just tells Java to execute the <code>archimed.jar</code> file. If your ARCHIMED <code>.jar</code> file is named differently, please name it properly, <em>e.g.</em>:</p>
-<pre class="shell"><code>java -jar archimed_custom_name.jar config.yml</code></pre>
-<p>The last argument (<code>config.yml</code>) is used by ARCHIMED itself. It is the path to the configuration file for the simulation. If you’re executing ARCHIMED from a folder and the simulation files are in another, you can use this argument as a relative or absolute path, e.g.:</p>
-<pre class="shell"><code>java -jar archimed.jar C:/users/yourusername/test/config.yml</code></pre>
-<p>The argument can also be quoted, e.g. <code>"./test/config.yml"</code></p>
+<p>The <code>java -jar archimed.jar</code> part of the command just tells Java to execute the <code>archimed.jar</code> file, and the second one (<code>config.yml</code>) is an argument used to give the path to the configuration file to ARCHIMED.</p>
+<p>But more options are also available from ARCHIMED.</p>
+<p>To get all the options from ARCHIMED, you can consult the help by running it without any argument:</p>
+<pre class="shell"><code>java -jar archimed.jar</code></pre>
+<p>It will return something as follow (depending on the version):</p>
+<pre><code>java -jar archimed.jar</code></pre>
 <div id="open-a-terminal" class="section level3">
 <h3>Open a terminal</h3>
 <ul>

@@ -86,11 +86,33 @@ cache_radiation : true   # true : precomputed intercepted/scattered radiation to
 
 `pixel_size` defines the size of the side of a pixel (cm pixels-1). The light interception is computed using "pixel tables" in ARCHIMED. There is a pixel table for each sky sector of the turtle, and it is projected onto the ground of the scene. Light rays are sent from the sky sector to each pixel from the pixel table, and the "hits" with the objects from the scene are computed using these rays. Because the `pixel_size` defines the size of the pixels in the scene, it can be viewed as a way to change the "resolution" of the computation. If we decrease its value, we get more pixels with a smaller size, so we cast more rays through the scene.
 
+#### Toricity
+
 `toricity` is a Boolean controlling the plot toricity. The use of the toricity option allows generating virtually infinite canopies from the plot defined in the `.ops`. The name `toricity` comes from the shape and properties of a Torus, where the conditions of one end are close to the ones from the other end.
 
 ![A flat scene can be turned into a torus to connect the scene boundaries between each others. Attribution: Lucas Vieira / Public domain, from https://commons.wikimedia.org/wiki/File:Torus_from_rectangle.gif](/images/torus_from_rectangle.gif){#fig:torus}
 
-In ARCHIMED, the light rays reaching the top of the scene (*i.e.* maximum Y boundaries) re-enter the scene from the bottom of the scene. The procedure is the same for the X axis.
+In ARCHIMED, the light rays reaching an horizontal boundary of the scene (*e.g* maximum Y boundary) re-enter the scene from the opposite direction of the scene (*e.g* minimum Y boundary).
+
+Here is our example 3D scene with a coffee tree planted near the boundary of the scene: 
+
+<div class="sketchfab-embed-wrapper">
+<iframe title="A 3D model" width="640" height="480" src="https://sketchfab.com/models/045dba854c8d4b9e8a5dff2d18892df1/embed?autostart=1&amp;preload=1&amp;ui_controls=1&amp;ui_infos=1&amp;ui_inspector=1&amp;ui_stop=1&amp;ui_watermark=1&amp;ui_watermark_link=1" frameborder="0" allow="autoplay; fullscreen; vr" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+<p style="font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;">
+<a href="https://sketchfab.com/3d-models/a-coffee-tree-045dba854c8d4b9e8a5dff2d18892df1?utm_medium=embed&utm_source=website&utm_campaign=share-popup" target="_blank" style="font-weight: bold; color: #1CAAD9;">A coffee tree</a>
+by <a href="https://sketchfab.com/rvezy?utm_medium=embed&utm_source=website&utm_campaign=share-popup" target="_blank" style="font-weight: bold; color: #1CAAD9;">rvezy</a>
+on <a href="https://sketchfab.com?utm_medium=embed&utm_source=website&utm_campaign=share-popup" target="_blank" style="font-weight: bold; color: #1CAAD9;">Sketchfab</a>
+</p>
+</div>
+
+
+A simulation of the light interception in this scene with the toricity set to `true` would give the following image after rendering in Xplo with the soil colored by the value of the light it absorbs to get a feeling of the projected shade from the coffee tree: 
+
+![A coffee tree in a toric 3x3m scene. The soil is colored by `Ra_PAR_f`, the absorbed PAR in $W m_{component}^{-2}$.](/images/coffee_scene_toricity.png)
+The scene toricity can be seen looking at the projected shade by the coffee onto the ground. The shade of the coffee is projected on almost all corners of the scene because the scene is virtually repeated infinitely, so there is virtually a coffee tree near each corner of the scene. If we copy/paste the results from the previous scene 4 times in a new `.ops`, we get a better idea of the effect of toricity after rendering in XPlo: 
+
+
+![A coffee tree in a toric 3x3m scene, repeated 4 times **after** simulation. The soil is colored by `Ra_PAR_f`, the  in $W m_{component}^{-2}$.](/images/coffee_scene_toricity_4_times.png)
 
 `cache_pixel_table` is a Boolean used to define if the pixel tables are cached on disc instead of keeping them in-memory. Caching the pixel tables (`true`) result in a slower simulation due to writing, but uses less RAM. Users with low-end computers can activate this option if they have not enough memory for a simulation.
 
@@ -149,9 +171,21 @@ write_summary: true    # If true export the simulation summary in a csv file
 ```
 The `write_summary` parameter is a Boolean to choose if a summary file is needed for the simulation. This file is a `.csv` file summarizing the area and intercepted radiation (`Ri_q`) grouped by time step, group, type, and item_id.
 
-Two more files are available for simulation outputs: the `component_values.csv` file that return the values of the variables needed at component scale (*e.g.* the interception of each leaf), and the `.opf` files, which are a copy of the original topology and geometry files (`.opf` files) of each individual enriched with new simulated variables.
+More files are available for simulation outputs: 
 
-Many variables are available as outputs from ARCHIMED. The `component_variables` parameter lists the variables needed as outputs:
+- the `component_values.csv` file that provide the values of the variables needed at component scale (*e.g.* the interception of each leaf) for each individual object (*i.e.* a plant, or a `.gwa`);
+
+- the scene files (`.opf`, `.gwa` and `.ops` files), which are a copy of the original scene, but with the topology and geometry files of each objects enriched with new simulated variables.
+
+The `component_values.csv` is written only if the `component_variables` parameter is present in the `config.yml` file (see below). The scene files are only present if the `export_ops` parameter is set to `true`:
+
+```yaml
+export_ops: true
+```
+
+#### Component variables
+
+Many variables are available as outputs from ARCHIMED to write into the `component_values.csv` file. The `component_variables` parameter lists the variables needed as outputs:
 
 ```yaml
 # List of columns in the component_values.csv file:
@@ -216,7 +250,9 @@ component_variables:
 
 This would only return the variables listed, and all others will be set as `false` as default.
 
-The `opf_variables` parameter works exactly as the `component_variables`, but they control the variables added to the `.opf` files instead.
+#### Component variables
+
+The `opf_variables` parameter works exactly as the `component_variables`, but they control the variables added to the `.opf` (and `.gwa`) files instead.
 
 One example using the short format would be :
 
@@ -225,8 +261,10 @@ opf_variables:
   Ra_PAR_f: true      # Order n absorbed PAR (W m[component]-2)  
 ```
 
-Here the `.opf` files of all plants in the scene will be copied into the simulation folder and enriched with the simulated `Ra_PAR_f` for each component.
+Here the `.opf` files of all plants and `.gwa` files of all objects in the scene will be copied into the simulation folder and enriched with the simulated `Ra_PAR_f` for each component.
 
+#### Using YAML anchors
+ 
 Most of the time the required `opf_variables` will be the same than the `component_variables`. You can use anchors to tell ARCHIMED to re-use the same values in `opf_variables` than in `component_variables`:
 
 ```yaml

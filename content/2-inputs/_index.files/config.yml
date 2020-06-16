@@ -24,6 +24,7 @@ output_directory: output     # Path to the output directory (the folder is creat
 simulation_directory: simdir # Optional : path to the simulation directory (replace the automatic counter based directory name generation)
 write_summary: true          # If true export the simulation summary in a csv file
 export_ops: true             # Export the scene (ops + opf). `true`: export last step, `false` don't export; `all` export scene for each meteo step; `n` export scene at nth meteo step
+
 # List of columns in the component_values.csv file:
 component_variables: &outvars
   step_number: true    # Index of the step
