@@ -6,10 +6,10 @@ title: Simple model file
 weight: 39
 ---
 
-In ARCIHMED, an object is defined by: 
-- its geometry, read from an `.opf` or a `.gwa` file;
-- (optionally) its topology, only read from an `.opf` file;
-- its functional group, read from an `.ops` file.
+In ARCIHMED, an object is defined by:  
+- its geometry, read from an `.opf` or a `.gwa` file;  
+- (optionally) its topology, only read from an `.opf` file;  
+- its functional group, read from an `.ops` file.  
 
 The geometry (and topology) of an object is built using components (see the [opf documentation](../../4-scene/2-opf/)). For example a simple coffee tree can be built using two components: leaves and internodes. Each component can have its own models and parameters. For example we know that internodes won't make any photosynthesis, so they don't have any photosynthesis model. 
 
