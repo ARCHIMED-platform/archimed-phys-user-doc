@@ -303,4 +303,4 @@ The `geometry` is not mandatory for all components. Some components are simply n
 
 #### Further ressources 
 
-See [this online course](http://greenlab.cirad.fr/GLUVED/html/P1_Prelim/Bota/Bota_archi_001.html) on the greenlab website and the ([AMAPStudio documentation](http://amapstudio.cirad.fr/soft/xplo/private/opf_format) for more information.
+See [this online course](http://greenlab.cirad.fr/GLUVED/html/P1_Prelim/Bota/Bota_archi_001.html) on the greenlab website and the [AMAPStudio documentation](http://amapstudio.cirad.fr/soft/xplo/private/opf_format) for more information.
