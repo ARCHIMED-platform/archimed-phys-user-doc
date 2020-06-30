@@ -67,7 +67,7 @@ Here is our example `.opf` minus the details inside each nodes (stripped informa
 
 The details about each node is given below.
 
-#### meshBDD
+#### meshBDD <a id="meshBDD"></a>
 
 A plant is a collection of similar components repeated many times (*e.g.* thousands of leaves). The most efficient way to store a plant into a file is to use reference meshes that describe the average geometry of a given component (*e.g.* a leaf or an internode), and then to transform this reference mesh to match precisely the geometry of each component. This method reduce the amount of data written in the `.opf` file because the geometry of each component is only stored in a `4*3` transformation matrix instead of a data heavy mesh. This matrix is then used to transform the reference mesh to match the geometry of a given component.
 
@@ -190,7 +190,7 @@ It lists 3 different shapes, with each a different reference mesh and material.
 
 
 
-#### attributeBDD
+#### attributeBDD <a id="attributeBDD"></a>
 
 Any kind of additional attributes (read "data") can be attached to a topology node (*i.e.* decomp, follow and branch, see next paragraph). The `attributeBDD` is used to define the `attribute` `name` and `class`, *i.e.* data type, `integer`, `float`, `string`, or AMAPStudio custom keyword (*e.g.* `Centimetre`).
 

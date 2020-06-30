@@ -58,7 +58,7 @@ You don’t need to understand the details about the structure of the <code>.opf
 &lt;/opf&gt;</code></pre>
 <p>The details about each node is given below.</p>
 <div id="meshbdd" class="section level4">
-<h4>meshBDD</h4>
+<h4>meshBDD <a id="meshBDD"></a></h4>
 <p>A plant is a collection of similar components repeated many times (<em>e.g.</em> thousands of leaves). The most efficient way to store a plant into a file is to use reference meshes that describe the average geometry of a given component (<em>e.g.</em> a leaf or an internode), and then to transform this reference mesh to match precisely the geometry of each component. This method reduce the amount of data written in the <code>.opf</code> file because the geometry of each component is only stored in a <code>4*3</code> transformation matrix instead of a data heavy mesh. This matrix is then used to transform the reference mesh to match the geometry of a given component.</p>
 <p>Hence, the <code>meshBDD</code> node from the <code>.opf</code> file lists all the reference meshes used to build the plant geometry. Here is the structure of the <code>meshBDD</code> from our example. Each reference mesh is represented by a <code>mesh</code> node with a given id, here we have three meshes with <code>id</code> 1, 2 and 0 respectively:</p>
 <pre class="xml"><code>[...]
@@ -159,7 +159,7 @@ Our example could be built using 2 meshes only: a reference leaf and a reference
 <p>It lists 3 different shapes, with each a different reference mesh and material.</p>
 </div>
 <div id="attributebdd" class="section level4">
-<h4>attributeBDD</h4>
+<h4>attributeBDD <a id="attributeBDD"></a></h4>
 <p>Any kind of additional attributes (read “data”) can be attached to a topology node (<em>i.e.</em> decomp, follow and branch, see next paragraph). The <code>attributeBDD</code> is used to define the <code>attribute</code> <code>name</code> and <code>class</code>, <em>i.e.</em> data type, <code>integer</code>, <code>float</code>, <code>string</code>, or AMAPStudio custom keyword (<em>e.g.</em> <code>Centimetre</code>).</p>
 <p>Here is the <code>attributeBDD</code> from our example:</p>
 <pre class="xml"><code>[...]
