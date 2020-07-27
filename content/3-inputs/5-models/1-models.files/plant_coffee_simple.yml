@@ -6,8 +6,8 @@ Type:
           model: Translucent
           transparency: 0
           optical_properties:
-              PAR: 0.15
-              NIR: 0.9
+              PAR: 0.15   # Scattering factor for PAR (400-700 nm) == reflectivity + transmissivity. And absorptivity = 1 - scattering factor
+              NIR: 0.9    # Scattering factor for NIR (780-3000 nm)
   Leaf:
       Interception:
             model: Translucent
@@ -17,19 +17,19 @@ Type:
                 NIR: 0.9
       Photosynthesis:
             model: FarquharEnBalance
-            tempCRef: 25
-            jMaxRef: 250
-            vcMaxRef: 200
-            rdRef: 0.6
-            theta: 0.853
-            LWratio: 1.5
-            nFaceStomata: 1
-            leafEmissivity : 0.98
+            tempCRef: 25    # °C, reference temperature of measurements
+            jMaxRef: 250    # umol[CO2] m-2 s-1, value of maximum rate of electron transport (Jmax) at the reference temperature
+            vcMaxRef: 200   # umol[electron] m-2 s-1 , maximum carboxylation rate at the reference temperature
+            rdRef: 0.6      # umol[CO2] m-2 s-1, mitochondrial respiration in the light at reference temperature (other than that associated with the PCO cycle)
+            theta: 0.853    # curvature of the light-response curve of electron transport.
+            LWratio: 1.5    # average lenght / width ratio for the component. Used to compute the boundary layer conductance.
+            nFaceStomata: 1 # number of faces of the component with stomata (1: hypostomatal, 2: amphistomatal  leaf).
+            leafEmissivity : 0.98 # Ratio between the leaf radiant emittance (also called radiant exitance) compared to the one of a black body.
             delta_T_init: -2 # °C initialisation of the leaf temperature in relation to Tair (Tleaf= Tair-delta_T_init)
             epsilon: 0.1     # °C criteria for convergence of the leaf temperature computation (difference between previous Tleaf and current Tleaf)
             iter_T_max: 10   # maximum number of iterations allowed for leaf temperature computation
             iter_A_max: 50   # maximum number of iterations allowed for Assimilation and Conductance computation
       StomatalConductance:
             model: Medlyn
-            g0: -0.03
-            g1: 12
+            g0: -0.03        # umol[CO2] m-2 s-1, residual conductance
+            g1: 12           # (-) slope of the conductance

@@ -4,6 +4,7 @@ date: "2020-06-09T12:15:33+02:00"
 pre: <b>5.2. </b>
 title: List of the models
 weight: 40
+bibliography: references.bib
 ---
 
 Here is a list of all models available for each process.
@@ -12,12 +13,187 @@ Here is a list of all models available for each process.
 
 ## Interception
 
-...
+
+### Translucent 
+
+This model has two set of parameters : 
+
+  * transparency: between 0 and 1. 0 is not transparent (opaque), and 1 fully transparent.
+  If e.g. 0.3, 30% of the incoming light is intercepted by the component (interception = radiation * (1-transparency)), and 30% is directly transmitted (not being part of the interception). Not to be confused with the scattering of the light that is computed using the **intercepted** light (transmitted + scattered light),
+  
+  * optical_properties. Used to parametrize the scattering factors for each waveband to compute how much light is [absorbed](https://en.wikipedia.org/wiki/Absorptance), [reflected](https://en.wikipedia.org/wiki/Reflectance) and [transmitted](https://en.wikipedia.org/wiki/Transmittance) by the component (*i.e.* a range of wavelength).
+  
+  ![Decomposition of light paths after a hit.](/images/reflectance_transmittance_absorbtance.jpg){#fig:absrefltrans}
+
+  Usually the radiation remaining for each is computed using coefficients, such as the sum of all coefficients is equal to 1:
+  
+  $\alpha + \rho + \tau = 1$
+
+  with $\alpha$ the coefficient of absorptance, $\rho$ the reflectance and $\tau$ the transmittance.
+
+  Then, the absorbed ($R_a$), reflected ($R_r$) and transmitted ($R_t$) light are computed as: 
+
+  $R_a = \alpha \cdot R_i$  
+  $R_r = \rho \cdot R_i$  
+  $R_t = \tau \cdot R_i$
+  
+  But in ARCHIMED we consider the reflectance coefficient equal to the transmittance coefficient ($\rho = \tau$), so we use only one value to parameterize the model: the scattering factor ($\sigma$). It is the sum of $\rho$ and $\tau$, such as $\sigma = \rho + \tau$.
+  Then we can compute $R_a$, $R_r$ and $R_t$ as:
+  
+  $R_a = R_i \cdot (1 - \rho + \tau)$
+  
+  $R_r = R_i \cdot \frac{(1-\sigma)}{2}$
+  
+  $R_t = R_i \cdot \frac{(1-\sigma)}{2}$
+  
+  {{% notice info %}}
+  In ARCHIMED, the components are considered [lambertian surfaces](https://en.wikipedia.org/wiki/Lambertian_reflectance), i.e. they scatter the light uniformly in all directions.
+  {{% /notice %}}
+
+  The scattering factors are given for each waveband to be simulated by the model. This is typically for the [photosynthetically active radiation](https://en.wikipedia.org/wiki/Photosynthetically_active_radiation) (PAR, typically 400 to 700 nm) and the [near-infrared](https://en.wikipedia.org/wiki/Infrared#Regions_within_the_infrared) (NIR, typically 780 nm to 2500 nm) but the user can also define custom wavebands.
+
+### ignore
+
+This model totally ignore the object, so it is not used during the computation of light interception, as if it never existed. No parameter.
+
+### VirtualSensor
+
+This model is used for special components called virtual sensors. They are used to know the incoming radiation for a given point in space. See [this chapter](../4-virtual_sensors/index.html) for more details. No parameters.
+
 
 ## Photosynthesis
 
-...
+There are two models to compute the photosynthesis in ARCHIMED: `FarquharEnBalance` and `NRH`.
+Here is an example parameterization using those models:
+
+```YAML
+Photosynthesis:
+    use: Farquharcoffee_1
+    Farquharcoffee_1:
+        model: FarquharEnBalance
+        tempCRef: 25
+        jMaxRef: 250
+        vcMaxRef: 200
+        rdRef: 0.6
+        theta: 0.853
+        LWratio: 1.5
+        nFaceStomata: 1
+        leafEmissivity : 0.98
+        delta_T_init: -2
+        epsilon: 0.1 
+        iter_T_max: 10
+        iter_A_max: 50
+    NRH_coffee:
+        model: NRH
+        theta: 0.6711
+        pmax: 32.91
+        alpha: 0.06906
+        rd: 1.612
+```
+
+
+### FarquharEnBalance
+
+This model is the most complete. It couples the photosynthesis model of @farquharBiochemicalModelPhotosynthetic1980, a model for stomatal conductance (see next paragraph), and a detailed energy balance model to iteratively solve the stomatal conductance and the leaf temperature. 
+
+This model has 12 parameters:
+
+- tempCRef (°C): reference temperature of measurements
+
+- jMaxRef ($\mu mol_{CO_2} \cdot m^{-2} \cdot s^{-1}$): value of maximum rate of electron transport (Jmax) at the reference temperature
+
+- vcMaxRef ($\mu mol_{electron} \cdot m^{-2} \cdot s^{-1}$): Maximum carboxylation rate at the reference temperature
+
+- rdRef ($\mu mol_{CO_2} \cdot m^{-2} \cdot s^{-1}$): mitochondrial respiration in the light at reference temperature (other than that associated with the PCO cycle).
+
+- theta: the curvature of the light-response curve of electron transport.
+
+- LWratio: average lenght / width ratio for the component. Used to compute the boundary layer conductance.
+
+- nFaceStomata: number of faces of the component with stomata (1: hypostomatal, 2: amphistomatal  leaf).
+
+- leafEmissivity (0-1): Ratio between the leaf [radiant emittance](https://en.wikipedia.org/wiki/Radiant_exitance) (also called radiant exitance) compared to the one of a black body.
+
+- delta_T_init (°C): initialization of the leaf temperature in relation to Tair (Tleaf = Tair - delta_T_init). This initialization is done every time the function is called (at every iteration of the assimilation conmputation), then the leaf temperature is computed by iteration, and its last value is used on the computation of the assimilation, but is reset to delta_T_init before re-doing the calculation of Tleaf. This is done to avoid heavy divergence of both optimization algorithms. 
+
+- epsilon (°C): criteria for convergence of the leaf temperature computation (difference between previous Tleaf and current Tleaf)
+
+- iter_T_max (-): maximum number of iterations allowed for leaf temperature computation
+
+- iter_A_max (-): maximum number of iterations allowed for assimilation and conductance computation
+
+### NRH
+
+The NRH (Non-Rectangular Hyperbola) model is used to compute the photosynthesis much more simply (but less reliably). It has four parameters: 
+
+- pmax ($\mu mol_{CO_2} \cdot m^{-2} \cdot s^{-1}$): maximum (*i.e* light-saturated) net photosynthetic rate
+
+- theta (-): convexity of the PLR (photosynthetic Light Response) curve 
+
+- alpha ($\mu mol_{CO_2} \cdot \mu mol_{photon}^{-1}$): quantum yield of assimilation (initial slope of the PLR)
+
+- rd ($\mu mol_{CO_2} \cdot m^{-2} \cdot s^{-1}$): dark respiration rate.
 
 ## Stomatal Conductance
 
-...
+The stomatal conductance is crucial to estimate the water and carbon fluxes from the leaves to the environment. There are two models of stomatal conductance yet: `Medlyn` and `'Yin-Struik'`.
+Here is an example parameterization of the models:
+
+```YAML
+StomatalConductance:
+  use: Medlyn_generic
+  Medlyn_generic:
+      model: Medlyn
+      g0: -0.03
+      g1: 12
+  Medlyn_caturra:
+      model: Medlyn
+      g0: -0.03
+      g1: 12.5
+  'Yin-Struik_caturra':
+      model: 'Yin-Struik'
+      g0: 0.02089956
+      a1: 0.9
+      b1: 0.15
+```
+
+{{% notice note %}}
+Please note the "'" around the name of the Yin-Struik model. It is used to escape the "-" character inside the name, and is mandatory. 
+{{% /notice %}}
+
+### Medlyn
+
+The model of @medlynReconcilingOptimalEmpirical2011 computes the leaf stomatal conductance using the vapor pressure deficit (VPD) such as:
+
+$G_s=G_0+\left(1+\frac{G_1}{\sqrt{VPD}}\right)\cdot\frac{A}{C_a-\Gamma}$
+
+
+where $G_s$ is the stomatal conductance in $mol_{CO_2} \cdot m^{-2} \cdot s^{-1}$, VPD is the vapor pressure deficit in kPa, A is the net assimilation rate in $\mu mol_{CO_2} \cdot m^{-2} \cdot s^{-1}$,   $C_a$ the atmospheric $CO_2$ concentration in ppm, and $\Gamma$ the $CO_2$ compensation point of assimilation in the presence of dark respiration (so in the absence of day respiration (Rd)). The model has two parameters: 
+
+- g0 ($mol_{CO_2} \cdot m^{-2} \cdot s^{-1}$): residual conductance
+
+- g1 (-): slope of the conductance
+
+### 'Yin-Struik'
+
+The model from @yinCanIncreasedLeaf2017 (equ. 11) also relates the stomatal conductance to the VPD using the following equation:
+
+$G_s=G_0+\frac{A+R_d}{C_s-C_s^\ast}f\left(VPD\right)$
+
+with $C_s$ the $CO_2$ concentration at the leaf surface, and $C^{\star}_s$ is the equivalent of $\Gamma$ based on $C_s$ (see full article, eq. 11). 
+
+In ARCHIMED, $C^{\star}_s$ is given by $\Gamma^\star_{ref}$ corrected by the temperature, and $C_i$ is used instead of $C_s$.
+
+The $f\left(VPD\right)$ function is computed as: 
+
+$f_{VPD}=\frac{1}{\frac{1}{\max\left(a_1-b_1\cdot VPD,\ 0.01\right)-1}}$
+
+The model has three parameters:
+
+- g0 ($mol_{CO_2} \cdot m^{-2} \cdot s^{-1}$): the residual conductance
+
+- a1 (-): Ci:Ca ratio in water vapour-saturated air
+
+- b1 (-): slope of the decrease of this ratio with increasing VPD.
+
+## References
