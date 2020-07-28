@@ -13,6 +13,7 @@ bibliography: references.bib
 <p>Here is a list of all models available for each process.</p>
 <div id="interception" class="section level2">
 <h2>Interception</h2>
+<p>There are two three different models available in ARCHIMED to compute their light interception and scattering: <code>Translucent</code>, <code>ignore</code> and <code>VirtualSensor</code>.</p>
 <div id="translucent" class="section level3">
 <h3>Translucent</h3>
 <p>This model has two set of parameters :</p>
@@ -41,14 +42,59 @@ Then we can compute <span class="math inline">\(R_a\)</span>, <span class="math 
 In ARCHIMED, the components are considered <a href="https://en.wikipedia.org/wiki/Lambertian_reflectance">lambertian surfaces</a>, i.e. they scatter the light uniformly in all directions.
 {{% /notice %}}</p>
 <p>The scattering factors are given for each waveband to be simulated by the model. This is typically for the <a href="https://en.wikipedia.org/wiki/Photosynthetically_active_radiation">photosynthetically active radiation</a> (PAR, typically 400 to 700 nm) and the <a href="https://en.wikipedia.org/wiki/Infrared#Regions_within_the_infrared">near-infrared</a> (NIR, typically 780 nm to 2500 nm) but the user can also define custom wavebands.</p>
+<p>Here is an example parameterization using this model:</p>
+<pre class="yaml"><code>Interception:
+    use: Translucent_1
+    Translucent_1:
+      model: Translucent
+      transparency: 0
+      optical_properties:
+          PAR: 0.15
+          NIR: 0.9</code></pre>
 </div>
 <div id="ignore" class="section level3">
 <h3>ignore</h3>
 <p>This model totally ignore the object, so it is not used during the computation of light interception, as if it never existed. No parameter.</p>
+<p>Here is an example parameterization using this model:</p>
+<pre class="yaml"><code>Interception:
+    model: ignore</code></pre>
 </div>
 <div id="virtualsensor" class="section level3">
 <h3>VirtualSensor</h3>
 <p>This model is used for special components called virtual sensors. They are used to know the incoming radiation for a given point in space. See <a href="../4-virtual_sensors/index.html">this chapter</a> for more details. No parameters.</p>
+<p>Here is an example parameterization using this model:</p>
+<pre class="yaml"><code>Interception:
+    model: VirtualSensor</code></pre>
+</div>
+<div id="example-parameterization" class="section level3">
+<h3>Example parameterization</h3>
+<p>Here is an example parameterization of a component with all three models, and using the first one:</p>
+<pre class="yaml"><code>Group: test
+Type:
+  example_component:
+      Interception:
+          use: Translucent_model
+          Translucent_model:
+            model: Translucent
+            transparency: 0
+            optical_properties:
+                PAR: 0.15
+                NIR: 0.9
+          ignore_model:
+            model: ignore
+          sensor:
+            model: VirtualSensor</code></pre>
+<p>{{% notice note %}}
+The name of a parameterization group is free. For example we can replace <code>Translucent_model</code> by anything, such as <code>foo</code>.
+{{% /notice %}}</p>
+<pre class="yaml"><code>Interception:
+    use: foo
+    foo:
+      model: Translucent
+      transparency: 0
+      optical_properties:
+          PAR: 0.15
+          NIR: 0.9</code></pre>
 </div>
 </div>
 <div id="photosynthesis" class="section level2">

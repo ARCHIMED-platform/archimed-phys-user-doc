@@ -13,6 +13,7 @@ Here is a list of all models available for each process.
 
 ## Interception
 
+There are two three different models available in ARCHIMED to compute their light interception and scattering: `Translucent`, `ignore` and `VirtualSensor`.
 
 ### Translucent 
 
@@ -52,14 +53,79 @@ This model has two set of parameters :
 
   The scattering factors are given for each waveband to be simulated by the model. This is typically for the [photosynthetically active radiation](https://en.wikipedia.org/wiki/Photosynthetically_active_radiation) (PAR, typically 400 to 700 nm) and the [near-infrared](https://en.wikipedia.org/wiki/Infrared#Regions_within_the_infrared) (NIR, typically 780 nm to 2500 nm) but the user can also define custom wavebands.
 
+
+Here is an example parameterization using this model:
+
+```YAML
+Interception:
+    use: Translucent_1
+    Translucent_1:
+      model: Translucent
+      transparency: 0
+      optical_properties:
+          PAR: 0.15
+          NIR: 0.9
+```
+
 ### ignore
 
 This model totally ignore the object, so it is not used during the computation of light interception, as if it never existed. No parameter.
+
+Here is an example parameterization using this model:
+  
+  ```YAML
+  Interception:
+      model: ignore
+  ```
 
 ### VirtualSensor
 
 This model is used for special components called virtual sensors. They are used to know the incoming radiation for a given point in space. See [this chapter](../4-virtual_sensors/index.html) for more details. No parameters.
 
+  Here is an example parameterization using this model:
+  
+  ```YAML
+  Interception:
+      model: VirtualSensor
+  ```
+
+### Example parameterization
+
+Here is an example parameterization of a component with all three models, and using the first one:
+
+```YAML
+Group: test
+Type:
+  example_component:
+      Interception:
+          use: Translucent_model
+          Translucent_model:
+            model: Translucent
+            transparency: 0
+            optical_properties:
+                PAR: 0.15
+                NIR: 0.9
+          ignore_model:
+            model: ignore
+          sensor:
+            model: VirtualSensor
+```
+
+{{% notice note %}}
+The name of a parameterization group is free. For example we can replace `Translucent_model` by anything, such as `foo`.
+{{% /notice %}}
+
+
+```YAML
+Interception:
+    use: foo
+    foo:
+      model: Translucent
+      transparency: 0
+      optical_properties:
+          PAR: 0.15
+          NIR: 0.9
+``` 
 
 ## Photosynthesis
 

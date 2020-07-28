@@ -3,13 +3,6 @@ Group: coffee
 Type:
   Metamer:
       Interception:
-          model: Translucent
-          transparency: 0
-          optical_properties:
-              PAR: 0.15
-              NIR: 0.9
-  Leaf:
-      Interception:
           use: Translucent_1
           Translucent_1:
             model: Translucent
@@ -17,6 +10,17 @@ Type:
             optical_properties:
                 PAR: 0.15
                 NIR: 0.9
+          ignore_model:
+            model: ignore
+          sensor:
+            model: VirtualSensor
+  Leaf:
+      Interception:
+          model: Translucent
+          transparency: 0
+          optical_properties:
+              PAR: 0.15
+              NIR: 0.9
       Photosynthesis:
           use: Farquharcoffee_1
           Farquharcoffee_1:
