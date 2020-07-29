@@ -11,10 +11,13 @@ weight: 43
 
 <div id="meteo.csv" class="section level1">
 <h1><code>meteo.csv</code></h1>
-<p>The meteorology file is used to input variables related to the environment. It is a CSV-formatted file where each column is a variable, and each line is a time step. A time step is a given period of time, it can be a period of 1 minute as much as a period of 100 days.</p>
+<p>The meteorology file is used to input variables related to the environment. It is a file prepared in the CSV format where each column is a variable, and each line is a time step. A time step is a given period of time, it can be a period of 1 minute or a period of 100 days (but see <a href="#thoughts">section about that</a>)).</p>
 <p>The duration of a time step is up to the user, and mainly depends on the use-case, the variables requested and the precision needed.
 Shorter time-steps tends to give best results because they allow the model to better integrate the variability of the conditions happening on short duration (<em>e.g</em> change in shading of a leaf will change many outputs) that are not well integrated otherwise because the processes are not linear.
 But there is a trade-off between the number of steps and their duration that leads the computation intensity. For example if we need to simulate one day at 30-minute time-steps, it will require 48 time-steps in total, bu only 24 with one hour time-steps.</p>
+<div id="thoughts" class="section level2">
+<h2>Some thought on time steps duration</h2>
 <p>In general we recommend time-steps of maximum 30-minutes for simulations with biophysical processes (<em>e.g.</em> photosynthesis, energy balance, transpiration). This is based on the assumption that these variables can be safely considered at steady-state at or below a 30-minute time range.</p>
-<p>If only the light interception of order 0 (first hit) is needed, the time step can be much larger because the model use the true position of the sun every <code>radiation_timestep</code> (parameter from the <a href="../2-general_config/index.html#simulation-controls">configuration file</a>)</p>
+<p>If only the light interception of order 0 (first hit) is needed, the time step can be much larger because the model use the true position of the sun every <code>radiation_timestep</code> (parameter from the <a href="../2-general_config/index.html#simulation-controls">configuration file</a>). Be carefull when using light scattering though, because it is biased when simulating long durations at one time, please prefer using shorter time-steps for such applications</p>
+</div>
 </div>

@@ -40,7 +40,7 @@ models:
   - soil.yml                 # Path to the models for the soil file
 ```
 
-The `meteo` parameter points to a meteo file. See [this section](#meteo-data-file) for more details.
+The `meteo` parameter points to a meteo file. See [this section](../6-meteo/index.html) for more details.
 
 ### Simulation controls
 
