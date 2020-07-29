@@ -9,27 +9,34 @@ bibliography: references.bib
 
 # `const.yml`
 
-This file lists all constants and their values used in ARCHIMED. The file is optional, and the example file provided in the `examples` folder lists the default values used in ARCHIMED.
+This file lists all constants and their values used in ARCHIMED. The file is optional. The example file provided below lists the default values used in ARCHIMED (their values are also provided in this page for information).
 
-- `co2_to_heat_boundary_layer_conductance` is used to transform the boundary layer conductance to heat into the boundary layer conductance to $CO_2$ with the following equation:
+{{%attachments pattern=\"const.yml\" /%}}
+
+{{% notice info %}}
+You can safely ignore this page for the vast majority of use cases. You don't need to know or understand everything in this page, it is only provided for convenience in case the user has specific needs.
+{{% /notice %}}
+
+
+- `co2_to_heat_boundary_layer_conductance` is used to convert the boundary layer conductance to heat into the boundary layer conductance to $CO_2$ with the following equation (default value is 1.32):
 
 $$Gb_{CO_2}=\frac{Gb_{heat}}{co2\_to\_heat\_boundary\_layer\_conductance}$$
 
-- `heat_to_water_boundary_layer_conductance` is used to transform boundary layer conductance to heat into boundary layer conductance to water: 
+- `heat_to_water_boundary_layer_conductance` is used to convert boundary layer conductance to heat into boundary layer conductance to water (default to 1.075): 
 
 $$Gb_{H_2O}= Gb_{heat} \cdot heat\_to\_water\_boundary\_layer\_conductance$$
 
-- `co2_to_water_conductance` is used to convert a stomatal conductance to $CO_2$ into a stomatal conductance for $H_2O$:
+- `co2_to_water_conductance` is used to convert a stomatal conductance to $CO_2$ into a stomatal conductance for $H_2O$ (default to 1.57):
 
 $$Gb_{H_2O}= Gb_{CO_2} \cdot co2\_to\_water\_conductance$$
 
-- `forced_heat_BL_conductance_proportionality_factor` is used compute the boundary layer conductance for heat under forced convection:
+- `forced_heat_BL_conductance_proportionality_factor` is used compute the boundary layer conductance for heat under forced convection (default to 1000/3):
 
 $$Gbh_{forced} = \frac{\sqrt{\frac{wind}{specificLength}}}{C}$$
 
 See @leuningLeafNitrogenPhotosynthesis1995 for more details (equation E1 from Appendix E).
 
-- `atmospheric_CO2_concentration` defines the default $CO_2$ concentration in the atmosphere in ppm. It is used only if the $CO_2$ variable is missing from the [meteorology file](../6-meteo/index.html).  
+- `atmospheric_CO2_concentration` defines the default $CO_2$ concentration in the atmosphere in ppm. It is used only if the $CO_2$ variable is missing from the [meteorology file](../6-meteo/index.html) (default to 400 ppm).  
 
 - `atmospheric_O2_concentration` defines the $O_2$ concentration in the atmosphere in ppm. Default to 210.0 ppm. It is used to compute the rubisco-limited carboxylation rate $W_c$ ($\mu mol_{CO_2} \cdot m^{-2} \cdot s^{-1}$):
 
@@ -56,9 +63,11 @@ $$R_{specific} = \frac{P}{Rd \cdot T_{air}}$$
 
 See [here](https://en.wikipedia.org/wiki/Gas_constant) for more details (Specific gas constant section).
 
+- `ref_atmospheric_pressure_sea_level` is the reference atmospheric pressure at sea level. It defaults to 101.325 kPa.
 
+- `Stefan_Boltzmann_sigma` is the [Stefan-Boltzmann constant](https://en.wikipedia.org/wiki/Stefan%E2%80%93Boltzmann_law) (noted $\sigma$). Its default value is at 5.67477e-08 $W \cdot m^{-2} \cdot K^{-4}$. It is used to compute the emission of thermal infrared radiation (Re_TIR) by a black body: 
 
-
-... more information on other parameters are coming.
+$$Re_{TIR} =  \sigma \cdot T^4$$
+- `sun_irradiance_to_photons` is used to convert sunlight irradiance $W \cdot m^{-2}$ into PPFD ($\mu mol \cdot m^{-2} \cdot s^{-1}$). It defaults to 4.57 $\frac{\mu mol \cdot m^{-2} \cdot s^{-1}}{W \cdot m^{-2}}$
 
 ## References
