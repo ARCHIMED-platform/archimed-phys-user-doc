@@ -4,6 +4,7 @@ date: "2020-06-09T12:15:33+02:00"
 pre: <b>3. </b>
 title: Constant parameter file
 weight: 33
+bibliography: references.bib
 ---
 
 <script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
@@ -15,6 +16,55 @@ weight: 33
 <ul>
 <li><code>co2_to_heat_boundary_layer_conductance</code> is used to transform the boundary layer conductance to heat into the boundary layer conductance to <span class="math inline">\(CO_2\)</span> with the following equation:</li>
 </ul>
-<p><span class="math display">\[gb_{CO_2}=\frac{gb_{heat}}{co2\_to\_heat\_boundary\_layer\_conductance}\]</span></p>
+<p><span class="math display">\[Gb_{CO_2}=\frac{Gb_{heat}}{co2\_to\_heat\_boundary\_layer\_conductance}\]</span></p>
+<ul>
+<li><code>heat_to_water_boundary_layer_conductance</code> is used to transform boundary layer conductance to heat into boundary layer conductance to water:</li>
+</ul>
+<p><span class="math display">\[Gb_{H_2O}= Gb_{heat} \cdot heat\_to\_water\_boundary\_layer\_conductance\]</span></p>
+<ul>
+<li><code>co2_to_water_conductance</code> is used to convert a stomatal conductance to <span class="math inline">\(CO_2\)</span> into a stomatal conductance for <span class="math inline">\(H_2O\)</span>:</li>
+</ul>
+<p><span class="math display">\[Gb_{H_2O}= Gb_{CO_2} \cdot co2\_to\_water\_conductance\]</span></p>
+<ul>
+<li><code>forced_heat_BL_conductance_proportionality_factor</code> is used compute the boundary layer conductance for heat under forced convection:</li>
+</ul>
+<p><span class="math display">\[Gbh_{forced} = \frac{\sqrt{\frac{wind}{specificLength}}}{C}\]</span></p>
+<p>See <span class="citation">Leuning et al. (1995)</span> for more details (equation E1 from Appendix E).</p>
+<ul>
+<li><p><code>atmospheric_CO2_concentration</code> defines the default <span class="math inline">\(CO_2\)</span> concentration in the atmosphere in ppm. It is used only if the <span class="math inline">\(CO_2\)</span> variable is missing from the <a href="../6-meteo/index.html">meteorology file</a>.</p></li>
+<li><p><code>atmospheric_O2_concentration</code> defines the <span class="math inline">\(O_2\)</span> concentration in the atmosphere in ppm. Default to 210.0 ppm. It is used to compute the rubisco-limited carboxylation rate <span class="math inline">\(W_c\)</span> (<span class="math inline">\(\mu mol_{CO_2} \cdot m^{-2} \cdot s^{-1}\)</span>):</p></li>
+</ul>
+<p><span class="math display">\[W_c = \frac{(Vc_{max} \cdot C_i)}{C_i + K_c \cdot (1.0 + \frac{atmospheric\_O2\_concentration}{K_o})}\]</span>
+See <span class="citation">Farquhar, von Caemmerer, and Berry (1980)</span> for more details (equation 9).</p>
+<ul>
+<li><code>water_vapour_to_dry_air_molecular_weight_ratio</code> is used to convert molecular weight of water vapour into dry air. Default to 0.622. It is used to compute the <a href="https://en.wikipedia.org/wiki/Psychrometric_constant">psychrometric constant</a> (<span class="math inline">\(\gamma\)</span>, in <span class="math inline">\(kPa \cdot °C^{-1}\)</span>) from atmospheric pressure (kPa):</li>
+</ul>
+<p><span class="math display">\[\gamma = \frac{Cp_{air} \cdot P}{water\_vapour\_to\_dry\_air\_molecular\_weight\_ratio \cdot lambda}\]</span></p>
+<ul>
+<li><p><code>air_specific_heat_constant_pressure</code> is the <a href="https://en.wikipedia.org/wiki/Specific_heat_capacity">specific heat</a> of air at constant pressure in <span class="math inline">\(J \cdot K^{-1} \cdot kg^{-1}\)</span>. Default to 1013. It is used to compute the <a href="https://en.wikipedia.org/wiki/Psychrometric_constant">psychrometric constant</a> (see equation above).</p></li>
+<li><p><code>gravitational_acceleration</code> is the gravitational acceleration in <span class="math inline">\(m \cdot s^{-2}\)</span> and is used to compute the pressure from the elevation. See <span class="citation">Stull (2012)</span> and the <a href="https://bitbucket.org/juergenknauer/bigleaf/src/master/">BigLeaf</a> R package for more details.</p></li>
+<li><p><code>celsius_to_kelvin</code> is used to convert Celsius degrees into Kelvin degrees. Default to 273.15.</p></li>
+<li><p><code>universal_gas_constant</code> defines the <a href="https://en.wikipedia.org/wiki/Gas_constant">universal gas constant</a> in <span class="math inline">\(J \cdot mol^{-1} \cdot K^{-1}\)</span>. Default to 8.314. It is used to compute the temperature dependence for the assimilation parameters and to convert conductance in <span class="math inline">\(mol \cdot m^{-2} \cdot s^{-1}\)</span> into <span class="math inline">\(m \cdot s^{-1}\)</span>.</p></li>
+<li><p><code>dry_air_gaz_constant</code> is the gaz constant of dry air (Rd) in <span class="math inline">\(J \cdot kg^{-1} \cdot K^{-1}\)</span>. Default to 287.0586. It is used to compute the air density following <span class="citation">Foken and Napo (2008)</span>:</p></li>
+</ul>
+<p><span class="math display">\[R_{specific} = \frac{P}{Rd \cdot T_{air}}\]</span></p>
+<p>See <a href="https://en.wikipedia.org/wiki/Gas_constant">here</a> for more details (Specific gas constant section).</p>
 <p>… more information on other parameters are coming.</p>
+<div id="references" class="section level2 unnumbered">
+<h2>References</h2>
+<div id="refs" class="references hanging-indent">
+<div id="ref-farquharBiochemicalModelPhotosynthetic1980">
+<p>Farquhar, G. D., S. von von Caemmerer, and J. A. Berry. 1980. “A Biochemical Model of Photosynthetic CO2 Assimilation in Leaves of C3 Species.” <em>Planta</em> 149 (1): 78–90.</p>
+</div>
+<div id="ref-foken2008micrometeorology">
+<p>Foken, Thomas, and Carmen J Napo. 2008. <em>Micrometeorology</em>. Vol. 2. Springer. <a href="https://doi.org/10.1007/978-3-540-74666-9">https://doi.org/10.1007/978-3-540-74666-9</a>.</p>
+</div>
+<div id="ref-leuningLeafNitrogenPhotosynthesis1995">
+<p>Leuning, R., F. M. Kelliher, DGG de Pury, and E.-D. SCHULZE. 1995. “Leaf Nitrogen, Photosynthesis, Conductance and Transpiration: Scaling from Leaves to Canopies.” <em>Plant, Cell &amp; Environment</em> 18 (10): 1183–1200.</p>
+</div>
+<div id="ref-stull2012introduction">
+<p>Stull, Roland B. 2012. <em>An Introduction to Boundary Layer Meteorology</em>. Vol. 13. Springer Science &amp; Business Media. <a href="https://doi.org/10.1007/978-94-009-3027-8">https://doi.org/10.1007/978-94-009-3027-8</a>.</p>
+</div>
+</div>
+</div>
 </div>

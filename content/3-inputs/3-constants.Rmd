@@ -4,6 +4,7 @@ date: "2020-06-09T12:15:33+02:00"
 pre: <b>3. </b>
 title: Constant parameter file
 weight: 33
+bibliography: references.bib
 ---
 
 # `const.yml`
@@ -12,6 +13,52 @@ This file lists all constants and their values used in ARCHIMED. The file is opt
 
 - `co2_to_heat_boundary_layer_conductance` is used to transform the boundary layer conductance to heat into the boundary layer conductance to $CO_2$ with the following equation:
 
-$$gb_{CO_2}=\frac{gb_{heat}}{co2\_to\_heat\_boundary\_layer\_conductance}$$
+$$Gb_{CO_2}=\frac{Gb_{heat}}{co2\_to\_heat\_boundary\_layer\_conductance}$$
+
+- `heat_to_water_boundary_layer_conductance` is used to transform boundary layer conductance to heat into boundary layer conductance to water: 
+
+$$Gb_{H_2O}= Gb_{heat} \cdot heat\_to\_water\_boundary\_layer\_conductance$$
+
+- `co2_to_water_conductance` is used to convert a stomatal conductance to $CO_2$ into a stomatal conductance for $H_2O$:
+
+$$Gb_{H_2O}= Gb_{CO_2} \cdot co2\_to\_water\_conductance$$
+
+- `forced_heat_BL_conductance_proportionality_factor` is used compute the boundary layer conductance for heat under forced convection:
+
+$$Gbh_{forced} = \frac{\sqrt{\frac{wind}{specificLength}}}{C}$$
+
+See @leuningLeafNitrogenPhotosynthesis1995 for more details (equation E1 from Appendix E).
+
+- `atmospheric_CO2_concentration` defines the default $CO_2$ concentration in the atmosphere in ppm. It is used only if the $CO_2$ variable is missing from the [meteorology file](../6-meteo/index.html).  
+
+- `atmospheric_O2_concentration` defines the $O_2$ concentration in the atmosphere in ppm. Default to 210.0 ppm. It is used to compute the rubisco-limited carboxylation rate $W_c$ ($\mu mol_{CO_2} \cdot m^{-2} \cdot s^{-1}$):
+
+$$W_c = \frac{(Vc_{max} \cdot C_i)}{C_i + K_c \cdot (1.0 + \frac{atmospheric\_O2\_concentration}{K_o})}$$
+See @farquharBiochemicalModelPhotosynthetic1980 for more details (equation 9).
+
+- `water_vapour_to_dry_air_molecular_weight_ratio` is used to convert molecular weight of water vapour into dry air. Default to 0.622. It is used to compute the [psychrometric constant](https://en.wikipedia.org/wiki/Psychrometric_constant) ($\gamma$, in $kPa \cdot °C^{-1}$) from atmospheric pressure (kPa):
+
+$$\gamma = \frac{Cp_{air} \cdot P}{water\_vapour\_to\_dry\_air\_molecular\_weight\_ratio \cdot lambda}$$
+
+
+- `air_specific_heat_constant_pressure` is the [specific heat](https://en.wikipedia.org/wiki/Specific_heat_capacity) of air at constant pressure in $J \cdot K^{-1} \cdot kg^{-1}$. Default to 1013. It is used to compute the [psychrometric constant](https://en.wikipedia.org/wiki/Psychrometric_constant) (see equation above).
+
+- `gravitational_acceleration` is the gravitational acceleration in $m \cdot s^{-2}$ and is used to compute the pressure from the elevation. See @stull2012introduction and the [BigLeaf](https://bitbucket.org/juergenknauer/bigleaf/src/master/) R package for more details.
+
+
+- `celsius_to_kelvin` is used to convert Celsius degrees into Kelvin degrees. Default to 273.15. 
+
+- `universal_gas_constant` defines the [universal gas constant](https://en.wikipedia.org/wiki/Gas_constant) in $J \cdot mol^{-1} \cdot K^{-1}$. Default to 8.314. It is used to compute the temperature dependence for the assimilation parameters and to convert conductance in $mol \cdot m^{-2} \cdot s^{-1}$ into $m \cdot s^{-1}$.
+
+- `dry_air_gaz_constant` is the gaz constant of dry air (Rd) in $J \cdot kg^{-1} \cdot K^{-1}$. Default to 287.0586. It is used to compute the air density following @foken2008micrometeorology: 
+
+$$R_{specific} = \frac{P}{Rd \cdot T_{air}}$$
+
+See [here](https://en.wikipedia.org/wiki/Gas_constant) for more details (Specific gas constant section).
+
+
+
 
 ... more information on other parameters are coming.
+
+## References
