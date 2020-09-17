@@ -1,7 +1,7 @@
 ---
 chapter: false
 date: "2020-06-09T12:15:33+02:00"
-pre: <b>0.2. </b>
+pre: <b>0.4. </b>
 title: Command line arguments
 weight: 24
 ---

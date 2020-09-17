@@ -8,17 +8,53 @@ weight: 43
 
 # `meteo.csv`
 
-The meteorology file is used to input variables related to the environment. It is a file prepared in the CSV format where each column is a variable, and each line is a time step. A time step is a given period of time, it can be a period of 1 minute or a period of 100 days (but see [section about that](#thoughts))).
+The meteorology file is used to input variables related to the environment. It is a file prepared in the CSV format where each column is a variable, and each line is a time step. A time step is a given period of time, it can be a period of 1 minute or a period of 100 days (but see the [section about that](#thoughts) below).
+
+### File format
+
+The file is a CSV file (semicolon separated) enriched by optional parameters as comments in the header (and following the `YAML` format). 
+
+You can download an example file here: 
+
+{{%attachments pattern=\"meteo.csv\" /%}}
+
+The file is structured as follows:
+
+```
+#' name: Aquiares
+#' latitude: 15.0  # in degrees
+#' altitude: 100.0 # in meters
+#' use : relativeHumidity clearness
+date;hour_start;hour_end;temperature;relativeHumidity;VPD;clearness;Re_SW_f;wind;atmosphereCO2_ppm
+2016/06/12;12:00:00;12:30:00;25;60;150;0.75;500;1;380
+2016/06/12;12:30:00;13:00:00;26;62;150;0.75;500;1.5;380
+2016/06/12;13:00:00;13:30:00;25.3;58;150;0.75;500;1.5;380
+```
+
+The four lines at the beginning are `YAML`-formatted metadata used as input parameters for ARCHIMED. They define properties of the site where the data was measured. The first one is the name of the site (completely free), then comes its `latitude` (degrees) and `altitude` (meters). The `use` parameter defines which column is used when several related (i.e. concurrent) variables are defined in the data. In our example the `relativeHumidity` and the `VPD` are declared, and the user must choose which one to use. 
+
+The first line after the commented lines defines the column names. These names are all fixed and should be matched exactly (ARCHIMED is case-sensitive). 
+
+Here is a table summarizing the information about those variables:
+
+```{r echo=FALSE}
+df = read.csv("6-meteo_colums.csv", sep = "\t")
+knitr::kable(df)
+```
+
+### Some thought on time steps duration {#thoughts}
 
 The duration of a time step is up to the user, and mainly depends on the use-case, the variables requested and the precision needed. 
-Shorter time-steps tends to give best results because they allow the model to better integrate the variability of the conditions happening on short duration (*e.g* change in shading of a leaf will change many outputs) that are not well integrated otherwise because the processes are not linear. 
-But there is a trade-off between the number of steps and their duration that leads the computation intensity. For example if we need to simulate one day at 30-minute time-steps, it will require 48 time-steps in total, bu only 24 with one hour time-steps.
-
-
-
-
-## Some thought on time steps duration {#thoughts}
+Shorter time-steps tends to give best results because they allow to better integrate non-linear processes that are not well integrated otherwise (*e.g.* a rapid change in the incoming radiation on a leaf can impact greatly its energy balance). 
 
 In general we recommend time-steps of maximum 30-minutes for simulations with biophysical processes (*e.g.* photosynthesis, energy balance, transpiration). This is based on the assumption that these variables can be safely considered at steady-state at or below a 30-minute time range.
 
-If only the light interception of order 0 (first hit) is needed, the time step can be much larger because the model use the true position of the sun every `radiation_timestep` (parameter from the [configuration file](../2-general_config/index.html#simulation-controls)). Be carefull when using light scattering though, because it is biased when simulating long durations at one time, please prefer using shorter time-steps for such applications
+If only the light interception is needed, the time step can be much larger because the model use the true position of the sun every `radiation_timestep` (parameter from the [configuration file](../2-general_config/index.html#simulation-controls)), and not every step in the meteorology file.
+
+For all other variables, there is a trade-off between the duration of each step and their number to optimize both the predictions and the time of computation. For example if we need to simulate one day at 30-minute time-steps, it will require 48 time-steps in total, bu only 24 with one hour time-steps. The latter simulation will be almost twice as fast as the former, but will probably lead to a greater simulation error compared with measurements. 
+
+{{% notice info %}}
+The `cache_radiation` parameter can alleviate this effect though (parameter from the [configuration file](../2-general_config/index.html#simulation-controls)). It allows to compute the results of the light interception for each direction relative to the global radiation, and to cache the results for further use in other time-steps. It is generally admitted this parameter should be set to `true` when the number of time-steps to simulate is greater than the number of directions (due to overheads on computing the cached radiation). 
+{{% /notice %}}
+
+

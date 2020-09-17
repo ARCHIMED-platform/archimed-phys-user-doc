@@ -11,13 +11,117 @@ weight: 43
 
 <div id="meteo.csv" class="section level1">
 <h1><code>meteo.csv</code></h1>
-<p>The meteorology file is used to input variables related to the environment. It is a file prepared in the CSV format where each column is a variable, and each line is a time step. A time step is a given period of time, it can be a period of 1 minute or a period of 100 days (but see <a href="#thoughts">section about that</a>)).</p>
+<p>The meteorology file is used to input variables related to the environment. It is a file prepared in the CSV format where each column is a variable, and each line is a time step. A time step is a given period of time, it can be a period of 1 minute or a period of 100 days (but see the <a href="#thoughts">section about that</a> below).</p>
+<div id="file-format" class="section level3">
+<h3>File format</h3>
+<p>The file is a CSV file (semicolon separated) enriched by optional parameters as comments in the header (and following the <code>YAML</code> format).</p>
+<p>You can download an example file here:</p>
+<p>{{%attachments pattern="meteo.csv" /%}}</p>
+<p>The file is structured as follows:</p>
+<pre><code>#&#39; name: Aquiares
+#&#39; latitude: 15.0  # in degrees
+#&#39; altitude: 100.0 # in meters
+#&#39; use : relativeHumidity clearness
+date;hour_start;hour_end;temperature;relativeHumidity;VPD;clearness;Re_SW_f;wind;atmosphereCO2_ppm
+2016/06/12;12:00:00;12:30:00;25;60;150;0.75;500;1;380
+2016/06/12;12:30:00;13:00:00;26;62;150;0.75;500;1.5;380
+2016/06/12;13:00:00;13:30:00;25.3;58;150;0.75;500;1.5;380</code></pre>
+<p>The four lines at the beginning are <code>YAML</code>-formatted metadata used as input parameters for ARCHIMED. They define properties of the site where the data was measured. The first one is the name of the site (completely free), then comes its <code>latitude</code> (degrees) and <code>altitude</code> (meters). The <code>use</code> parameter defines which column is used when several related (i.e. concurrent) variables are defined in the data. In our example the <code>relativeHumidity</code> and the <code>VPD</code> are declared, and the user must choose which one to use.</p>
+<p>The first line after the commented lines defines the column names. These names are all fixed and should be matched exactly (ARCHIMED is case-sensitive).</p>
+<p>Here is a table summarizing the information about those variables:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Variable</th>
+<th align="left">Unit</th>
+<th align="left">Description</th>
+<th align="left">If.missing</th>
+<th align="left">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">date</td>
+<td align="left">Y/m/d</td>
+<td align="left">Date of the time step</td>
+<td align="left">NA</td>
+<td align="left">17/09/2020</td>
+</tr>
+<tr class="even">
+<td align="left">hour_start</td>
+<td align="left">H:M:S</td>
+<td align="left">Beginning of the time step</td>
+<td align="left">NA</td>
+<td align="left">12:00:00</td>
+</tr>
+<tr class="odd">
+<td align="left">hour_end</td>
+<td align="left">H:M:S</td>
+<td align="left">End of the time step</td>
+<td align="left">NA</td>
+<td align="left">12:30:00</td>
+</tr>
+<tr class="even">
+<td align="left">temperature</td>
+<td align="left">Celsius</td>
+<td align="left">Air temperature (above canopy)</td>
+<td align="left">NA</td>
+<td align="left">25</td>
+</tr>
+<tr class="odd">
+<td align="left">relativeHumidity</td>
+<td align="left">%</td>
+<td align="left">Air relative humidity (above canopy)</td>
+<td align="left">NA</td>
+<td align="left">60</td>
+</tr>
+<tr class="even">
+<td align="left">VPD</td>
+<td align="left">hPa</td>
+<td align="left">Air vapor pressure deficit (above canopy)</td>
+<td align="left">NA</td>
+<td align="left">2</td>
+</tr>
+<tr class="odd">
+<td align="left">clearness</td>
+<td align="left">%</td>
+<td align="left">Sky clearness</td>
+<td align="left">NA</td>
+<td align="left">0.6</td>
+</tr>
+<tr class="even">
+<td align="left">Re_SW_f</td>
+<td align="left">MJ m-2 s-1</td>
+<td align="left">Incoming short wave radiation flux</td>
+<td align="left">NA</td>
+<td align="left">500</td>
+</tr>
+<tr class="odd">
+<td align="left">wind</td>
+<td align="left">m s-1</td>
+<td align="left">wind speed (above canopy)</td>
+<td align="left">NA</td>
+<td align="left">1.5</td>
+</tr>
+<tr class="even">
+<td align="left">atmosphereCO2_ppm</td>
+<td align="left">ppm</td>
+<td align="left">Air CO2 concentration</td>
+<td align="left">NA</td>
+<td align="left">420</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="thoughts" class="section level3">
+<h3>Some thought on time steps duration</h3>
 <p>The duration of a time step is up to the user, and mainly depends on the use-case, the variables requested and the precision needed.
-Shorter time-steps tends to give best results because they allow the model to better integrate the variability of the conditions happening on short duration (<em>e.g</em> change in shading of a leaf will change many outputs) that are not well integrated otherwise because the processes are not linear.
-But there is a trade-off between the number of steps and their duration that leads the computation intensity. For example if we need to simulate one day at 30-minute time-steps, it will require 48 time-steps in total, bu only 24 with one hour time-steps.</p>
-<div id="thoughts" class="section level2">
-<h2>Some thought on time steps duration</h2>
+Shorter time-steps tends to give best results because they allow to better integrate non-linear processes that are not well integrated otherwise (<em>e.g.</em> a rapid change in the incoming radiation on a leaf can impact greatly its energy balance).</p>
 <p>In general we recommend time-steps of maximum 30-minutes for simulations with biophysical processes (<em>e.g.</em> photosynthesis, energy balance, transpiration). This is based on the assumption that these variables can be safely considered at steady-state at or below a 30-minute time range.</p>
-<p>If only the light interception of order 0 (first hit) is needed, the time step can be much larger because the model use the true position of the sun every <code>radiation_timestep</code> (parameter from the <a href="../2-general_config/index.html#simulation-controls">configuration file</a>). Be carefull when using light scattering though, because it is biased when simulating long durations at one time, please prefer using shorter time-steps for such applications</p>
+<p>If only the light interception is needed, the time step can be much larger because the model use the true position of the sun every <code>radiation_timestep</code> (parameter from the <a href="../2-general_config/index.html#simulation-controls">configuration file</a>), and not every step in the meteorology file.</p>
+<p>For all other variables, there is a trade-off between the duration of each step and their number to optimize both the predictions and the time of computation. For example if we need to simulate one day at 30-minute time-steps, it will require 48 time-steps in total, bu only 24 with one hour time-steps. The latter simulation will be almost twice as fast as the former, but will probably lead to a greater simulation error compared with measurements.</p>
+<p>{{% notice info %}}
+The <code>cache_radiation</code> parameter can alleviate this effect though (parameter from the <a href="../2-general_config/index.html#simulation-controls">configuration file</a>). It allows to compute the results of the light interception for each direction relative to the global radiation, and to cache the results for further use in other time-steps. It is generally admitted this parameter should be set to <code>true</code> when the number of time-steps to simulate is greater than the number of directions (due to overheads on computing the cached radiation).
+{{% /notice %}}</p>
 </div>
 </div>

@@ -1,0 +1,11 @@
+Variable	Unit	Description	If missing	Example
+date	Y/m/d	Date of the time step		2020/09/17
+hour_start	H:M:S	Beginning of the time step		12:00:00
+hour_end	H:M:S	End of the time step		12:30:00
+temperature	Celsius	Air temperature (above canopy)		25
+relativeHumidity	%	Air relative humidity (above canopy)		60
+VPD	hPa	Air vapor pressure deficit (above canopy)		2
+clearness	%	Sky clearness		0.6
+Re_SW_f	MJ m-2 s-1	Incoming short wave radiation flux		500
+wind	m s-1	wind speed (above canopy)		1.5
+atmosphereCO2_ppm	ppm	Air CO2 concentration		420

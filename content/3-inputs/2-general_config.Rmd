@@ -120,11 +120,17 @@ The scene toricity can be seen looking at the projected shade by the coffee onto
 
 `cache_pixel_table` is a Boolean used to define if the pixel tables are cached on disc instead of keeping them in-memory. Caching the pixel tables (`true`) result in a slower simulation due to writing, but uses less RAM. Users with low-end computers can activate this option if they have not enough memory for a simulation.
 
-The `cache_radiation` parameter allows to cache in-memory the computation of light interception (interception and scattering) for each node in all directions of the turtle. This allows to compute only once the light received by a node from each direction in terms of relative radiation, and then to only compute the absolute value using the global radiation of the step for the following steps. It is generally admitted this parameter should be equal to `true` when the number of time-steps to simulate is greater than the number of directions, i.e. `nrows(meteo) > sky_sectors`. It should be set to `false` otherwise because the extra computations needed for the cache is generally greater than the independent simulation of each step.
+The `cache_radiation` parameter allows to cache in-memory the computation of light interception (interception and scattering) for each node in all directions of the turtle. This allows to compute only once the light received by a node from each direction in terms of relative radiation, and then to only compute the absolute value using the global radiation of the step for the following steps. It is generally admitted this parameter should be set to `true` when the number of time-steps to simulate is greater than the number of directions, i.e. `nrows(meteo) > sky_sectors`. It should be set to `false` otherwise because the extra computations needed for the cache is generally greater than the independent simulation of each step (computation overhead). 
 
-> Careful, activating this parameter results in higher memory consumption.
+{{% notice info %}}
+For example a simulation taking ~3.4 minutes (23M rays, 46 directions) for each time-step can be decreased to ~2 seconds with the option activated.   
+{{% /notice %}}
 
-> This option can be used to cache the radiation interception computation on disk for further simulations at another time, but it should be used on the exact same scene (same geometry).
+{{% notice warning %}}
+Careful, activating this parameter results in higher memory consumption.  
+This option can be used to cache the radiation interception computation on disk for further simulations at another time, but it should be used on the exact same scene (same geometry).
+{{% /notice %}}
+
 
 ### Outputs 
 

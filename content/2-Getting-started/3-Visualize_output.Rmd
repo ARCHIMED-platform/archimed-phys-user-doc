@@ -1,7 +1,7 @@
 ---
 chapter: false
 date: "2020-06-09T12:15:33+02:00"
-pre: <b>0.2. </b>
+pre: <b>0.3. </b>
 title: Visualization
 weight: 23
 ---
