@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Outputs on ARCHIMED user documentation</title>
+    <link>/4-outputs/</link>
+    <description>Recent content in Outputs on ARCHIMED user documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 09 Jun 2020 12:15:33 +0200</lastBuildDate>
+    
+	<atom:link href="/4-outputs/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+  </channel>
+</rss>

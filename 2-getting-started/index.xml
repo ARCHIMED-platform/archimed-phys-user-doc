@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Getting started on ARCHIMED user documentation</title>
+    <link>/2-getting-started/</link>
+    <description>Recent content in Getting started on ARCHIMED user documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 09 Jun 2020 12:15:33 +0200</lastBuildDate>
+    
+	<atom:link href="/2-getting-started/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Download</title>
+      <link>/2-getting-started/1-example-data/</link>
+      <pubDate>Tue, 09 Jun 2020 12:15:33 +0200</pubDate>
+      
+      <guid>/2-getting-started/1-example-data/</guid>
+      <description>Data To run an ARCHIMED simulation, you’ll need a working example. Please download it from here:
+  Attachments   example_inputs.zip  (440 ko)    At the moment, don’t worry about the organization of the folder nor the file contents. We’ll get into this very soon in the organization page.
+ ARCHIMED executable ARCHIMED is programmed in Java. The main benefit is that a same .</description>
+    </item>
+    
+    <item>
+      <title>Run ARCHIMED</title>
+      <link>/2-getting-started/2-download_archimed/</link>
+      <pubDate>Tue, 09 Jun 2020 12:15:33 +0200</pubDate>
+      
+      <guid>/2-getting-started/2-download_archimed/</guid>
+      <description>Run a simulation Then, open a terminal and run the following command:
+java -jar archimed.jar config.yml And that’s it ! You ran an ARCHIMED simulation ! Note that it can take a minute to finish.
+Command details The java -jar archimed.jar part of the command just tells Java to execute the archimed.jar file. If your ARCHIMED .jar file is named differently, please name it properly, e.g.:
+java -jar archimed_custom_name.</description>
+    </item>
+    
+    <item>
+      <title>Visualization</title>
+      <link>/2-getting-started/3-visualize_output/</link>
+      <pubDate>Tue, 09 Jun 2020 12:15:33 +0200</pubDate>
+      
+      <guid>/2-getting-started/3-visualize_output/</guid>
+      <description>Render the output After executing ARCHIMED in the example folder, the simulation outputs are found at this path: ./output/simdir. There are several files here, and one is especially useful for visualizing the results in 3D: coffee.opf.
+To render the results, please download XPlo from the AMAPStudio website. Then open XPlo, press ctrl+I, choose opf, and navigate to the location of coffee.opf and open it.
+Xplo will open and 3D render the example coffee.</description>
+    </item>
+    
+    <item>
+      <title>Command line arguments</title>
+      <link>/2-getting-started/4-commandline_arguments/</link>
+      <pubDate>Tue, 09 Jun 2020 12:15:33 +0200</pubDate>
+      
+      <guid>/2-getting-started/4-commandline_arguments/</guid>
+      <description>Command details We saw earlier that a simulation is started using the following command line:
+java -jar archimed.jar config.yml The java -jar archimed.jar part of the command just tells Java to execute the archimed.jar file, and the second one (config.yml) is an argument used to give the path to the configuration file to ARCHIMED.
+But more options are also available from ARCHIMED.
+To get all the options from ARCHIMED, you can consult the help by running it without any argument:</description>
+    </item>
+    
+  </channel>
+</rss>

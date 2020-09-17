@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Models on ARCHIMED user documentation</title>
+    <link>/3-inputs/5-models/</link>
+    <description>Recent content in Models on ARCHIMED user documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 09 Jun 2020 12:15:33 +0200</lastBuildDate>
+    
+	<atom:link href="/3-inputs/5-models/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Simple model file</title>
+      <link>/3-inputs/5-models/1-models/</link>
+      <pubDate>Tue, 09 Jun 2020 12:15:33 +0200</pubDate>
+      
+      <guid>/3-inputs/5-models/1-models/</guid>
+      <description>In ARCIHMED, an object is defined by:
+- its geometry, read from an .opf or a .gwa file;
+- (optionally) its topology, only read from an .opf file;
+- its functional group, read from an .ops file.
+The geometry (and topology) of an object is built using components (see the opf documentation). For example a simple coffee tree can be built using two components: leaves and internodes. Each component can have its own models and parameters.</description>
+    </item>
+    
+    <item>
+      <title>List of the models</title>
+      <link>/3-inputs/5-models/2-models_list/</link>
+      <pubDate>Tue, 09 Jun 2020 12:15:33 +0200</pubDate>
+      
+      <guid>/3-inputs/5-models/2-models_list/</guid>
+      <description>Here is a list of all models available for each process.
+Interception There are two three different models available in ARCHIMED to compute their light interception and scattering: Translucent, ignore and VirtualSensor.
+Translucent This model has two set of parameters :
+ transparency: between 0 and 1. 0 is not transparent (opaque), and 1 fully transparent. If e.g. 0.3, 30% of the incoming light is intercepted by the component (interception = radiation * (1-transparency)), and 30% is directly transmitted (not being part of the interception).</description>
+    </item>
+    
+    <item>
+      <title>Soil model</title>
+      <link>/3-inputs/5-models/3-soil_model/</link>
+      <pubDate>Tue, 09 Jun 2020 12:15:33 +0200</pubDate>
+      
+      <guid>/3-inputs/5-models/3-soil_model/</guid>
+      <description>The soil file is the same as any plant file so far (e.g. group, type, model parameters), but will be populated with new parameters soon. It is identified as a soil file if it uses the Cobblestone component type.</description>
+    </item>
+    
+    <item>
+      <title>Virtual sensor</title>
+      <link>/3-inputs/5-models/4-virtual_sensors/</link>
+      <pubDate>Tue, 09 Jun 2020 12:15:33 +0200</pubDate>
+      
+      <guid>/3-inputs/5-models/4-virtual_sensors/</guid>
+      <description>More information on how to use virtual sensors soon.</description>
+    </item>
+    
+  </channel>
+</rss>
