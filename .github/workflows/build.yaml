@@ -21,6 +21,8 @@ jobs:
         run: git submodule update --remote
       - name: Look at files
         run: Rscript -e 'dir()'
+      - name: Install Learn theme
+        run: Rscript -e 'blogdown::install_theme("matcornic/hugo-theme-learn")'
       - name: Run hugo_build()
         run: Rscript -e 'blogdown::hugo_build(local = FALSE)'
       - name: Deploy
