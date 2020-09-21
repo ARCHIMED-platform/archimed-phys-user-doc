@@ -152,7 +152,8 @@ Translucent This model has two set of parameters :
       <pubDate>Tue, 09 Jun 2020 12:15:33 +0200</pubDate>
       
       <guid>/3-inputs/5-models/3-soil_model/</guid>
-      <description>The soil file is the same as any plant file so far (e.g. group, type, model parameters), but will be populated with new parameters soon. It is identified as a soil file if it uses the Cobblestone component type.</description>
+      <description>The soil file is the same as any plant file so far (e.g. group, type, model parameters), but will be populated with new parameters soon. It is identified as a soil file if it uses the Cobblestone component type:
+--- Group: pavement Type: Cobblestone: Interception: model: Translucent transparency: 0 optical_properties: PAR: 0.15 NIR: 0.9 plot_paving: 80 ...  The Cobblestone type is a special type that defines a soil as a plane, discretized in cobblestones for the light interception.</description>
     </item>
     
     <item>
