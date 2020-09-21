@@ -51,8 +51,11 @@ This model has two set of parameters :
   In ARCHIMED, the components are considered [lambertian surfaces](https://en.wikipedia.org/wiki/Lambertian_reflectance), i.e. they scatter the light uniformly in all directions.
   {{% /notice %}}
 
-  The scattering factors are given for each waveband to be simulated by the model. This is typically for the [photosynthetically active radiation](https://en.wikipedia.org/wiki/Photosynthetically_active_radiation) (PAR, typically 400 to 700 nm) and the [near-infrared](https://en.wikipedia.org/wiki/Infrared#Regions_within_the_infrared) (NIR, typically 780 nm to 2500 nm) but the user can also define custom wavebands.
+  The scattering factors are given for each waveband to be simulated by the model. This is typically for the [photosynthetically active radiation](https://en.wikipedia.org/wiki/Photosynthetically_active_radiation) (PAR, typically 400 to 700 nm) and the [near-infrared](https://en.wikipedia.org/wiki/Infrared#Regions_within_the_infrared) (NIR, typically 700 nm to 3000 nm) but the user can also define custom wavebands, *e.g.* for the red band: `red: 0.20`. 
 
+{{% notice warning %}}
+The user must provide the radiation incoming from the atmosphere for the custom band in the meteorology file (*e.g.* `Ri_red_f`) if the computation for its interception and scattering is required. See [this section](../../6-meteo/) for more information.
+{{% /notice %}}
 
 Here is an example parameterization using this model:
 
@@ -66,6 +69,10 @@ Interception:
           PAR: 0.15
           NIR: 0.9
 ```
+
+{{% notice info %}}
+The PAR and NIR bands are mandatory for the computation of the energy balance and the photosynthesis using the Farquhar model (see [this section](../2-models_list/) for more details).  
+{{% /notice %}}
 
 ### ignore
 

@@ -82,7 +82,10 @@ Type:
   [...]</code></pre>
 <p>Here the light interception process is simulated using the <code>Translucent</code> model. This model has two main parameters:<br />
 - the <code>transparency</code>, which is set to 0 (the <code>Metamer</code> is not transparent at all);<br />
-- the <code>optical_properties</code> of the <code>Metamer</code>, defined for the PAR (0.15) and for the NIR (0.9).</p>
+- the <code>optical_properties</code> of the <code>Metamer</code>, defined for each simulated waveband, here for the PAR (0.15) and for the NIR (0.9). The optical properties of custom user-defined wavebands can also be given here, <em>e.g.</em> for the red band: <code>red: 0.20</code>.</p>
+<p>{{% notice info %}}
+The PAR and NIR bands are mandatory for the computation of the energy balance and the photosynthesis using the Farquhar model (see <a href="../2-models_list/">this section</a> for more details).<br />
+{{% /notice %}}</p>
 <p>The <code>Leaf</code> component simulates the light interception too, but also add the photosynthesis and stomatal conductance. Here is an example parametrization for the models used:</p>
 <pre class="yml"><code>Group: coffee                     # -&gt; functional group
 Type:                             # -&gt; component types

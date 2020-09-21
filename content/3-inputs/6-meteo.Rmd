@@ -42,6 +42,47 @@ df = read.csv("6-meteo_colums.csv", sep = "\t")
 knitr::kable(df)
 ```
 
+\* see sections below
+
+### Variables details 
+
+#### Light 
+
+The date and hours are used to compute the sun position in the sky for the computation of the light interception. 
+
+The `clearness`, `Ri_SW_f`, `Ri_PAR_f`, `Ri_NIR_f`, and `Ri_xxx_f` are also related to the light interception computation. 
+
+The total energy coming from solar radiation at earth surface is mainly between 400 and 2500-3000 nm (see Fig. 1).
+
+![Fig. 1: Solar irradiance spectrum above atmosphere and at earth surface. Source: wikimedia](https://upload.wikimedia.org/wikipedia/commons/e/e7/Solar_spectrum_en.svg)
+
+The spectrum of incoming solar radiation is simplified into two wavebands in ARCHIMED:
+
+- `Ri_PAR_f` is the photosynthetically active radiation flux coming from the atmosphere. It typically ranges from 400 to 700 nm (i.e. visible part of the light), and is the radiation primarily used for plant photosynthesis.  
+
+- `Ri_NIR_f` is the Near Infrared radiation flux coming from the atmosphere. It typically ranges from 700 to 3000 nm and is more precisely defined by the sum of the [NIR and SWIR](https://en.wikipedia.org/wiki/Infrared#Regions_within_the_infrared) wavebands.  
+
+These two wavebands represent the short wave radiation flux coming from the atmosphere. And their sum gives `Ri_SW_f`, with the PAR radiation representing typically 48% and the NIR 52%.
+
+The long wave radiation (TIR, i.e. thermal infrared) is the radiation emitted by any object due to its surface temperature. It is possible to provide the TIR coming from the atmosphere as an input to ARCHIMED by providing the `Ri_TIR_f` variable.  
+
+These variables are not necessarily measured, so ARCHIMED provides a simpler way to parameterize the incoming radiation by using a simpler variable: the `clearness`. Indeed, it is simple to compute the extraterrestrial solar radiation (i.e. the radiation in yellow in Fig. 1) at a given location and time, but this radiation is partly absorbed, diffused and reflected by the atmosphere before getting to the ground. These effects are mainly driven by the composition of the atmosphere, which can be approximated (coarsely) by the `clearness` of the sky, *i.e.* the oposite of the cloud cover in the sky. It ranges from 0 (sky full of clouds) to 1 (clear sky), but values rarely goes below 0.2 or above 0.8.
+
+If any of these variable is missing, the model computes it, providing at least one of the `clearness`, `Ri_SW_f`, `Ri_PAR_f`, `Ri_NIR_f` is given. Please keep in mind the more variables are provided as inputs, the lower the simulation error because it is preferable to measure a variable than simulating it.
+
+The user can also input any custom waveband for the incoming light using the "`Ri_xxx_f`" naming convention, *e.g.* for the red band: `Ri_red_f`. These custom wavebands can be used to compute the light interception and scattering for any waveband, but they don't participate to the energy balance nor the photosynthesis (the shortwave is already conputed using PAR and NIR). 
+
+{{% notice info %}}
+The custom wavebands must be part of the shortwave band, and the optical properties of the components in the scene must be provided (see [this section](../5-models/2-models_list/) for more information).
+{{% /notice %}}
+
+#### Micro-environment
+
+The `temperature`, `relativeHumidity`, `VPD`, `wind` and `atmosphereCO2_ppm` are used for the biophysical computations, such as the energy balance and photosynthesis. 
+
+If the `relativeHumidity` is not given, the model uses the `VPD`, but one or the other must be provided. If the `atmosphereCO2_ppm` is not given in the meteo file, it is read from the constant parameter file (`const.yml`, see [this section](../3-constants/) for more details).
+
+
 ### Some thought on time steps duration {#thoughts}
 
 The duration of a time step is up to the user, and mainly depends on the use-case, the variables requested and the precision needed. 
@@ -56,5 +97,3 @@ For all other variables, there is a trade-off between the duration of each step 
 {{% notice info %}}
 The `cache_radiation` parameter can alleviate this effect though (parameter from the [configuration file](../2-general_config/index.html#simulation-controls)). It allows to compute the results of the light interception for each direction relative to the global radiation, and to cache the results for further use in other time-steps. It is generally admitted this parameter should be set to `true` when the number of time-steps to simulate is greater than the number of directions (due to overheads on computing the cached radiation). 
 {{% /notice %}}
-
-

@@ -103,7 +103,12 @@ Type:
 
 Here the light interception process is simulated using the `Translucent` model. This model has two main parameters:  
 - the `transparency`, which is set to 0 (the `Metamer` is not transparent at all);  
-- the `optical_properties` of the `Metamer`, defined for the PAR (0.15) and for the NIR (0.9).
+- the `optical_properties` of the `Metamer`, defined for each simulated waveband, here for the PAR (0.15) and for the NIR (0.9). The optical properties of custom user-defined wavebands can also be given here, *e.g.* for the red band: `red: 0.20`. 
+
+{{% notice info %}}
+The PAR and NIR bands are mandatory for the computation of the energy balance and the photosynthesis using the Farquhar model (see [this section](../2-models_list/) for more details).  
+{{% /notice %}}
+
 
 The `Leaf` component simulates the light interception too, but also add the photosynthesis and stomatal conductance. Here is an example parametrization for the models used:
 

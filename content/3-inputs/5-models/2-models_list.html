@@ -41,7 +41,10 @@ Then we can compute <span class="math inline">\(R_a\)</span>, <span class="math 
 <p>{{% notice info %}}
 In ARCHIMED, the components are considered <a href="https://en.wikipedia.org/wiki/Lambertian_reflectance">lambertian surfaces</a>, i.e. they scatter the light uniformly in all directions.
 {{% /notice %}}</p>
-<p>The scattering factors are given for each waveband to be simulated by the model. This is typically for the <a href="https://en.wikipedia.org/wiki/Photosynthetically_active_radiation">photosynthetically active radiation</a> (PAR, typically 400 to 700 nm) and the <a href="https://en.wikipedia.org/wiki/Infrared#Regions_within_the_infrared">near-infrared</a> (NIR, typically 780 nm to 2500 nm) but the user can also define custom wavebands.</p>
+<p>The scattering factors are given for each waveband to be simulated by the model. This is typically for the <a href="https://en.wikipedia.org/wiki/Photosynthetically_active_radiation">photosynthetically active radiation</a> (PAR, typically 400 to 700 nm) and the <a href="https://en.wikipedia.org/wiki/Infrared#Regions_within_the_infrared">near-infrared</a> (NIR, typically 700 nm to 3000 nm) but the user can also define custom wavebands, <em>e.g.</em> for the red band: <code>red: 0.20</code>.</p>
+<p>{{% notice warning %}}
+The user must provide the radiation incoming from the atmosphere for the custom band in the meteorology file (<em>e.g.</em> <code>Ri_red_f</code>) if the computation for its interception and scattering is required. See <a href="../../6-meteo/">this section</a> for more information.
+{{% /notice %}}</p>
 <p>Here is an example parameterization using this model:</p>
 <pre class="yaml"><code>Interception:
     use: Translucent_1
@@ -51,6 +54,9 @@ In ARCHIMED, the components are considered <a href="https://en.wikipedia.org/wik
       optical_properties:
           PAR: 0.15
           NIR: 0.9</code></pre>
+<p>{{% notice info %}}
+The PAR and NIR bands are mandatory for the computation of the energy balance and the photosynthesis using the Farquhar model (see <a href="../2-models_list/">this section</a> for more details).<br />
+{{% /notice %}}</p>
 </div>
 <div id="ignore" class="section level3">
 <h3>ignore</h3>

@@ -1,11 +1,16 @@
 Variable	Unit	Description	If missing	Example
-date	Y/m/d	Date of the time step		2020/09/17
-hour_start	H:M:S	Beginning of the time step		12:00:00
-hour_end	H:M:S	End of the time step		12:30:00
-temperature	Celsius	Air temperature (above canopy)		25
-relativeHumidity	%	Air relative humidity (above canopy)		60
-VPD	hPa	Air vapor pressure deficit (above canopy)		2
-clearness	%	Sky clearness		0.6
-Re_SW_f	MJ m-2 s-1	Incoming short wave radiation flux		500
-wind	m s-1	wind speed (above canopy)		1.5
-atmosphereCO2_ppm	ppm	Air CO2 concentration		420
+date	Y/m/d	Date of the time step	mandatory	2020/09/17
+hour_start	H:M:S	Beginning of the time step	mandatory	12:00:00
+hour_end	H:M:S	End of the time step	use step_duration	12:30:00
+step_duration	seconds	Time step duration	use hour_end	1800
+temperature	Celsius	Air temperature (above canopy)	mandatory	25
+relativeHumidity	%	Air relative humidity (above canopy)	use VPD	60
+VPD	hPa	Air vapor pressure deficit (above canopy)	use rh	2
+wind	m s-1	wind speed (above canopy)	mandatory	1.5
+clearness	%	Sky clearness	*	0.6
+Ri_SW_f	W m-2	Incoming short wave radiation flux	*	500
+Ri_PAR_f	W m-2	Incoming PAR radiation flux	*	500
+Ri_NIR_f	W m-2	Incoming NIR radiation flux	*	500
+Ri_TIR_f	W m-2	Incoming TIR radiation flux	computed from temperature	500
+Ri_xxx_f	W m-2	Incoming radiation flux for custom waveband	optional	500
+atmosphereCO2_ppm	ppm	Air CO2 concentration	Use constant	420
