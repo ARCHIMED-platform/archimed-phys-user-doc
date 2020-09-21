@@ -6,4 +6,23 @@ title: Soil model
 weight: 41
 ---
 
-The soil file is the same as any plant file so far (e.g. group, type, model parameters), but will be populated with new parameters soon. It is identified as a soil file if it uses the `Cobblestone` component type.
+The soil file is the same as any plant file so far (e.g. group, type, model parameters), but will be populated with new parameters soon. It is identified as a soil file if it uses the `Cobblestone` component type:
+
+```YAML
+---
+Group: pavement
+Type:
+  Cobblestone:
+      Interception:
+          model: Translucent
+          transparency: 0
+          optical_properties:
+                PAR: 0.15
+                NIR: 0.9
+      plot_paving: 80
+...
+
+```
+
+The `Cobblestone` type is a special type that defines a soil as a plane, discretized in cobblestones for the light interception. It requires an interception model (*e.g.* `Translucent` as for the example above), and a `plot_paving` parameter that defines the number of cobblestones (*i.e.* cells) used for paving the ground. The size the cobblestones depends on the size of the plot and the number of cobblestones. The size of the plot is given in the scene file (`.ops` file, see [this section](../../4-scene/1-ops/)).   
+
