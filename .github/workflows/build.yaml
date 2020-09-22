@@ -3,11 +3,11 @@ on:
      branches:
        - master
 
-name: build_and_goto_gh_pages
+name: build
 
 jobs:
   blogdown:
-    name: build_and_push_to_gh_pages
+    name: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
