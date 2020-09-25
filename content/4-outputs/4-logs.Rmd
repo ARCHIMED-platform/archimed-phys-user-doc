@@ -1,0 +1,9 @@
+---
+chapter: false
+date: "2020-09-23T12:15:33+02:00"
+pre: <b>4. </b>
+title: Logs
+weight: 44
+---
+
+# Log file

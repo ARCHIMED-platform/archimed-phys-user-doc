@@ -10,4 +10,8 @@ weight: 60
 
 # Model outputs
 
-More information soon.
+The models outputs for a simulation are stored in a single folder given by the options in the `config.yaml` input file (see [this section](../3-inputs/2-general_config/) for more details). 
+
+This chapter details the content of each output file. An example simulation output folder can be downloaded here to follow along:
+
+{{%attachments pattern=\"simdir.zip\" /%}}

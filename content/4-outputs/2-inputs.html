@@ -1,0 +1,24 @@
+---
+chapter: false
+date: "2020-09-23T12:15:33+02:00"
+pre: <b>2. </b>
+title: Inputs
+weight: 42
+---
+
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<div id="input-files" class="section level1">
+<h1>Input files</h1>
+<p>Several input files are re-written in the simulation folder and eventually enriched with new information from the simulation.</p>
+<div id="const.yml" class="section level2">
+<h2>const.yml</h2>
+<p>The constants file (<code>const.yml</code>) gives the constants values effectively used by the models during the simulation. If no constants file was given as input, then this file gives the default values given by the software. In case only some of the constant values were given as input, the other will again be taken as the default values. The output constants file is then a good way to keep track of which values were used.</p>
+</div>
+<div id="meteo.csv" class="section level2">
+<h2>meteo.csv</h2>
+<p>The meteorology file (<code>meteo.csv</code>) corresponds to the meteorology effectively used for the simulation, and enriched with simulated variables (e.g. the sun azimuth and elevation). For example if only two time-steps of the input meteorology file were simulated (instead of say 48 time-steps), then the output meteorology file will only have these two time-steps (it is a sub-set of the input file).</p>
+<p>In our example, we only simulated time-steps 2 and 3 of the input meteorology file (see <code>meteo_range</code> argument from the <a href="../../3-inputs/2-general_config/"><code>config.yml</code></a>), so our output only has 2 time-steps.</p>
+</div>
+</div>
