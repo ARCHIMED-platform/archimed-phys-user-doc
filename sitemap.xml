@@ -93,8 +93,18 @@
   </url>
   
   <url>
+    <loc>/4-outputs/1-organisation/</loc>
+    <lastmod>2020-09-23T12:15:33+02:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/3-inputs/5-models/3-soil_model/</loc>
     <lastmod>2020-06-09T12:15:33+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/4-outputs/2-inputs/</loc>
+    <lastmod>2020-09-23T12:15:33+02:00</lastmod>
   </url>
   
   <url>
@@ -103,8 +113,18 @@
   </url>
   
   <url>
+    <loc>/4-outputs/3-results/</loc>
+    <lastmod>2020-09-23T12:15:33+02:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/3-inputs/6-meteo/</loc>
     <lastmod>2020-06-09T12:15:33+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/4-outputs/4-logs/</loc>
+    <lastmod>2020-09-23T12:15:33+02:00</lastmod>
   </url>
   
   <url>
