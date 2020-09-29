@@ -17,21 +17,21 @@
     <title>List of the models :: ARCHIMED user documentation</title>
 
     
-    <link href="../../../css/nucleus.css?1601388342" rel="stylesheet">
-    <link href="../../../css/fontawesome-all.min.css?1601388342" rel="stylesheet">
-    <link href="../../../css/hybrid.css?1601388342" rel="stylesheet">
-    <link href="../../../css/featherlight.min.css?1601388342" rel="stylesheet">
-    <link href="../../../css/perfect-scrollbar.min.css?1601388342" rel="stylesheet">
-    <link href="../../../css/auto-complete.css?1601388342" rel="stylesheet">
-    <link href="../../../css/atom-one-dark-reasonable.css?1601388342" rel="stylesheet">
-    <link href="../../../css/theme.css?1601388342" rel="stylesheet">
-    <link href="../../../css/hugo-theme.css?1601388342" rel="stylesheet">
+    <link href="../../../css/nucleus.css?1601399353" rel="stylesheet">
+    <link href="../../../css/fontawesome-all.min.css?1601399353" rel="stylesheet">
+    <link href="../../../css/hybrid.css?1601399353" rel="stylesheet">
+    <link href="../../../css/featherlight.min.css?1601399353" rel="stylesheet">
+    <link href="../../../css/perfect-scrollbar.min.css?1601399353" rel="stylesheet">
+    <link href="../../../css/auto-complete.css?1601399353" rel="stylesheet">
+    <link href="../../../css/atom-one-dark-reasonable.css?1601399353" rel="stylesheet">
+    <link href="../../../css/theme.css?1601399353" rel="stylesheet">
+    <link href="../../../css/hugo-theme.css?1601399353" rel="stylesheet">
     
-    <link href="../../../css/theme-archimed.css?1601388342" rel="stylesheet">
+    <link href="../../../css/theme-archimed.css?1601399353" rel="stylesheet">
     
-    <link href="../../../css/foo.css?1601388342" rel="stylesheet"><link href="../../../css/bar.css?1601388342" rel="stylesheet">
+    <link href="../../../css/foo.css?1601399353" rel="stylesheet"><link href="../../../css/bar.css?1601399353" rel="stylesheet">
 
-    <script src="../../../js/jquery-3.3.1.min.js?1601388342"></script>
+    <script src="../../../js/jquery-3.3.1.min.js?1601399353"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -164,14 +164,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="../../../js/lunr.min.js?1601388342"></script>
-<script type="text/javascript" src="../../../js/auto-complete.js?1601388342"></script>
+<script type="text/javascript" src="../../../js/lunr.min.js?1601399353"></script>
+<script type="text/javascript" src="../../../js/auto-complete.js?1601399353"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="../../../js/search.js?1601388342"></script>
+<script type="text/javascript" src="../../../js/search.js?1601399353"></script>
 
     
   </div>
@@ -265,9 +265,9 @@
  
   
     
-      <li data-nav-id="/2-getting-started/2-download_archimed/" title="Run ARCHIMED" class="dd-item ">
+      <li data-nav-id="/2-getting-started/2-download_archimed/" title="Run ARCHIMED-φ" class="dd-item ">
         <a href="../../../2-getting-started/2-download_archimed/">
-        <b>0.2. </b>Run ARCHIMED
+        <b>0.2. </b>Run ARCHIMED-φ
         <i class="fas fa-check read-icon"></i>
         </a>
     </li>
@@ -930,7 +930,7 @@
 <p>Here is a list of all models available for each process.</p>
 <div id="interception" class="section level2">
 <h2>Interception</h2>
-<p>There are two three different models available in ARCHIMED to compute their light interception and scattering: <code>Translucent</code>, <code>ignore</code> and <code>VirtualSensor</code>.</p>
+<p>There are two three different models available in ARCHIMED-φ to compute their light interception and scattering: <code>Translucent</code>, <code>ignore</code> and <code>VirtualSensor</code>.</p>
 <div id="translucent" class="section level3">
 <h3>Translucent</h3>
 <p>This model has two set of parameters :</p>
@@ -950,13 +950,13 @@ If e.g. 0.3, 30% of the incoming light is intercepted by the component (interce
 <p><span class="math inline">\(R_a = \alpha \cdot R_i\)</span><br />
 <span class="math inline">\(R_r = \rho \cdot R_i\)</span><br />
 <span class="math inline">\(R_t = \tau \cdot R_i\)</span></p>
-<p>But in ARCHIMED we consider the reflectance coefficient equal to the transmittance coefficient (<span class="math inline">\(\rho = \tau\)</span>), so we use only one value to parameterize the model: the scattering factor (<span class="math inline">\(\sigma\)</span>). It is the sum of <span class="math inline">\(\rho\)</span> and <span class="math inline">\(\tau\)</span>, such as <span class="math inline">\(\sigma = \rho + \tau\)</span>.
+<p>But in ARCHIMED-φ we consider the reflectance coefficient equal to the transmittance coefficient (<span class="math inline">\(\rho = \tau\)</span>), so we use only one value to parameterize the model: the scattering factor (<span class="math inline">\(\sigma\)</span>). It is the sum of <span class="math inline">\(\rho\)</span> and <span class="math inline">\(\tau\)</span>, such as <span class="math inline">\(\sigma = \rho + \tau\)</span>.
 Then we can compute <span class="math inline">\(R_a\)</span>, <span class="math inline">\(R_r\)</span> and <span class="math inline">\(R_t\)</span> as:</p>
 <p><span class="math inline">\(R_a = R_i \cdot (1 - \rho + \tau)\)</span></p>
 <p><span class="math inline">\(R_r = R_i \cdot \frac{(1-\sigma)}{2}\)</span></p>
 <p><span class="math inline">\(R_t = R_i \cdot \frac{(1-\sigma)}{2}\)</span></p>
 
-<div class="notices info" ><p>In ARCHIMED, the components are considered <a href="https://en.wikipedia.org/wiki/Lambertian_reflectance">lambertian surfaces</a>, i.e. they scatter the light uniformly in all directions.</p>
+<div class="notices info" ><p>In ARCHIMED-φ, the components are considered <a href="https://en.wikipedia.org/wiki/Lambertian_reflectance">lambertian surfaces</a>, i.e. they scatter the light uniformly in all directions.</p>
 </div>
 
 <p>The scattering factors are given for each waveband to be simulated by the model. This is typically for the <a href="https://en.wikipedia.org/wiki/Photosynthetically_active_radiation">photosynthetically active radiation</a> (PAR, typically 400 to 700 nm) and the <a href="https://en.wikipedia.org/wiki/Infrared#Regions_within_the_infrared">near-infrared</a> (NIR, typically 700 nm to 3000 nm) but the user can also define custom wavebands, <em>e.g.</em> for the red band: <code>red: 0.20</code>.</p>
@@ -1026,7 +1026,7 @@ Type:
 </div>
 <div id="photosynthesis" class="section level2">
 <h2>Photosynthesis</h2>
-<p>There are two models to compute the photosynthesis in ARCHIMED: <code>FarquharEnBalance</code> and <code>NRH</code>.
+<p>There are two models to compute the photosynthesis in ARCHIMED-φ: <code>FarquharEnBalance</code> and <code>NRH</code>.
 Here is an example parameterization using those models:</p>
 <pre class="yaml"><code>Photosynthesis:
     use: Farquharcoffee_1
@@ -1118,7 +1118,7 @@ Here is an example parameterization of the models:</p>
 <p>The model from <span class="citation">Yin and Struik (2017)</span> (equ. 11) also relates the stomatal conductance to the VPD using the following equation:</p>
 <p><span class="math inline">\(G_s=G_0+\frac{A+R_d}{C_s-C_s^\ast}f\left(VPD\right)\)</span></p>
 <p>with <span class="math inline">\(C_s\)</span> the <span class="math inline">\(CO_2\)</span> concentration at the leaf surface, and <span class="math inline">\(C^{\star}_s\)</span> is the equivalent of <span class="math inline">\(\Gamma\)</span> based on <span class="math inline">\(C_s\)</span> (see full article, eq. 11).</p>
-<p>In ARCHIMED, <span class="math inline">\(C^{\star}_s\)</span> is given by <span class="math inline">\(\Gamma^\star_{ref}\)</span> corrected by the temperature, and <span class="math inline">\(C_i\)</span> is used instead of <span class="math inline">\(C_s\)</span>.</p>
+<p>In ARCHIMED-φ, <span class="math inline">\(C^{\star}_s\)</span> is given by <span class="math inline">\(\Gamma^\star_{ref}\)</span> corrected by the temperature, and <span class="math inline">\(C_i\)</span> is used instead of <span class="math inline">\(C_s\)</span>.</p>
 <p>The <span class="math inline">\(f\left(VPD\right)\)</span> function is computed as:</p>
 <p><span class="math inline">\(f_{VPD}=\frac{1}{\frac{1}{\max\left(a_1-b_1\cdot VPD,\ 0.01\right)-1}}\)</span></p>
 <p>The model has three parameters:</p>
@@ -1646,19 +1646,19 @@ Here is an example parameterization of the models:</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="../../../js/clipboard.min.js?1601388342"></script>
-    <script src="../../../js/perfect-scrollbar.min.js?1601388342"></script>
-    <script src="../../../js/perfect-scrollbar.jquery.min.js?1601388342"></script>
-    <script src="../../../js/jquery.sticky.js?1601388342"></script>
-    <script src="../../../js/featherlight.min.js?1601388342"></script>
-    <script src="../../../js/highlight.pack.js?1601388342"></script>
+    <script src="../../../js/clipboard.min.js?1601399353"></script>
+    <script src="../../../js/perfect-scrollbar.min.js?1601399353"></script>
+    <script src="../../../js/perfect-scrollbar.jquery.min.js?1601399353"></script>
+    <script src="../../../js/jquery.sticky.js?1601399353"></script>
+    <script src="../../../js/featherlight.min.js?1601399353"></script>
+    <script src="../../../js/highlight.pack.js?1601399353"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="../../../js/modernizr.custom-3.6.0.js?1601388342"></script>
-    <script src="../../../js/learn.js?1601388342"></script>
-    <script src="../../../js/hugo-learn.js?1601388342"></script>
+    <script src="../../../js/modernizr.custom-3.6.0.js?1601399353"></script>
+    <script src="../../../js/learn.js?1601399353"></script>
+    <script src="../../../js/hugo-learn.js?1601399353"></script>
     
         
-            <script src="../../../mermaid/mermaid.js?1601388342"></script>
+            <script src="../../../mermaid/mermaid.js?1601399353"></script>
         
         <script>
             mermaid.initialize({ startOnLoad: true });

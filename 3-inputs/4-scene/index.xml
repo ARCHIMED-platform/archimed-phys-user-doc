@@ -17,7 +17,7 @@
       <pubDate>Tue, 09 Jun 2020 12:15:33 +0200</pubDate>
       
       <guid>/3-inputs/4-scene/1-ops/</guid>
-      <description>.ops The .ops file defines a 3D scene compatible with ARCHIMED and AMAPStudio. The file is used to define a scene, and place 3D objects inside. The .ops file used in ARCHIMED is a subset of the .ops file from AMAPStudio, meaning they don’t implement all the features (e.g. chaining).
+      <description>.ops The .ops file defines a 3D scene compatible with ARCHIMED-φ and AMAPStudio. The file is used to define a scene, and place 3D objects inside. The .ops file used in ARCHIMED-φ is a subset of the .ops file from AMAPStudio, meaning they don’t implement all the features (e.g. chaining).
 Example Here is the content of an example file for a scene with two coffee trees:
 # T xOrigin yOrigin zOrigin xSize ySize flat T 0 0 0 2 2 flat #[Archimed] coffee #sceneId objectId FilePath x y z scale inclinationAzimut inclinationAngle rotation 1 1 opf/P6_Ru_ii_L2P02.</description>
     </item>

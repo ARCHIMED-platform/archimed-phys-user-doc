@@ -17,21 +17,21 @@
     <title>General configuration file :: ARCHIMED user documentation</title>
 
     
-    <link href="../../css/nucleus.css?1601388342" rel="stylesheet">
-    <link href="../../css/fontawesome-all.min.css?1601388342" rel="stylesheet">
-    <link href="../../css/hybrid.css?1601388342" rel="stylesheet">
-    <link href="../../css/featherlight.min.css?1601388342" rel="stylesheet">
-    <link href="../../css/perfect-scrollbar.min.css?1601388342" rel="stylesheet">
-    <link href="../../css/auto-complete.css?1601388342" rel="stylesheet">
-    <link href="../../css/atom-one-dark-reasonable.css?1601388342" rel="stylesheet">
-    <link href="../../css/theme.css?1601388342" rel="stylesheet">
-    <link href="../../css/hugo-theme.css?1601388342" rel="stylesheet">
+    <link href="../../css/nucleus.css?1601399353" rel="stylesheet">
+    <link href="../../css/fontawesome-all.min.css?1601399353" rel="stylesheet">
+    <link href="../../css/hybrid.css?1601399353" rel="stylesheet">
+    <link href="../../css/featherlight.min.css?1601399353" rel="stylesheet">
+    <link href="../../css/perfect-scrollbar.min.css?1601399353" rel="stylesheet">
+    <link href="../../css/auto-complete.css?1601399353" rel="stylesheet">
+    <link href="../../css/atom-one-dark-reasonable.css?1601399353" rel="stylesheet">
+    <link href="../../css/theme.css?1601399353" rel="stylesheet">
+    <link href="../../css/hugo-theme.css?1601399353" rel="stylesheet">
     
-    <link href="../../css/theme-archimed.css?1601388342" rel="stylesheet">
+    <link href="../../css/theme-archimed.css?1601399353" rel="stylesheet">
     
-    <link href="../../css/foo.css?1601388342" rel="stylesheet"><link href="../../css/bar.css?1601388342" rel="stylesheet">
+    <link href="../../css/foo.css?1601399353" rel="stylesheet"><link href="../../css/bar.css?1601399353" rel="stylesheet">
 
-    <script src="../../js/jquery-3.3.1.min.js?1601388342"></script>
+    <script src="../../js/jquery-3.3.1.min.js?1601399353"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -164,14 +164,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="../../js/lunr.min.js?1601388342"></script>
-<script type="text/javascript" src="../../js/auto-complete.js?1601388342"></script>
+<script type="text/javascript" src="../../js/lunr.min.js?1601399353"></script>
+<script type="text/javascript" src="../../js/auto-complete.js?1601399353"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="../../js/search.js?1601388342"></script>
+<script type="text/javascript" src="../../js/search.js?1601399353"></script>
 
     
   </div>
@@ -265,9 +265,9 @@
  
   
     
-      <li data-nav-id="/2-getting-started/2-download_archimed/" title="Run ARCHIMED" class="dd-item ">
+      <li data-nav-id="/2-getting-started/2-download_archimed/" title="Run ARCHIMED-φ" class="dd-item ">
         <a href="../../2-getting-started/2-download_archimed/">
-        <b>0.2. </b>Run ARCHIMED
+        <b>0.2. </b>Run ARCHIMED-φ
         <i class="fas fa-check read-icon"></i>
         </a>
     </li>
@@ -969,7 +969,7 @@ toricity: true           # Make the scene toric (if false, increase the plot bou
 cache_pixel_table: false # true: pixel tables are cached on disc instead of kept in memory (slower but use less memory + allow to reuse them).
 cache_radiation : true   # true : precomputed intercepted/scattered radiation to speed up simulation</code></pre>
 <p><code>scene_rotation</code> is used to rotate the scene from the North axis, and is provided in degrees.</p>
-<p><code>sky_sectors</code> is used to define how many sectors are used to divide the semi-hemisphere of the sky (called the turtle). ARCHIMED uses discrete directions for the computation of light interception (at least for the diffuse light). These directions are given by each sector of the turtle, so the more directions there are, the most precise is the computation of light interception, but also the more computation there are, so the more time it will take to complete a simulation. A good rule of thumb is to take at least 16 directions if the interception is needed at plant scale, 46 if it is for branch-scale, and 136 or even 406 for leaf scale.</p>
+<p><code>sky_sectors</code> is used to define how many sectors are used to divide the semi-hemisphere of the sky (called the turtle). ARCHIMED-φ uses discrete directions for the computation of light interception (at least for the diffuse light). These directions are given by each sector of the turtle, so the more directions there are, the most precise is the computation of light interception, but also the more computation there are, so the more time it will take to complete a simulation. A good rule of thumb is to take at least 16 directions if the interception is needed at plant scale, 46 if it is for branch-scale, and 136 or even 406 for leaf scale.</p>
 <blockquote>
 <p>This recommendation is quite robust because the error tends to be compensated from one scale to the other. For example if we simulate a palm tree with 16 directions, the error would be quite high if we compare with observations at leaflet scale. But if we integrate at leaf scale, it would be quite close to the observations, and even closer if we integrate over the whole plant.</p>
 </blockquote>
@@ -981,8 +981,8 @@ cache_radiation : true   # true : precomputed intercepted/scattered radiation to
 <p><code>radiation_timestep</code>. The duration of each time-step for the simulation is given in the <a href="../6-meteo/index.html">meteorology file</a>. Because the sun moves rapidly in the sky, especially in the morning, the direct radiation received on a plane at the surface of the earth changes rapidly too. Think of the radiation you receive at 8h in the morning and then at 9h00. They differ quite a bit. Hence, the computation of the light interception could be biased if we were to use only the average position of the sun for a time-step due to the non-uniformity of the radiation inside this time-step (<em>i.e.</em> the average radiation in the time-step is different than the radiation at the average sun position).</p>
 <p>To alleviate this issue, it is possible to discretize the time-step in sub-steps of <code>radiation_timestep</code> minutes. The sun position and the radiation are both computed for each sub-step, and the resulting position and radiation used for the time-step come from the position at the barycenter of all positions, and the integrated radiation of all the sub-steps inside the time-step. It is an efficient way to approximate the effective radiation in a time-step when the time-step duration implies a substantial movement of the sun.</p>
 <p>It is generally admitted that a <code>radiation_timestep</code> of <code>5</code> is largely sufficient.</p>
-<p><code>scattering</code> is a Boolean to choose if light scattering is computed or not. This computation is probably the most ressource demanding in ARCHIMED, but is quite important for a precise estimation of the light interception of an object, especially when computing photosynthesis.</p>
-<p><code>pixel_size</code> defines the size of the side of a pixel (cm pixels-1). The light interception is computed using “pixel tables” in ARCHIMED. There is a pixel table for each sky sector of the turtle, and it is projected onto the ground of the scene. Light rays are sent from the sky sector to each pixel from the pixel table, and the “hits” with the objects from the scene are computed using these rays. Because the <code>pixel_size</code> defines the size of the pixels in the scene, it can be viewed as a way to change the “resolution” of the computation. If we decrease its value, we get more pixels with a smaller size, so we cast more rays through the scene.</p>
+<p><code>scattering</code> is a Boolean to choose if light scattering is computed or not. This computation is probably the most ressource demanding in ARCHIMED-φ, but is quite important for a precise estimation of the light interception of an object, especially when computing photosynthesis.</p>
+<p><code>pixel_size</code> defines the size of the side of a pixel (cm pixels-1). The light interception is computed using “pixel tables” in ARCHIMED-φ. There is a pixel table for each sky sector of the turtle, and it is projected onto the ground of the scene. Light rays are sent from the sky sector to each pixel from the pixel table, and the “hits” with the objects from the scene are computed using these rays. Because the <code>pixel_size</code> defines the size of the pixels in the scene, it can be viewed as a way to change the “resolution” of the computation. If we decrease its value, we get more pixels with a smaller size, so we cast more rays through the scene.</p>
 <div id="toricity" class="section level4">
 <h4>Toricity</h4>
 <p><code>toricity</code> is a Boolean controlling the plot toricity. The use of the toricity option allows generating virtually infinite canopies from the plot defined in the <code>.ops</code>. The name <code>toricity</code> comes from the shape and properties of a Torus, where the conditions of one end are close to the ones from the other end.</p>
@@ -990,7 +990,7 @@ cache_radiation : true   # true : precomputed intercepted/scattered radiation to
 <img src="../../images/torus_from_rectangle.gif" id="fig:torus" alt="" />
 <p class="caption">A flat scene can be turned into a torus to connect the scene boundaries between each others. Attribution: Lucas Vieira / Public domain, from <a href="https://commons.wikimedia.org/wiki/File:Torus_from_rectangle.gif" class="uri">https://commons.wikimedia.org/wiki/File:Torus_from_rectangle.gif</a></p>
 </div>
-<p>In ARCHIMED, the light rays reaching an horizontal boundary of the scene (<em>e.g</em> maximum Y boundary) re-enter the scene from the opposite direction of the scene (<em>e.g</em> minimum Y boundary).</p>
+<p>In ARCHIMED-φ, the light rays reaching an horizontal boundary of the scene (<em>e.g</em> maximum Y boundary) re-enter the scene from the opposite direction of the scene (<em>e.g</em> minimum Y boundary).</p>
 <p>Here is our example 3D scene with a coffee tree planted near the boundary of the scene:</p>
 <div class="sketchfab-embed-wrapper">
 <iframe title="A 3D model" width="640" height="480" src="https://sketchfab.com/models/045dba854c8d4b9e8a5dff2d18892df1/embed?autostart=1&amp;preload=1&amp;ui_controls=1&amp;ui_infos=1&amp;ui_inspector=1&amp;ui_stop=1&amp;ui_watermark=1&amp;ui_watermark_link=1" frameborder="0" allow="autoplay; fullscreen; vr" mozallowfullscreen="true" webkitallowfullscreen="true">
@@ -1024,7 +1024,7 @@ This option can be used to cache the radiation interception computation on disk 
 <div id="outputs" class="section level3">
 <h3>Outputs</h3>
 <p>Then, the following parameters control the outputs from the model.
-In ARCHIMED, the outputs of the model are placed in a folder associated to a given simulation, which are all grouped in a more general output directory.</p>
+In ARCHIMED-φ, the outputs of the model are placed in a folder associated to a given simulation, which are all grouped in a more general output directory.</p>
 <pre class="yaml"><code># OUTPUTS
 output_directory: output     # Path to the output directory (the folder is created if not already existing)
 simulation_directory: simdir # Optional : path to the simulation directory (replace the automatic counter based directory name generation)</code></pre>
@@ -1068,7 +1068,7 @@ For example if we have two projects, one to simulate different planting designs 
 <pre class="yaml"><code>export_ops: true</code></pre>
 <div id="component-variables" class="section level4">
 <h4>Component variables</h4>
-<p>Many variables are available as outputs from ARCHIMED to write into the <code>component_values.csv</code> file. The <code>component_variables</code> parameter lists the variables needed as outputs:</p>
+<p>Many variables are available as outputs from ARCHIMED-φ to write into the <code>component_values.csv</code> file. The <code>component_variables</code> parameter lists the variables needed as outputs:</p>
 <pre class="yaml"><code># List of columns in the component_values.csv file:
 component_variables:
   step_number: true    # Index of the step
@@ -1135,7 +1135,7 @@ component_variables:
 </div>
 <div id="using-yaml-anchors" class="section level4">
 <h4>Using YAML anchors</h4>
-<p>Most of the time the required <code>opf_variables</code> will be the same than the <code>component_variables</code>. You can use anchors to tell ARCHIMED to re-use the same values in <code>opf_variables</code> than in <code>component_variables</code>:</p>
+<p>Most of the time the required <code>opf_variables</code> will be the same than the <code>component_variables</code>. You can use anchors to tell ARCHIMED-φ to re-use the same values in <code>opf_variables</code> than in <code>component_variables</code>:</p>
 <pre class="yaml"><code>component_variables: &amp;outvars # defining an anchor here with &amp;id
   step_number: true
   step_duration: true
@@ -1809,19 +1809,19 @@ opf_variables: *outvars # The content of the parameter where &quot;&amp;outvars&
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="../../js/clipboard.min.js?1601388342"></script>
-    <script src="../../js/perfect-scrollbar.min.js?1601388342"></script>
-    <script src="../../js/perfect-scrollbar.jquery.min.js?1601388342"></script>
-    <script src="../../js/jquery.sticky.js?1601388342"></script>
-    <script src="../../js/featherlight.min.js?1601388342"></script>
-    <script src="../../js/highlight.pack.js?1601388342"></script>
+    <script src="../../js/clipboard.min.js?1601399353"></script>
+    <script src="../../js/perfect-scrollbar.min.js?1601399353"></script>
+    <script src="../../js/perfect-scrollbar.jquery.min.js?1601399353"></script>
+    <script src="../../js/jquery.sticky.js?1601399353"></script>
+    <script src="../../js/featherlight.min.js?1601399353"></script>
+    <script src="../../js/highlight.pack.js?1601399353"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="../../js/modernizr.custom-3.6.0.js?1601388342"></script>
-    <script src="../../js/learn.js?1601388342"></script>
-    <script src="../../js/hugo-learn.js?1601388342"></script>
+    <script src="../../js/modernizr.custom-3.6.0.js?1601399353"></script>
+    <script src="../../js/learn.js?1601399353"></script>
+    <script src="../../js/hugo-learn.js?1601399353"></script>
     
         
-            <script src="../../mermaid/mermaid.js?1601388342"></script>
+            <script src="../../mermaid/mermaid.js?1601399353"></script>
         
         <script>
             mermaid.initialize({ startOnLoad: true });

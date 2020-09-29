@@ -17,21 +17,21 @@
     <title>Scene file :: ARCHIMED user documentation</title>
 
     
-    <link href="../../../css/nucleus.css?1601388342" rel="stylesheet">
-    <link href="../../../css/fontawesome-all.min.css?1601388342" rel="stylesheet">
-    <link href="../../../css/hybrid.css?1601388342" rel="stylesheet">
-    <link href="../../../css/featherlight.min.css?1601388342" rel="stylesheet">
-    <link href="../../../css/perfect-scrollbar.min.css?1601388342" rel="stylesheet">
-    <link href="../../../css/auto-complete.css?1601388342" rel="stylesheet">
-    <link href="../../../css/atom-one-dark-reasonable.css?1601388342" rel="stylesheet">
-    <link href="../../../css/theme.css?1601388342" rel="stylesheet">
-    <link href="../../../css/hugo-theme.css?1601388342" rel="stylesheet">
+    <link href="../../../css/nucleus.css?1601399353" rel="stylesheet">
+    <link href="../../../css/fontawesome-all.min.css?1601399353" rel="stylesheet">
+    <link href="../../../css/hybrid.css?1601399353" rel="stylesheet">
+    <link href="../../../css/featherlight.min.css?1601399353" rel="stylesheet">
+    <link href="../../../css/perfect-scrollbar.min.css?1601399353" rel="stylesheet">
+    <link href="../../../css/auto-complete.css?1601399353" rel="stylesheet">
+    <link href="../../../css/atom-one-dark-reasonable.css?1601399353" rel="stylesheet">
+    <link href="../../../css/theme.css?1601399353" rel="stylesheet">
+    <link href="../../../css/hugo-theme.css?1601399353" rel="stylesheet">
     
-    <link href="../../../css/theme-archimed.css?1601388342" rel="stylesheet">
+    <link href="../../../css/theme-archimed.css?1601399353" rel="stylesheet">
     
-    <link href="../../../css/foo.css?1601388342" rel="stylesheet"><link href="../../../css/bar.css?1601388342" rel="stylesheet">
+    <link href="../../../css/foo.css?1601399353" rel="stylesheet"><link href="../../../css/bar.css?1601399353" rel="stylesheet">
 
-    <script src="../../../js/jquery-3.3.1.min.js?1601388342"></script>
+    <script src="../../../js/jquery-3.3.1.min.js?1601399353"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -164,14 +164,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="../../../js/lunr.min.js?1601388342"></script>
-<script type="text/javascript" src="../../../js/auto-complete.js?1601388342"></script>
+<script type="text/javascript" src="../../../js/lunr.min.js?1601399353"></script>
+<script type="text/javascript" src="../../../js/auto-complete.js?1601399353"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="../../../js/search.js?1601388342"></script>
+<script type="text/javascript" src="../../../js/search.js?1601399353"></script>
 
     
   </div>
@@ -265,9 +265,9 @@
  
   
     
-      <li data-nav-id="/2-getting-started/2-download_archimed/" title="Run ARCHIMED" class="dd-item ">
+      <li data-nav-id="/2-getting-started/2-download_archimed/" title="Run ARCHIMED-φ" class="dd-item ">
         <a href="../../../2-getting-started/2-download_archimed/">
-        <b>0.2. </b>Run ARCHIMED
+        <b>0.2. </b>Run ARCHIMED-φ
         <i class="fas fa-check read-icon"></i>
         </a>
     </li>
@@ -929,7 +929,7 @@
 
 <div id="ops" class="section level1">
 <h1><code>.ops</code></h1>
-<p>The <code>.ops</code> file defines a 3D scene compatible with ARCHIMED and <a href="http://amapstudio.cirad.fr/">AMAPStudio</a>. The file is used to define a scene, and place 3D objects inside. The <code>.ops</code> file used in ARCHIMED is a subset of the <code>.ops</code> file from AMAPStudio, meaning they don’t implement all the features (e.g. chaining).</p>
+<p>The <code>.ops</code> file defines a 3D scene compatible with ARCHIMED-φ and <a href="http://amapstudio.cirad.fr/">AMAPStudio</a>. The file is used to define a scene, and place 3D objects inside. The <code>.ops</code> file used in ARCHIMED-φ is a subset of the <code>.ops</code> file from AMAPStudio, meaning they don’t implement all the features (e.g. chaining).</p>
 <div id="example" class="section level2">
 <h2>Example</h2>
 <p>Here is the content of an example file for a scene with two coffee trees:</p>
@@ -993,14 +993,14 @@ T 0 0 0 2 2 flat
 - <code>T</code> is used as an identifier for the terrain properties line. It is mandatory.<br />
 - The coordinates of the origin for X, Y and Z values. These values are typically set to 0.<br />
 - The coordinates of the boundaries in X and Y.<br />
-- The slope of the terrain. At the moment, only a <code>flat</code> scene is allowed in ARCHIMED. This is due to the toricity property of the scene, but future development will allow sloped terrains for non-toric scenes.</p>
+- The slope of the terrain. At the moment, only a <code>flat</code> scene is allowed in ARCHIMED-φ. This is due to the toricity property of the scene, but future development will allow sloped terrains for non-toric scenes.</p>
 
-<div class="notices warning" ><p>The terrain line is optional in AMAPStudio, but <strong>mandatory</strong> for ARCHIMED.</p>
+<div class="notices warning" ><p>The terrain line is optional in AMAPStudio, but <strong>mandatory</strong> for ARCHIMED-φ.</p>
 </div>
 
-<p>Then comes a special comment read by ARCHIMED but not AMAPStudio. It starts with a <code>#</code> so it is not read by AMAPStudio, and a special sign <code>[Archimed]</code>:</p>
+<p>Then comes a special comment read by ARCHIMED-φ but not AMAPStudio. It starts with a <code>#</code> so it is not read by AMAPStudio, and a special sign <code>[Archimed]</code>:</p>
 <pre><code>#[Archimed] coffee</code></pre>
-<p>This special line defines the functional group of the plant(s) defined afterward. Here we have two plants that both are from the same group: coffee. This group name is used by ARCHIMED to link each plant to the group models (see the <a href="../../5-models/1-models/">documentation about the models</a>).</p>
+<p>This special line defines the functional group of the plant(s) defined afterward. Here we have two plants that both are from the same group: coffee. This group name is used by ARCHIMED-φ to link each plant to the group models (see the <a href="../../5-models/1-models/">documentation about the models</a>).</p>
 <p>Then comes the information to place the plants in the scene:</p>
 <pre><code>#sceneId objectId FilePath x y z scale inclinationAzimut inclinationAngle rotation
 1   1   opf/P6_Ru_ii_L2P02.opf  0       0       0   0   0   0   0
@@ -1008,7 +1008,7 @@ T 0 0 0 2 2 flat
 <p>The first line is a comment here. The second and third lines describe a new plant in the scene.
 Each line specifies ten values:</p>
 <ul>
-<li>the scene id: this value is mandatory, but not used by ARCHIMED (used by AMAPStudio);<br />
+<li>the scene id: this value is mandatory, but not used by ARCHIMED-φ (used by AMAPStudio);<br />
 </li>
 <li>the object id (speaks for itself);<br />
 </li>
@@ -1016,7 +1016,7 @@ Each line specifies ten values:</p>
 </li>
 <li>the coordinates of the object in the scene (x, y and z);<br />
 </li>
-<li>the scaling factor of the object (not used, neither in ARCHIMED nor AMAPStudio);<br />
+<li>the scaling factor of the object (not used, neither in ARCHIMED-φ nor AMAPStudio);<br />
 </li>
 <li>the inclination angle of the object in the azimuth;<br />
 </li>
@@ -1025,7 +1025,7 @@ Each line specifies ten values:</p>
 <li>and the object rotation around its main vertical axis;</li>
 </ul>
 
-<div class="notices warning" ><p>The parameters that are not used in ARCHIMED are still mandatory in the <code>.ops</code> file so the scene can be opened and used in AMAPStudio before and after a simulation.</p>
+<div class="notices warning" ><p>The parameters that are not used in ARCHIMED-φ are still mandatory in the <code>.ops</code> file so the scene can be opened and used in AMAPStudio before and after a simulation.</p>
 </div>
 
 </div>
@@ -1081,7 +1081,7 @@ Each line specifies ten values:</p>
 </div>
 <div id="further-details" class="section level2">
 <h2>Further details</h2>
-<p>One last row can be added to the <code>.ops</code> file for scene chaining in AMAPStudio. This line is optional and is not used by ARCHIMED anyway:</p>
+<p>One last row can be added to the <code>.ops</code> file for scene chaining in AMAPStudio. This line is optional and is not used by ARCHIMED-φ anyway:</p>
 <pre><code>#motherId sceneId date
 -1  1   1</code></pre>
 <p>The first value gives the id of the parent scene, -1 for the first
@@ -1589,19 +1589,19 @@ scene (no parent), the second value gives the id of the scene, and the last valu
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="../../../js/clipboard.min.js?1601388342"></script>
-    <script src="../../../js/perfect-scrollbar.min.js?1601388342"></script>
-    <script src="../../../js/perfect-scrollbar.jquery.min.js?1601388342"></script>
-    <script src="../../../js/jquery.sticky.js?1601388342"></script>
-    <script src="../../../js/featherlight.min.js?1601388342"></script>
-    <script src="../../../js/highlight.pack.js?1601388342"></script>
+    <script src="../../../js/clipboard.min.js?1601399353"></script>
+    <script src="../../../js/perfect-scrollbar.min.js?1601399353"></script>
+    <script src="../../../js/perfect-scrollbar.jquery.min.js?1601399353"></script>
+    <script src="../../../js/jquery.sticky.js?1601399353"></script>
+    <script src="../../../js/featherlight.min.js?1601399353"></script>
+    <script src="../../../js/highlight.pack.js?1601399353"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="../../../js/modernizr.custom-3.6.0.js?1601388342"></script>
-    <script src="../../../js/learn.js?1601388342"></script>
-    <script src="../../../js/hugo-learn.js?1601388342"></script>
+    <script src="../../../js/modernizr.custom-3.6.0.js?1601399353"></script>
+    <script src="../../../js/learn.js?1601399353"></script>
+    <script src="../../../js/hugo-learn.js?1601399353"></script>
     
         
-            <script src="../../../mermaid/mermaid.js?1601388342"></script>
+            <script src="../../../mermaid/mermaid.js?1601399353"></script>
         
         <script>
             mermaid.initialize({ startOnLoad: true });
