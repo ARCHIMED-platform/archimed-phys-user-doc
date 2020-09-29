@@ -7,3 +7,7 @@ weight: 44
 ---
 
 # Log file
+
+The log file simply register all logs from the model. If the simulation ran successfully, it returns "Archimed 2018 END".
+
+This file is useful for debugging. 

@@ -7,3 +7,29 @@ weight: 43
 ---
 
 # Results files
+
+
+## component values
+
+The `component_values.csv` file regroup the output of the simulation at component scale  (`e.g.` the light interception of each leaf) for each individual object (`e.g.` a plant). The variables written in this file are controlled by the `component_variables` parameter in [config.yml](../../3-inputs/2-general_config/)).
+
+Here is a table summarizing the information about all possible variables:
+
+```{r echo=FALSE}
+df = read.csv("3-results.files/component_variables.csv", sep = ";")
+knitr::kable(df)
+```
+
+This table can be downloaded here:
+
+{{%attachments pattern=\"component_variables.csv\" /%}}
+
+Note that all `barycentre_*` variables are computed when required, so they slow down model execution time a little bit when set to `true`. 
+
+## summary
+
+The `summary.csv` file is summarizes simulated values at plot scale for for each Item in the scene (*e.g.* plant, soil) each time-step, such as the total leaf area or intercepted shortwave radiation.
+
+## scene values
+
+The `scene_values.csv` file summarizes simulated values at plot scale for each time-step, such as the total leaf area or intercepted shortwave radiation.

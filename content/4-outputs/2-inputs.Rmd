@@ -18,9 +18,17 @@ The constants file (`const.yml`) gives the constants values effectively used by 
 
 The meteorology file (`meteo.csv`) corresponds to the meteorology effectively used for the simulation, and enriched with simulated variables (e.g. the sun azimuth and elevation). For example if only two time-steps of the input meteorology file were simulated (instead of say 48 time-steps), then the output meteorology file will only have these two time-steps (it is a sub-set of the input file).
 
-In our example, we only simulated time-steps 2 and 3 of the input meteorology file (see `meteo_range` argument from the [`config.yml`](../../3-inputs/2-general_config/)), so our output only has 2 time-steps. 
+In our example, we only simulated time-steps 2 and 3 of the input meteorology file (see `meteo_range` argument from the [config.yml](../../3-inputs/2-general_config/)), so our output only has 2 time-steps. 
 
+## 3D scene
 
+The 3D scene is composed of a scene file (`.ops` file) and object files (`.opf` and `.gwa` files). These files can be copied into the simulation if needed, and then enriched by simulated values (see `opf_variables` argument from [config.yml](../../3-inputs/2-general_config/)).  
 
+In our example, the scene is copied back and enriched with several variables. For example the light interception is given by the `Ra_PAR_q` attribute in the plant (`coffee-1-step00002.opf`) and soil (`pavement-1-step00002.gwa`) files.
 
+The name of the file is prefixed by the index of the time-step for which the simulated attributes are given (see `export_ops` argument from [config.yml](../../3-inputs/2-general_config/)). 
+
+Then, the scene can be viewed using XPlo. Here is our example scene, colored by the `LE_q` attribute (latent heat flux):
+
+![Fig. 1: Latent heat flux of a 3d scene with a *Coffee arabica* plant (W m[component]-2)](/images/coffee_LE_q.png)
 

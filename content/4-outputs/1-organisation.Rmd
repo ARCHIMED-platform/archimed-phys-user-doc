@@ -29,6 +29,7 @@ Here is a tree view of the files we get by simulating the example simulation giv
 ├── 📜meteo.csv                # -> the input meteorology file
 ├── 📜pavement-1-step00002.gwa # -> The input soil file in gwa format.
 ├── 📜scene_values.csv         # -> the meteorology file
+├── 📜session.log              # -> the log file (used for debugging)
 └── 📜summary.csv              # -> the summary at object scale
 ```
 

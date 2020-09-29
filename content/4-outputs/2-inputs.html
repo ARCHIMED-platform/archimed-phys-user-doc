@@ -19,6 +19,17 @@ weight: 42
 <div id="meteo.csv" class="section level2">
 <h2>meteo.csv</h2>
 <p>The meteorology file (<code>meteo.csv</code>) corresponds to the meteorology effectively used for the simulation, and enriched with simulated variables (e.g. the sun azimuth and elevation). For example if only two time-steps of the input meteorology file were simulated (instead of say 48 time-steps), then the output meteorology file will only have these two time-steps (it is a sub-set of the input file).</p>
-<p>In our example, we only simulated time-steps 2 and 3 of the input meteorology file (see <code>meteo_range</code> argument from the <a href="../../3-inputs/2-general_config/"><code>config.yml</code></a>), so our output only has 2 time-steps.</p>
+<p>In our example, we only simulated time-steps 2 and 3 of the input meteorology file (see <code>meteo_range</code> argument from the <a href="../../3-inputs/2-general_config/">config.yml</a>), so our output only has 2 time-steps.</p>
+</div>
+<div id="d-scene" class="section level2">
+<h2>3D scene</h2>
+<p>The 3D scene is composed of a scene file (<code>.ops</code> file) and object files (<code>.opf</code> and <code>.gwa</code> files). These files can be copied into the simulation if needed, and then enriched by simulated values (see <code>opf_variables</code> argument from <a href="../../3-inputs/2-general_config/">config.yml</a>).</p>
+<p>In our example, the scene is copied back and enriched with several variables. For example the light interception is given by the <code>Ra_PAR_q</code> attribute in the plant (<code>coffee-1-step00002.opf</code>) and soil (<code>pavement-1-step00002.gwa</code>) files.</p>
+<p>The name of the file is prefixed by the index of the time-step for which the simulated attributes are given (see <code>export_ops</code> argument from <a href="../../3-inputs/2-general_config/">config.yml</a>).</p>
+<p>Then, the scene can be viewed using XPlo. Here is our example scene, colored by the <code>LE_q</code> attribute (latent heat flux):</p>
+<div class="figure">
+<img src="/images/coffee_LE_q.png" alt="" />
+<p class="caption">Fig. 1: Latent heat flux of a 3d scene with a <em>Coffee arabica</em> plant (W m[component]-2)</p>
+</div>
 </div>
 </div>
