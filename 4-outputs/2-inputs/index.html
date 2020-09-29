@@ -17,21 +17,21 @@
     <title>Inputs :: ARCHIMED user documentation</title>
 
     
-    <link href="../../css/nucleus.css?1601050370" rel="stylesheet">
-    <link href="../../css/fontawesome-all.min.css?1601050370" rel="stylesheet">
-    <link href="../../css/hybrid.css?1601050370" rel="stylesheet">
-    <link href="../../css/featherlight.min.css?1601050370" rel="stylesheet">
-    <link href="../../css/perfect-scrollbar.min.css?1601050370" rel="stylesheet">
-    <link href="../../css/auto-complete.css?1601050370" rel="stylesheet">
-    <link href="../../css/atom-one-dark-reasonable.css?1601050370" rel="stylesheet">
-    <link href="../../css/theme.css?1601050370" rel="stylesheet">
-    <link href="../../css/hugo-theme.css?1601050370" rel="stylesheet">
+    <link href="../../css/nucleus.css?1601388342" rel="stylesheet">
+    <link href="../../css/fontawesome-all.min.css?1601388342" rel="stylesheet">
+    <link href="../../css/hybrid.css?1601388342" rel="stylesheet">
+    <link href="../../css/featherlight.min.css?1601388342" rel="stylesheet">
+    <link href="../../css/perfect-scrollbar.min.css?1601388342" rel="stylesheet">
+    <link href="../../css/auto-complete.css?1601388342" rel="stylesheet">
+    <link href="../../css/atom-one-dark-reasonable.css?1601388342" rel="stylesheet">
+    <link href="../../css/theme.css?1601388342" rel="stylesheet">
+    <link href="../../css/hugo-theme.css?1601388342" rel="stylesheet">
     
-    <link href="../../css/theme-archimed.css?1601050370" rel="stylesheet">
+    <link href="../../css/theme-archimed.css?1601388342" rel="stylesheet">
     
-    <link href="../../css/foo.css?1601050370" rel="stylesheet"><link href="../../css/bar.css?1601050370" rel="stylesheet">
+    <link href="../../css/foo.css?1601388342" rel="stylesheet"><link href="../../css/bar.css?1601388342" rel="stylesheet">
 
-    <script src="../../js/jquery-3.3.1.min.js?1601050370"></script>
+    <script src="../../js/jquery-3.3.1.min.js?1601388342"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -164,14 +164,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="../../js/lunr.min.js?1601050370"></script>
-<script type="text/javascript" src="../../js/auto-complete.js?1601050370"></script>
+<script type="text/javascript" src="../../js/lunr.min.js?1601388342"></script>
+<script type="text/javascript" src="../../js/auto-complete.js?1601388342"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="../../js/search.js?1601050370"></script>
+<script type="text/javascript" src="../../js/search.js?1601388342"></script>
 
     
   </div>
@@ -937,7 +937,18 @@
 <div id="meteo.csv" class="section level2">
 <h2>meteo.csv</h2>
 <p>The meteorology file (<code>meteo.csv</code>) corresponds to the meteorology effectively used for the simulation, and enriched with simulated variables (e.g. the sun azimuth and elevation). For example if only two time-steps of the input meteorology file were simulated (instead of say 48 time-steps), then the output meteorology file will only have these two time-steps (it is a sub-set of the input file).</p>
-<p>In our example, we only simulated time-steps 2 and 3 of the input meteorology file (see <code>meteo_range</code> argument from the <a href="../../3-inputs/2-general_config/"><code>config.yml</code></a>), so our output only has 2 time-steps.</p>
+<p>In our example, we only simulated time-steps 2 and 3 of the input meteorology file (see <code>meteo_range</code> argument from the <a href="../../3-inputs/2-general_config/">config.yml</a>), so our output only has 2 time-steps.</p>
+</div>
+<div id="d-scene" class="section level2">
+<h2>3D scene</h2>
+<p>The 3D scene is composed of a scene file (<code>.ops</code> file) and object files (<code>.opf</code> and <code>.gwa</code> files). These files can be copied into the simulation if needed, and then enriched by simulated values (see <code>opf_variables</code> argument from <a href="../../3-inputs/2-general_config/">config.yml</a>).</p>
+<p>In our example, the scene is copied back and enriched with several variables. For example the light interception is given by the <code>Ra_PAR_q</code> attribute in the plant (<code>coffee-1-step00002.opf</code>) and soil (<code>pavement-1-step00002.gwa</code>) files.</p>
+<p>The name of the file is prefixed by the index of the time-step for which the simulated attributes are given (see <code>export_ops</code> argument from <a href="../../3-inputs/2-general_config/">config.yml</a>).</p>
+<p>Then, the scene can be viewed using XPlo. Here is our example scene, colored by the <code>LE_q</code> attribute (latent heat flux):</p>
+<div class="figure">
+<img src="../../images/coffee_LE_q.png" alt="" />
+<p class="caption">Fig. 1: Latent heat flux of a 3d scene with a <em>Coffee arabica</em> plant (W m[component]-2)</p>
+</div>
 </div>
 </div>
 
@@ -1439,19 +1450,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="../../js/clipboard.min.js?1601050370"></script>
-    <script src="../../js/perfect-scrollbar.min.js?1601050370"></script>
-    <script src="../../js/perfect-scrollbar.jquery.min.js?1601050370"></script>
-    <script src="../../js/jquery.sticky.js?1601050370"></script>
-    <script src="../../js/featherlight.min.js?1601050370"></script>
-    <script src="../../js/highlight.pack.js?1601050370"></script>
+    <script src="../../js/clipboard.min.js?1601388342"></script>
+    <script src="../../js/perfect-scrollbar.min.js?1601388342"></script>
+    <script src="../../js/perfect-scrollbar.jquery.min.js?1601388342"></script>
+    <script src="../../js/jquery.sticky.js?1601388342"></script>
+    <script src="../../js/featherlight.min.js?1601388342"></script>
+    <script src="../../js/highlight.pack.js?1601388342"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="../../js/modernizr.custom-3.6.0.js?1601050370"></script>
-    <script src="../../js/learn.js?1601050370"></script>
-    <script src="../../js/hugo-learn.js?1601050370"></script>
+    <script src="../../js/modernizr.custom-3.6.0.js?1601388342"></script>
+    <script src="../../js/learn.js?1601388342"></script>
+    <script src="../../js/hugo-learn.js?1601388342"></script>
     
         
-            <script src="../../mermaid/mermaid.js?1601050370"></script>
+            <script src="../../mermaid/mermaid.js?1601388342"></script>
         
         <script>
             mermaid.initialize({ startOnLoad: true });

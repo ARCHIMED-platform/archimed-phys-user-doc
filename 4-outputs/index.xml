@@ -38,7 +38,9 @@ const.yml The constants file (const.yml) gives the constants values effectively 
       <pubDate>Wed, 23 Sep 2020 12:15:33 +0200</pubDate>
       
       <guid>/4-outputs/3-results/</guid>
-      <description>  Results files  </description>
+      <description>Results files component values The component_values.csv file regroup the output of the simulation at component scale (e.g. the light interception of each leaf) for each individual object (e.g. a plant). The variables written in this file are controlled by the component_variables parameter in config.yml).
+Here is a table summarizing the information about all possible variables:
+    Variable.name Unit type Description    step_number - Integer Index of the step  step_duration seconds Integer Step duration  item_id - Integer Item ID (e.</description>
     </item>
     
     <item>
@@ -47,7 +49,9 @@ const.yml The constants file (const.yml) gives the constants values effectively 
       <pubDate>Wed, 23 Sep 2020 12:15:33 +0200</pubDate>
       
       <guid>/4-outputs/4-logs/</guid>
-      <description>  Log file  </description>
+      <description>  Log file The log file simply register all logs from the model. If the simulation ran successfully, it returns “Archimed 2018 END”.
+This file is useful for debugging.
+ </description>
     </item>
     
   </channel>
