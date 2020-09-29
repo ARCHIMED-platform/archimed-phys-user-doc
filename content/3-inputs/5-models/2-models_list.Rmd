@@ -13,7 +13,7 @@ Here is a list of all models available for each process.
 
 ## Interception
 
-There are two three different models available in ARCHIMED to compute their light interception and scattering: `Translucent`, `ignore` and `VirtualSensor`.
+There are two three different models available in ARCHIMED-φ to compute their light interception and scattering: `Translucent`, `ignore` and `VirtualSensor`.
 
 ### Translucent 
 
@@ -38,7 +38,7 @@ This model has two set of parameters :
   $R_r = \rho \cdot R_i$  
   $R_t = \tau \cdot R_i$
   
-  But in ARCHIMED we consider the reflectance coefficient equal to the transmittance coefficient ($\rho = \tau$), so we use only one value to parameterize the model: the scattering factor ($\sigma$). It is the sum of $\rho$ and $\tau$, such as $\sigma = \rho + \tau$.
+  But in ARCHIMED-φ we consider the reflectance coefficient equal to the transmittance coefficient ($\rho = \tau$), so we use only one value to parameterize the model: the scattering factor ($\sigma$). It is the sum of $\rho$ and $\tau$, such as $\sigma = \rho + \tau$.
   Then we can compute $R_a$, $R_r$ and $R_t$ as:
   
   $R_a = R_i \cdot (1 - \rho + \tau)$
@@ -48,7 +48,7 @@ This model has two set of parameters :
   $R_t = R_i \cdot \frac{(1-\sigma)}{2}$
   
   {{% notice info %}}
-  In ARCHIMED, the components are considered [lambertian surfaces](https://en.wikipedia.org/wiki/Lambertian_reflectance), i.e. they scatter the light uniformly in all directions.
+  In ARCHIMED-φ, the components are considered [lambertian surfaces](https://en.wikipedia.org/wiki/Lambertian_reflectance), i.e. they scatter the light uniformly in all directions.
   {{% /notice %}}
 
   The scattering factors are given for each waveband to be simulated by the model. This is typically for the [photosynthetically active radiation](https://en.wikipedia.org/wiki/Photosynthetically_active_radiation) (PAR, typically 400 to 700 nm) and the [near-infrared](https://en.wikipedia.org/wiki/Infrared#Regions_within_the_infrared) (NIR, typically 700 nm to 3000 nm) but the user can also define custom wavebands, *e.g.* for the red band: `red: 0.20`. 
@@ -136,7 +136,7 @@ Interception:
 
 ## Photosynthesis
 
-There are two models to compute the photosynthesis in ARCHIMED: `FarquharEnBalance` and `NRH`.
+There are two models to compute the photosynthesis in ARCHIMED-φ: `FarquharEnBalance` and `NRH`.
 Here is an example parameterization using those models:
 
 ```YAML
@@ -255,7 +255,7 @@ $G_s=G_0+\frac{A+R_d}{C_s-C_s^\ast}f\left(VPD\right)$
 
 with $C_s$ the $CO_2$ concentration at the leaf surface, and $C^{\star}_s$ is the equivalent of $\Gamma$ based on $C_s$ (see full article, eq. 11). 
 
-In ARCHIMED, $C^{\star}_s$ is given by $\Gamma^\star_{ref}$ corrected by the temperature, and $C_i$ is used instead of $C_s$.
+In ARCHIMED-φ, $C^{\star}_s$ is given by $\Gamma^\star_{ref}$ corrected by the temperature, and $C_i$ is used instead of $C_s$.
 
 The $f\left(VPD\right)$ function is computed as: 
 

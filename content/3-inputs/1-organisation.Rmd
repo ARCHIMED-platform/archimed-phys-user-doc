@@ -8,7 +8,7 @@ weight: 31
 
 # Inputs organisation
 
-Several input files are mandatory for an ARCHIMED simulation: the general configuration file (`config.yml`), the meteorology data (`meteo.csv`), the models configuration (*e.g.* `plant_coffee.yml`), and the scene (e.g. `.ops` and `.opf` files). There is also an input file for the physical constants (`const.yml`) that is optional because ARCHIMED defines default values if not provided.
+Several input files are mandatory for an ARCHIMED-φ simulation: the general configuration file (`config.yml`), the meteorology data (`meteo.csv`), the models configuration (*e.g.* `plant_coffee.yml`), and the scene (e.g. `.ops` and `.opf` files). There is also an input file for the physical constants (`const.yml`) that is optional because ARCHIMED defines default values if not provided.
 
 It is recommended to follow along with the example files provided in the previous page opened in your preferred editor. We recommend [Atom](https://atom.io/) or [VS Code](https://code.visualstudio.com/). They are both open source and have packages to view and edit YAML (`.yml`), CSV (`.csv`) and XML files (`.ops`, `.opf` and `.gwa`).
 
@@ -20,7 +20,7 @@ Here is a tree view of the files and folders with a little description for each:
 ├── 📜const.yml                # -> constants used in the model
 ├── 📜meteo.csv                # -> the meteorology file
 ├── 📂model                    # -> all the models configuration files are listed in this folder
-│   └── 📜plant_coffee.yml     # An example config for a Coffea plant ARCHIMED.
+│   └── 📜plant_coffee.yml     # An example config for a Coffea plant.
 ├── 📂scene                    # -> all the 3D scenes files are listed in this folder
 │   ├── 📜coffee.ops           # An example scene with one coffee
 │   └── 📂opf                  # The folder that list the available `.opf` files for the plant geometry

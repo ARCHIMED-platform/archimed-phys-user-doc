@@ -9,7 +9,7 @@ bibliography: references.bib
 
 # `const.yml`
 
-This file lists all constants and their values used in ARCHIMED. The file is optional. The example file provided below lists the default values used in ARCHIMED (their values are also provided in this page for information).
+This file lists all constants and their values used in ARCHIMED-φ. The file is optional. The example file provided below lists the default values used in ARCHIMED (their values are also provided in this page for information).
 
 {{%attachments pattern=\"const.yml\" /%}}
 

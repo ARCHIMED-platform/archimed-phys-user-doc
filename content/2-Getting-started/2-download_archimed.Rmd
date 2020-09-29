@@ -2,7 +2,7 @@
 chapter: false
 date: "2020-06-09T12:15:33+02:00"
 pre: <b>0.2. </b>
-title: Run ARCHIMED
+title: Run ARCHIMED-φ
 weight: 22
 ---
 
@@ -14,18 +14,18 @@ Then, open a terminal and run the following command:
 java -jar archimed.jar config.yml
 ```
 
-And that's it ! You ran an ARCHIMED simulation ! Note that it can take a minute to finish. 
+And that's it ! You ran an ARCHIMED-φ simulation ! Note that it can take a minute to finish. 
 
 
 ### Command details
 
-The `java -jar archimed.jar` part of the command just tells Java to execute the `archimed.jar` file. If your ARCHIMED `.jar` file is named differently, please name it properly, e.g.: 
+The `java -jar archimed.jar` part of the command just tells Java to execute the `archimed.jar` file. If your ARCHIMED-φ `.jar` file is named differently, please name it properly, e.g.: 
 
 ```shell
 java -jar archimed_custom_name.jar config.yml
 ```
 
-The last argument (`config.yml`) is used by ARCHIMED itself. It is the path to the configuration file for the simulation. If you're executing ARCHIMED from a folder and the simulation files are in another, you can use this argument as a relative or absolute path, e.g.: 
+The last argument (`config.yml`) is used by ARCHIMED-φ itself. It is the path to the configuration file for the simulation. If you're executing ARCHIMED-φ from a folder and the simulation files are in another, you can use this argument as a relative or absolute path, e.g.: 
 
 ```shell
 java -jar archimed.jar C:/users/yourusername/test/config.yml

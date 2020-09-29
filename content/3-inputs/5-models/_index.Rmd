@@ -8,4 +8,4 @@ weight: 38
 
 # Biophysical models
 
-ARCHIMED provides many biophysical models to compute the light interception, the energy balance and the photosynthesis of objects in the scene. This chapter describes how the models are configured.
+ARCHIMED-φ provides many biophysical models to compute the light interception, the energy balance and the photosynthesis of objects in the scene. This chapter describes how the models are configured.

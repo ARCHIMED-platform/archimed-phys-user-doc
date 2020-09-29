@@ -109,7 +109,7 @@ Our example could be built using 2 meshes only: a reference leaf and a reference
 </div>
 <div id="materialbdd" class="section level4">
 <h4>materialBDD</h4>
-<p>The <code>materialBDD</code> is used to declare the material properties for visualization purposes. This node is not used by ARCHIMED, but is still mandatory to follow the <code>.opf</code> standard. It is used when rendering the <code>.opf</code> in <em>e.g.</em> XPlo.</p>
+<p>The <code>materialBDD</code> is used to declare the material properties for visualization purposes. This node is not used by ARCHIMED-φ, but is still mandatory to follow the <code>.opf</code> standard. It is used when rendering the <code>.opf</code> in <em>e.g.</em> XPlo.</p>
 <p>The <code>materialBDD</code> is rather short. It lists <code>material</code> nodes that declare the optical properties of each reference node: the emission, ambient, diffuse, specular and shininess.</p>
 <p>The <code>materialBDD</code> of our example is as follows:</p>
 <pre class="xml"><code>[...]
@@ -173,7 +173,7 @@ Our example could be built using 2 meshes only: a reference leaf and a reference
         &lt;attribute name=&quot;XEuler&quot; class=&quot;Double&quot;/&gt;
     &lt;/attributeBDD&gt;
 [...]</code></pre>
-<p>It declares seven optional <code>attributes</code> that can be optionally attached to a topology node. These attributes are generally computed by a software and attached to the <code>.opf</code>. For example ARCHIMED uses attributes to attach simulation outputs to <code>.opf</code>s from the scene, <em>e.g.</em> the intercepted PAR of each component. These attributes are handy for visualization purposes.</p>
+<p>It declares seven optional <code>attributes</code> that can be optionally attached to a topology node. These attributes are generally computed by a software and attached to the <code>.opf</code>. For example ARCHIMED-φ uses attributes to attach simulation outputs to <code>.opf</code>s from the scene, <em>e.g.</em> the intercepted PAR of each component. These attributes are handy for visualization purposes.</p>
 <p>{{% notice warning %}}
 Note that attributes are <strong>not</strong> updated automatically when other data is modified. For example the example <code>attributeBDD</code> provides a “Length” <code>attribute</code>, which is used to get rapidly the length of the component. But if a user modified the actual lenght of a component of the <code>.opf</code> by modifying its transformation matrix, the “Length” <code>attribute</code> will not be updated to the new length. It is then important to keep in mind that <code>attribute</code>s are optional data attached to a node, but not necessarily up to date.
 {{% /notice %}}</p>
@@ -221,7 +221,7 @@ Note that attributes are <strong>not</strong> updated automatically when other d
 <p>We can build the topology of our plant only by using the three keywords provided by the MTG method. This method is very powerful and is sufficient to build any topology configuration, from very simple plants until the most complex ones.</p>
 <p>We see that each component is delimited by how it is connected to the previous one, and each one has also a <code>class</code>, a <code>scale</code> and an <code>id</code>. The <code>scale</code> is not very important for our purposes, but other two are:</p>
 <ul>
-<li><p>The <code>class</code> is used to declare a <code>component type</code>. This type can be anything, <em>e.g.</em> a <code>leaf</code> or an <code>internode</code>, but also a <code>young_leaf</code> and an <code>old_leaf</code>. The <code>class</code> is especially important in ARCHIMED (compared to AMAPStudio) because it is then used to associate particular models and parameter values to each <code>component type</code>. We will see that later in the <a href="../../5-models/1-models/">documentation about the models</a>.</p></li>
+<li><p>The <code>class</code> is used to declare a <code>component type</code>. This type can be anything, <em>e.g.</em> a <code>leaf</code> or an <code>internode</code>, but also a <code>young_leaf</code> and an <code>old_leaf</code>. The <code>class</code> is especially important in ARCHIMED-φ (compared to AMAPStudio) because it is then used to associate particular models and parameter values to each <code>component type</code>. We will see that later in the <a href="../../5-models/1-models/">documentation about the models</a>.</p></li>
 <li><p>The <code>id</code> is used as a unique identifier for the components. It helps us find <em>e.g.</em> a particular leaf in the whole plant.</p></li>
 </ul>
 </div>

@@ -71,7 +71,7 @@ cache_radiation : true   # true : precomputed intercepted/scattered radiation to
 
 `scene_rotation`  is used to rotate the scene from the North axis, and is provided in degrees.
 
-`sky_sectors`  is used to define how many sectors are used to divide the semi-hemisphere of the sky (called the turtle). ARCHIMED uses discrete directions for the computation of light interception (at least for the diffuse light). These directions are given by each sector of the turtle, so the more directions there are, the most precise is the computation of light interception, but also the more computation there are, so the more time it will take to complete a simulation. A good rule of thumb is to take at least 16 directions if the interception is needed at plant scale, 46 if it is for branch-scale, and 136 or even 406 for leaf scale.
+`sky_sectors`  is used to define how many sectors are used to divide the semi-hemisphere of the sky (called the turtle). ARCHIMED-φ uses discrete directions for the computation of light interception (at least for the diffuse light). These directions are given by each sector of the turtle, so the more directions there are, the most precise is the computation of light interception, but also the more computation there are, so the more time it will take to complete a simulation. A good rule of thumb is to take at least 16 directions if the interception is needed at plant scale, 46 if it is for branch-scale, and 136 or even 406 for leaf scale.
 
 
 > This recommendation is quite robust because the error tends to be compensated from one scale to the other. For example if we simulate a palm tree with 16 directions, the error would be quite high if we compare with observations at leaflet scale. But if we integrate at leaf scale, it would be quite close to the observations, and even closer if we integrate over the whole plant.
@@ -86,9 +86,9 @@ To alleviate this issue, it is possible to discretize the time-step in sub-steps
 
 It is generally admitted that a `radiation_timestep` of `5` is largely sufficient.
 
-`scattering` is a Boolean to choose if light scattering is computed or not. This computation is probably the most ressource demanding in ARCHIMED, but is quite important for a precise estimation of the light interception of an object, especially when computing photosynthesis.  
+`scattering` is a Boolean to choose if light scattering is computed or not. This computation is probably the most ressource demanding in ARCHIMED-φ, but is quite important for a precise estimation of the light interception of an object, especially when computing photosynthesis.  
 
-`pixel_size` defines the size of the side of a pixel (cm pixels-1). The light interception is computed using "pixel tables" in ARCHIMED. There is a pixel table for each sky sector of the turtle, and it is projected onto the ground of the scene. Light rays are sent from the sky sector to each pixel from the pixel table, and the "hits" with the objects from the scene are computed using these rays. Because the `pixel_size` defines the size of the pixels in the scene, it can be viewed as a way to change the "resolution" of the computation. If we decrease its value, we get more pixels with a smaller size, so we cast more rays through the scene.
+`pixel_size` defines the size of the side of a pixel (cm pixels-1). The light interception is computed using "pixel tables" in ARCHIMED-φ. There is a pixel table for each sky sector of the turtle, and it is projected onto the ground of the scene. Light rays are sent from the sky sector to each pixel from the pixel table, and the "hits" with the objects from the scene are computed using these rays. Because the `pixel_size` defines the size of the pixels in the scene, it can be viewed as a way to change the "resolution" of the computation. If we decrease its value, we get more pixels with a smaller size, so we cast more rays through the scene.
 
 #### Toricity
 
@@ -96,7 +96,7 @@ It is generally admitted that a `radiation_timestep` of `5` is largely sufficien
 
 ![A flat scene can be turned into a torus to connect the scene boundaries between each others. Attribution: Lucas Vieira / Public domain, from https://commons.wikimedia.org/wiki/File:Torus_from_rectangle.gif](/images/torus_from_rectangle.gif){#fig:torus}
 
-In ARCHIMED, the light rays reaching an horizontal boundary of the scene (*e.g* maximum Y boundary) re-enter the scene from the opposite direction of the scene (*e.g* minimum Y boundary).
+In ARCHIMED-φ, the light rays reaching an horizontal boundary of the scene (*e.g* maximum Y boundary) re-enter the scene from the opposite direction of the scene (*e.g* minimum Y boundary).
 
 Here is our example 3D scene with a coffee tree planted near the boundary of the scene: 
 
@@ -135,7 +135,7 @@ This option can be used to cache the radiation interception computation on disk 
 ### Outputs 
 
 Then, the following parameters control the outputs from the model.
-In ARCHIMED, the outputs of the model are placed in a folder associated to a given simulation, which are all grouped in a more general output directory.
+In ARCHIMED-φ, the outputs of the model are placed in a folder associated to a given simulation, which are all grouped in a more general output directory.
 
 ```yaml
 # OUTPUTS
@@ -195,7 +195,7 @@ export_ops: true
 
 #### Component variables
 
-Many variables are available as outputs from ARCHIMED to write into the `component_values.csv` file. The `component_variables` parameter lists the variables needed as outputs:
+Many variables are available as outputs from ARCHIMED-φ to write into the `component_values.csv` file. The `component_variables` parameter lists the variables needed as outputs:
 
 ```yaml
 # List of columns in the component_values.csv file:
@@ -275,7 +275,7 @@ Here the `.opf` files of all plants and `.gwa` files of all objects in the scene
 
 #### Using YAML anchors
  
-Most of the time the required `opf_variables` will be the same than the `component_variables`. You can use anchors to tell ARCHIMED to re-use the same values in `opf_variables` than in `component_variables`:
+Most of the time the required `opf_variables` will be the same than the `component_variables`. You can use anchors to tell ARCHIMED-φ to re-use the same values in `opf_variables` than in `component_variables`:
 
 ```yaml
 component_variables: &outvars # defining an anchor here with &id

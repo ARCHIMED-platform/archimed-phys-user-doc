@@ -26,8 +26,8 @@ date;hour_start;hour_end;temperature;relativeHumidity;VPD;clearness;Re_SW_f;wind
 2016/06/12;12:00:00;12:30:00;25;60;150;0.75;500;1;380
 2016/06/12;12:30:00;13:00:00;26;62;150;0.75;500;1.5;380
 2016/06/12;13:00:00;13:30:00;25.3;58;150;0.75;500;1.5;380</code></pre>
-<p>The four lines at the beginning are <code>YAML</code>-formatted metadata used as input parameters for ARCHIMED. They define properties of the site where the data was measured. The first one is the name of the site (completely free), then comes its <code>latitude</code> (degrees) and <code>altitude</code> (meters). The <code>use</code> parameter defines which column is used when several related (i.e. concurrent) variables are defined in the data. In our example the <code>relativeHumidity</code> and the <code>VPD</code> are declared, and the user must choose which one to use.</p>
-<p>The first line after the commented lines defines the column names. These names are all fixed and should be matched exactly (ARCHIMED is case-sensitive).</p>
+<p>The four lines at the beginning are <code>YAML</code>-formatted metadata used as input parameters for ARCHIMED-φ. They define properties of the site where the data was measured. The first one is the name of the site (completely free), then comes its <code>latitude</code> (degrees) and <code>altitude</code> (meters). The <code>use</code> parameter defines which column is used when several related (i.e. concurrent) variables are defined in the data. In our example the <code>relativeHumidity</code> and the <code>VPD</code> are declared, and the user must choose which one to use.</p>
+<p>The first line after the commented lines defines the column names. These names are all fixed and should be matched exactly (ARCHIMED-φ is case-sensitive).</p>
 <p>Here is a table summarizing the information about those variables:</p>
 <table>
 <thead>
@@ -100,28 +100,28 @@ date;hour_start;hour_end;temperature;relativeHumidity;VPD;clearness;Re_SW_f;wind
 <td align="left">clearness</td>
 <td align="left">%</td>
 <td align="left">Sky clearness</td>
-<td align="left">use RI*</td>
+<td align="left">*</td>
 <td align="left">0.6</td>
 </tr>
 <tr class="even">
 <td align="left">Ri_SW_f</td>
 <td align="left">W m-2</td>
 <td align="left">Incoming short wave radiation flux</td>
-<td align="left">use clearness or RI*</td>
+<td align="left">*</td>
 <td align="left">500</td>
 </tr>
 <tr class="odd">
 <td align="left">Ri_PAR_f</td>
 <td align="left">W m-2</td>
 <td align="left">Incoming PAR radiation flux</td>
-<td align="left">use clearness or RI*</td>
+<td align="left">*</td>
 <td align="left">500</td>
 </tr>
 <tr class="even">
 <td align="left">Ri_NIR_f</td>
 <td align="left">W m-2</td>
 <td align="left">Incoming NIR radiation flux</td>
-<td align="left">use clearness or RI*</td>
+<td align="left">*</td>
 <td align="left">500</td>
 </tr>
 <tr class="odd">
@@ -160,14 +160,14 @@ date;hour_start;hour_end;temperature;relativeHumidity;VPD;clearness;Re_SW_f;wind
 <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Solar_spectrum_en.svg" alt="" />
 <p class="caption">Fig. 1: Solar irradiance spectrum above atmosphere and at earth surface. Source: wikimedia</p>
 </div>
-<p>The spectrum of incoming solar radiation is simplified into two wavebands in ARCHIMED:</p>
+<p>The spectrum of incoming solar radiation is simplified into two wavebands in ARCHIMED-φ:</p>
 <ul>
 <li><p><code>Ri_PAR_f</code> is the photosynthetically active radiation flux coming from the atmosphere. It typically ranges from 400 to 700 nm (i.e. visible part of the light), and is the radiation primarily used for plant photosynthesis.</p></li>
 <li><p><code>Ri_NIR_f</code> is the Near Infrared radiation flux coming from the atmosphere. It typically ranges from 700 to 3000 nm and is more precisely defined by the sum of the <a href="https://en.wikipedia.org/wiki/Infrared#Regions_within_the_infrared">NIR and SWIR</a> wavebands.</p></li>
 </ul>
 <p>These two wavebands represent the short wave radiation flux coming from the atmosphere. And their sum gives <code>Ri_SW_f</code>, with the PAR radiation representing typically 48% and the NIR 52%.</p>
-<p>The long wave radiation (TIR, i.e. thermal infrared) is the radiation emitted by any object due to its surface temperature. It is possible to provide the TIR coming from the atmosphere as an input to ARCHIMED by providing the <code>Ri_TIR_f</code> variable.</p>
-<p>These variables are not necessarily measured, so ARCHIMED provides a simpler way to parameterize the incoming radiation by using a simpler variable: the <code>clearness</code>. Indeed, it is simple to compute the extraterrestrial solar radiation (i.e. the radiation in yellow in Fig. 1) at a given location and time, but this radiation is partly absorbed, diffused and reflected by the atmosphere before getting to the ground. These effects are mainly driven by the composition of the atmosphere, which can be approximated (coarsely) by the <code>clearness</code> of the sky, <em>i.e.</em> the oposite of the cloud cover in the sky. It ranges from 0 (sky full of clouds) to 1 (clear sky), but values rarely goes below 0.2 or above 0.8.</p>
+<p>The long wave radiation (TIR, i.e. thermal infrared) is the radiation emitted by any object due to its surface temperature. It is possible to provide the TIR coming from the atmosphere as an input to ARCHIMED-φ by providing the <code>Ri_TIR_f</code> variable.</p>
+<p>These variables are not necessarily measured, so ARCHIMED-φ provides a simpler way to parameterize the incoming radiation by using a simpler variable: the <code>clearness</code>. Indeed, it is simple to compute the extraterrestrial solar radiation (i.e. the radiation in yellow in Fig. 1) at a given location and time, but this radiation is partly absorbed, diffused and reflected by the atmosphere before getting to the ground. These effects are mainly driven by the composition of the atmosphere, which can be approximated (coarsely) by the <code>clearness</code> of the sky, <em>i.e.</em> the oposite of the cloud cover in the sky. It ranges from 0 (sky full of clouds) to 1 (clear sky), but values rarely goes below 0.2 or above 0.8.</p>
 <p>If any of these variable is missing, the model computes it, providing at least one of the <code>clearness</code>, <code>Ri_SW_f</code>, <code>Ri_PAR_f</code>, <code>Ri_NIR_f</code> is given. Please keep in mind the more variables are provided as inputs, the lower the simulation error because it is preferable to measure a variable than simulating it.</p>
 <p>The user can also input any custom waveband for the incoming light using the “<code>Ri_xxx_f</code>” naming convention, <em>e.g.</em> for the red band: <code>Ri_red_f</code>. These custom wavebands can be used to compute the light interception and scattering for any waveband, but they don’t participate to the energy balance nor the photosynthesis (the shortwave is already conputed using PAR and NIR).</p>
 <p>{{% notice info %}}

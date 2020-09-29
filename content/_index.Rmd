@@ -1,12 +1,12 @@
 ---
 chapter: true
 date: "2020-06-09T12:15:33+02:00"
-title: "ARCHIMED user documentation"
+title: "ARCHIMED-φ user documentation"
 weight: 1
 ---
 
-# ARCHIMED user documentation
+# ARCHIMED-φ user documentation
 
-Welcome to the user documentation for ARCHIMED. 
+Welcome to the user documentation for ARCHIMED-φ. 
 
 You can navigate through the documentation using your keyboard arrows. Use <i class="fas fa-arrow-alt-circle-up"></i> and <i class="fas fa-arrow-alt-circle-down"></i> while reading a page, and <i class="fas fa-arrow-alt-circle-left"></i> and <i class="fas fa-arrow-alt-circle-right"></i> to navigate between pages.

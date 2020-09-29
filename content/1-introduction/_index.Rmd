@@ -5,9 +5,11 @@ title: Welcome
 weight: 10
 ---
 
-### ARCHIMED user documentation 
+### ARCHIMED-φ user documentation 
 
-The ARCHIMED simulation platform uses 3D virtual stands as a support for numerical simulations of biophysical processes such as leaf irradiation, transpiration and temperature and ultimately carbon assimilation. By doing so, detailed information can be integrated from the individual leaf scale up to the individual plant scale, even within complex stands such as agroforestry systems. Simple numerical methods are used for solving multiple feedbacks between light, energy, water and CO2 transfers at leaf, plant and plot scales. Numerical calculations applied at different scales allow simple implementation of complex models involving intricate processes.
+The ARCHIMED modeling platform uses 3D virtual stands as a support for numerical simulations of plants in their environment.  
+
+ARCHIMED-φ is part of the ARCHIMED modeling platform and is used to simulate the biophysical processes such as leaf irradiation, transpiration and temperature and ultimately carbon assimilation. By doing so, detailed information can be integrated from the individual leaf scale up to the individual plant scale, even within complex stands such as agroforestry systems. Simple numerical methods are used for solving multiple feedback between light, energy, water and CO2 transfers at leaf, plant and plot scales. Numerical calculations applied at different scales allow simple implementation of complex models involving intricate processes.
 
 {{% notice tip %}}
 The documentation is paired with example files that you can download to follow through. It is best to follow the documentation with these files opened for best understanding.

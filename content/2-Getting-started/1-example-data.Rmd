@@ -8,13 +8,13 @@ weight: 21
 
 # Data
 
-To run an ARCHIMED simulation, you'll need a working example. Please download it from here: 
+To run an ARCHIMED-φ simulation, you'll need a working example. Please download it from here: 
 
 {{%attachments pattern=\"example_inputs.zip\" /%}}
 
 At the moment, don't worry about the organization of the folder nor the file contents. We'll get into this very soon in the [organization page](../../2-inputs/1-organisation/).
 
-# ARCHIMED executable
+# ARCHIMED-φ executable
 
-ARCHIMED is programmed in Java. The main benefit is that a same `.jar` file can be executed in all platforms compatible with Java (*i.e.* Windows, Mac, Linux...). 
+ARCHIMED-φ is programmed in Java. The main benefit is that a same `.jar` file can be executed in all platforms compatible with Java (*i.e.* Windows, Mac, Linux...). 
 Please download the executable (e.g. `archimed.jar`) and place it at the root of the example directory (meaning next to the `config.yml` file).

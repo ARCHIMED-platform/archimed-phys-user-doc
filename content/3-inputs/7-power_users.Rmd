@@ -16,7 +16,7 @@ More information about using anchors in `YAML` files soon.
 
 ### Command line args
 
-More information about using the command line options from ARCHIMED soon.
+More information about using the command line options from ARCHIMED-φ soon.
 
 
 ### Advanced parameters

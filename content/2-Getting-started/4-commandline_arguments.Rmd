@@ -14,11 +14,11 @@ We saw earlier that a simulation is started using the following command line:
 java -jar archimed.jar config.yml
 ```
 
-The `java -jar archimed.jar` part of the command just tells Java to execute the `archimed.jar` file, and the second one (`config.yml`) is an argument used to give the path to the configuration file to  ARCHIMED.
+The `java -jar archimed.jar` part of the command just tells Java to execute the `archimed.jar` file, and the second one (`config.yml`) is an argument used to give the path to the configuration file to ARCHIMED-φ.
 
-But more options are also available from ARCHIMED. 
+But more options are also available from ARCHIMED-φ. 
 
-To get all the options from ARCHIMED, you can consult the help by running it without any argument:
+To get all the options from ARCHIMED-φ, you can consult the help by running it without any argument:
 
 ```shell
 java -jar archimed.jar
@@ -48,6 +48,6 @@ Light interception and photosynthesis on 3D plant models
    --scattering-end-method <arg>  scattering iteration ending method (0,1,2)```
 ```
 
-You can run ARCHIMED with any of these options enabled, but at the moment it is best not digging into much details about this. We will see those details later in the [documentation for power users](../../2-inputs/7-power_users/). 
+You can run ARCHIMED-φ with any of these options enabled, but at the moment it is best not digging into much details about this. We will see those details later in the [documentation for power users](../../2-inputs/7-power_users/). 
 
 

@@ -128,7 +128,7 @@ Here are more details about the first mesh:
 
 #### materialBDD
 
-The `materialBDD` is used to declare the material properties for visualization purposes. This node is not used by ARCHIMED, but is still mandatory to follow the `.opf` standard. It is used when rendering the `.opf` in *e.g.* XPlo. 
+The `materialBDD` is used to declare the material properties for visualization purposes. This node is not used by ARCHIMED-φ, but is still mandatory to follow the `.opf` standard. It is used when rendering the `.opf` in *e.g.* XPlo. 
 
 The `materialBDD` is rather short. It lists `material` nodes that declare the optical properties of each reference node: the emission, ambient, diffuse, specular and shininess.
 
@@ -210,7 +210,7 @@ Here is the `attributeBDD` from our example:
 [...]
 ```
 
-It declares seven optional `attributes` that can be optionally attached to a topology node. These attributes are generally computed by a software and attached to the `.opf`. For example ARCHIMED uses attributes to attach simulation outputs to `.opf`s from the scene, *e.g.* the intercepted PAR of each component. These attributes are handy for visualization purposes. 
+It declares seven optional `attributes` that can be optionally attached to a topology node. These attributes are generally computed by a software and attached to the `.opf`. For example ARCHIMED-φ uses attributes to attach simulation outputs to `.opf`s from the scene, *e.g.* the intercepted PAR of each component. These attributes are handy for visualization purposes. 
 
 
 {{% notice warning %}}
@@ -267,7 +267,7 @@ We can build the topology of our plant only by using the three keywords provided
 
 We see that each component is delimited by how it is connected to the previous one, and each one has also a `class`, a `scale` and an `id`. The `scale` is not very important for our purposes, but other two are:
 
-* The `class` is used to declare a `component type`. This type can be anything, *e.g.* a `leaf` or an `internode`, but also a `young_leaf` and an `old_leaf`. The `class` is especially important in ARCHIMED (compared to AMAPStudio) because it is then used to associate particular models and parameter values to each `component type`. We will see that later in the [documentation about the models](../../5-models/1-models/).
+* The `class` is used to declare a `component type`. This type can be anything, *e.g.* a `leaf` or an `internode`, but also a `young_leaf` and an `old_leaf`. The `class` is especially important in ARCHIMED-φ (compared to AMAPStudio) because it is then used to associate particular models and parameter values to each `component type`. We will see that later in the [documentation about the models](../../5-models/1-models/).
 
 * The `id` is used as a unique identifier for the components. It helps us find *e.g.* a particular leaf in the whole plant.
 
