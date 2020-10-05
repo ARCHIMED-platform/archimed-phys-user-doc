@@ -28,7 +28,7 @@ Note that all `barycentre_*` variables are computed when required, so they slow 
 
 ## summary
 
-The `summary.csv` file is summarizes simulated values at plot scale for for each Item in the scene (*e.g.* plant, soil) each time-step, such as the total leaf area or intercepted shortwave radiation.
+The `summary.csv` file summarizes simulated values at plot scale for for each Item in the scene (*e.g.* plant, soil) each time-step, such as the total leaf area or intercepted shortwave radiation.
 
 ## scene values
 
