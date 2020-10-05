@@ -17,4 +17,13 @@ At the moment, don't worry about the organization of the folder nor the file con
 # ARCHIMED-φ executable
 
 ARCHIMED-φ is programmed in Java. The main benefit is that a same `.jar` file can be executed in all platforms compatible with Java (*i.e.* Windows, Mac, Linux...). 
-Please download the executable (e.g. `archimed.jar`) and place it at the root of the example directory (meaning next to the `config.yml` file).
+Please download the executable (e.g. `archimed-phys.jar`):
+
+{{%attachments pattern=\"archimed-phys.jar\" /%}}
+
+
+Then, place it at the root of the example directory, *i.e.* next to the `config.yml` file.
+
+{{% notice note %}}
+You can place `archimed-phys.jar` wherever you please, but it is good practice to place the executable in the folder of each simulation project for enhanced reproducibility.
+{{% /notice %}}

@@ -9,4 +9,6 @@ weight: 1
 
 Welcome to the user documentation for ARCHIMED-φ. 
 
+The ARCHIMED platform website is available at: <https://archimed-platform.github.io/> 
+
 You can navigate through the documentation using your keyboard arrows. Use <i class="fas fa-arrow-alt-circle-up"></i> and <i class="fas fa-arrow-alt-circle-down"></i> while reading a page, and <i class="fas fa-arrow-alt-circle-left"></i> and <i class="fas fa-arrow-alt-circle-right"></i> to navigate between pages.
