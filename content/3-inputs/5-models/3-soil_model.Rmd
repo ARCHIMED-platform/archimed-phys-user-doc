@@ -24,5 +24,5 @@ Type:
 
 ```
 
-The `Cobblestone` type is a special type that defines a soil as a plane, discretized in cobblestones for the light interception. It requires an interception model (*e.g.* `Translucent` as for the example above), and a `plot_paving` parameter that defines the number of cobblestones (*i.e.* cells) used for paving the ground. The size the cobblestones depends on the size of the plot and the number of cobblestones. The size of the plot is given in the scene file (`.ops` file, see [this section](../../4-scene/1-ops/)).   
+The `Cobblestone` type is a special type that defines a soil as a plane, discretized in cobblestones for the light interception. It requires an interception model (*e.g.* `Translucent` as for the example above), and a `plot_paving` parameter that defines the number of cobblestones (*i.e.* cells) used to pave the ground. The size of the cobblestones depends on the size of the plot and the number of cobblestones. The size of the plot is given in the scene file (`.ops` file, see [this section](../../4-scene/1-ops/)).   
 

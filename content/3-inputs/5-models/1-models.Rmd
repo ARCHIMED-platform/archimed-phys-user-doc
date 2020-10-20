@@ -6,9 +6,9 @@ title: Simple model file
 weight: 39
 ---
 
-In ARCIHMED, an object is defined by:  
+In ARCHIMED-φ, an object is defined by:  
 - its geometry, read from an `.opf` or a `.gwa` file;  
-- (optionally) its topology, only read from an `.opf` file;  
+- (optionally) its topology and the types of components used to build it, only read from an `.opf` file;  
 - its functional group, read from an `.ops` file.  
 
 The geometry (and topology) of an object is built using components (see the [opf documentation](../../4-scene/2-opf/)). For example a simple coffee tree can be built using two components: leaves and internodes. Each component can have its own models and parameters. For example we know that internodes won't make any photosynthesis, so they don't have any photosynthesis model. 
@@ -32,7 +32,7 @@ A functional group can be anything: *e.g.* a plant species, a family, a variety 
 
 ### Component type
 
-The `Type` parameter defines the component types used to build the object (e.g. leaves and branches components are used to build a plant). The names of the components listed here should match the same names given in the `topology` node of the `.opf` file (see [the documentation about the opf files](../../4-scene/2-opf/)). In the example given earlier in the [organization chapter](../../1-organisation/), the `.opf` file for a coffee tree gives two different components: `Leaf` and `Metamer` (read internode here). A model file adapted for this `.opf` will list those components as follows:
+The `Type` parameter defines the component types used to build the object (e.g. leaves and branches components are used to build a plant). The names of the components listed here should match the names given in the `topology` node of the `.opf` file (see [the documentation about the opf files](../../4-scene/2-opf/)). In the example given earlier in the [organization chapter](../../1-organisation/), the `.opf` file for a coffee tree gives two different components: `Leaf` and `Metamer` (read internode here). A model file adapted for this `.opf` will list those components as follows:
 
 ```yml
 ---
@@ -110,7 +110,7 @@ The PAR and NIR bands are mandatory for the computation of the energy balance an
 {{% /notice %}}
 
 
-The `Leaf` component simulates the light interception too, but also add the photosynthesis and stomatal conductance. Here is an example parametrization for the models used:
+The `Leaf` component requires a simulation of the light interception too, but also add the photosynthesis and stomatal conductance. Here is an example parametrization for the models used:
 
 ```yml
 Group: coffee                     # -> functional group
@@ -134,7 +134,7 @@ Type:                             # -> component types
           g1: 12                  # -> Parameter name and value
 ```
 
-So here we have a `coffee` as a functional group, and two component types called `Metamer` and `Leaf`, for which the `Interception` process will be simulated using the `Translucent` model that has 3 parameters - the transparency, the scattering factor for the PAR, and for the NIR - all parameterized with some values. The `Leaf` component type also simulates the `Photosynthesis` and the `StomatalConductance` processes, with a given model (`FarquharEnBalance` and `Medlyn` resp.) and their respective parameters.
+So here we have a `coffee` as a functional group, and two component types called `Metamer` and `Leaf`, for which the `Interception` process will be simulated using the `Translucent` model that has 3 parameters - the transparency, the scattering factor for the PAR, and for the NIR - all parameterized with some values. The `Leaf` component type also requires a simulation of the `Photosynthesis` and the `StomatalConductance` processes, with a given model (`FarquharEnBalance` and `Medlyn` resp.) and their respective parameters.
 
 {{% notice info %}}
 A list of all models available for each process is available in the [next page](../2-models_list/).

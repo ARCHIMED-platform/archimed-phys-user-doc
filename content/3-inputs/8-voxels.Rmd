@@ -14,6 +14,6 @@ More information soon about using voxel files.
 ├── 📜const.yml                # -> constants used in the model
 ├── 📜meteo.csv                # -> the meteorology file
 ├── 📂model                    # -> all the models configuration files are listed in this folder
-│   └── 📜turbid_medium.yml    # An example config for a turbid medium (i.e. voxels)
-└── 📜soil.yml                  # An example soil file
+    ├── 📜soil.yml             # An example soil file
+    └── 📜turbid_medium.yml    # An example config for a turbid medium (i.e. voxels)
 ```

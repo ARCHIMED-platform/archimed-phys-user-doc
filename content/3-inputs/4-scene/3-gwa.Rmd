@@ -25,7 +25,7 @@ on <a href="https://sketchfab.com?utm_medium=embed&utm_source=website&utm_campai
 </p>
 </div>
 
-If you open the file, you'll see several sextions. First, there is the header:
+If you open the file, you'll see several sections. First, there is the header:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8" ?>
@@ -44,7 +44,7 @@ Then comes the attributes:
 
 It is the same as for the `attributeBDD` from the [`opf` format](../2-opf/index.html#attributeBDD) (go there for more details).
 
-Then the meshes are defined one after another with their respective data: points, normals, face: 
+Then the meshes are defined one after another with their respective data: points, normals, faces: 
 
 ```xml
 <mesh id="2" label="Cylinder">

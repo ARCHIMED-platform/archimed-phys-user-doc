@@ -8,7 +8,16 @@ weight: 22
 
 # Run a simulation
 
-Then, open a terminal and run the following command:
+### Open a terminal
+
+- For windows users: right click inside the folder while holding the shift key, and click on "open Powershell". It will open a Powershell prompt in the right folder. Then you can execute the command given above;  
+- For Mac users, press command + spacebar from the folder;  
+- For Linux users, well, you know already.
+
+
+### Run ARCHIMED-φ
+
+Open a terminal as presented before and run the following command:
 
 ```shell
 java -jar archimed-phys.jar config.yml
@@ -31,10 +40,6 @@ The last argument (`config.yml`) is used by ARCHIMED-φ itself. It is the path t
 java -jar archimed-phys.jar C:/users/yourusername/test/config.yml
 ```
 
-The argument can also be quoted, e.g. `"./test/config.yml"`
+The argument can also be quoted, e.g. `"./test/config.yml"` when there are spaces in the path.
 
-### Open a terminal
 
-- For windows users: right click inside the folder while holding the shift key, and click on "open Powershell". It will open a Powershell prompt in the right folder. Then you can execute the command given above;  
-- For Mac users, press command + spacebar from the folder;  
-- For Linux users, well, you know already.

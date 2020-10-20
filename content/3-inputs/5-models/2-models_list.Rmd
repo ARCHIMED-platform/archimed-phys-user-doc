@@ -13,26 +13,26 @@ Here is a list of all models available for each process.
 
 ## Interception
 
-There are two three different models available in ARCHIMED-φ to compute their light interception and scattering: `Translucent`, `ignore` and `VirtualSensor`.
+There are three different models available in ARCHIMED-φ to compute their light interception and scattering: `Translucent`, `ignore` and `VirtualSensor`.
 
 ### Translucent 
 
 This model has two set of parameters : 
 
   * transparency: between 0 and 1. 0 is not transparent (opaque), and 1 fully transparent.
-  If e.g. 0.3, 30% of the incoming light is intercepted by the component (interception = radiation * (1-transparency)), and 30% is directly transmitted (not being part of the interception). Not to be confused with the scattering of the light that is computed using the **intercepted** light (transmitted + scattered light),
+  If it is set to *e.g.* 0.3, 70% of the incoming light is intercepted by the component (interception = radiation * (1-transparency)), and 30% is directly transmitted (not being part of the interception). Not to be confused with the scattering of the light (transmitted + scattered light) after the first order interception,
   
   * optical_properties. Used to parametrize the scattering factors for each waveband to compute how much light is [absorbed](https://en.wikipedia.org/wiki/Absorptance), [reflected](https://en.wikipedia.org/wiki/Reflectance) and [transmitted](https://en.wikipedia.org/wiki/Transmittance) by the component (*i.e.* a range of wavelength).
   
   ![Decomposition of light paths after a hit.](/images/reflectance_transmittance_absorbtance.jpg){#fig:absrefltrans}
 
-  Usually the radiation remaining for each is computed using coefficients, such as the sum of all coefficients is equal to 1:
+  Usually the radiation remaining for each component is computed using coefficients, such as the sum of all coefficients is equal to 1:
   
   $\alpha + \rho + \tau = 1$
 
   with $\alpha$ the coefficient of absorptance, $\rho$ the reflectance and $\tau$ the transmittance.
 
-  Then, the absorbed ($R_a$), reflected ($R_r$) and transmitted ($R_t$) light are computed as: 
+  Then, the absorbed ($R_a$), reflected ($R_r$) and transmitted ($R_t$) light are computed using the the intercepted radiation ($R_i$) as follows: 
 
   $R_a = \alpha \cdot R_i$  
   $R_r = \rho \cdot R_i$  
@@ -41,7 +41,7 @@ This model has two set of parameters :
   But in ARCHIMED-φ we consider the reflectance coefficient equal to the transmittance coefficient ($\rho = \tau$), so we use only one value to parameterize the model: the scattering factor ($\sigma$). It is the sum of $\rho$ and $\tau$, such as $\sigma = \rho + \tau$.
   Then we can compute $R_a$, $R_r$ and $R_t$ as:
   
-  $R_a = R_i \cdot (1 - \rho + \tau)$
+  $R_a = R_i \cdot (1 - \rho - \tau)$
   
   $R_r = R_i \cdot \frac{(1-\sigma)}{2}$
   
@@ -87,7 +87,7 @@ Here is an example parameterization using this model:
 
 ### VirtualSensor
 
-This model is used for special components called virtual sensors. They are used to know the incoming radiation for a given point in space. See [this chapter](../4-virtual_sensors/index.html) for more details. No parameters.
+This model is used for special components called virtual sensors. They are used to know the incoming radiation for a given point in space. See [this chapter](../4-virtual_sensors/index.html) for more details. No parameter.
 
   Here is an example parameterization using this model:
   
@@ -181,13 +181,13 @@ This model has 12 parameters:
 
 - theta: the curvature of the light-response curve of electron transport.
 
-- LWratio: average lenght / width ratio for the component. Used to compute the boundary layer conductance.
+- LWratio: average length / width ratio for the component. Used to compute the boundary layer conductance.
 
 - nFaceStomata: number of faces of the component with stomata (1: hypostomatal, 2: amphistomatal  leaf).
 
 - leafEmissivity (0-1): Ratio between the leaf [radiant emittance](https://en.wikipedia.org/wiki/Radiant_exitance) (also called radiant exitance) compared to the one of a black body.
 
-- delta_T_init (°C): initialization of the leaf temperature in relation to Tair (Tleaf = Tair - delta_T_init). This initialization is done every time the function is called (at every iteration of the assimilation conmputation), then the leaf temperature is computed by iteration, and its last value is used on the computation of the assimilation, but is reset to delta_T_init before re-doing the calculation of Tleaf. This is done to avoid heavy divergence of both optimization algorithms. 
+- delta_T_init (°C): initialization of the leaf temperature in relation to Tair (Tleaf = Tair - delta_T_init). This initialization is done every time the function is called (at every iteration of the assimilation computation), then the leaf temperature is computed by iteration, and its last value is used on the computation of the assimilation, but is reset to delta_T_init before re-doing the calculation of Tleaf. This is done to avoid heavy divergence of both optimization algorithms. 
 
 - epsilon (°C): criteria for convergence of the leaf temperature computation (difference between previous Tleaf and current Tleaf)
 

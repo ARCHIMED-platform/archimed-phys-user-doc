@@ -11,17 +11,6 @@ weight: 22
 
 <div id="run-a-simulation" class="section level1">
 <h1>Run a simulation</h1>
-<p>Then, open a terminal and run the following command:</p>
-<pre class="shell"><code>java -jar archimed-phys.jar config.yml</code></pre>
-<p>And that’s it ! You ran an ARCHIMED-φ simulation ! Note that it can take a minute to finish.</p>
-<div id="command-details" class="section level3">
-<h3>Command details</h3>
-<p>The <code>java -jar archimed-phys.jar</code> part of the command just tells Java to execute the <code>archimed-phys.jar</code> file. If your ARCHIMED-φ <code>.jar</code> file is named differently, please name it properly, e.g.:</p>
-<pre class="shell"><code>java -jar archimed_custom_name.jar config.yml</code></pre>
-<p>The last argument (<code>config.yml</code>) is used by ARCHIMED-φ itself. It is the path to the configuration file for the simulation. If you’re executing ARCHIMED-φ from a folder and the simulation files are in another, you can use this argument as a relative or absolute path, e.g.:</p>
-<pre class="shell"><code>java -jar archimed-phys.jar C:/users/yourusername/test/config.yml</code></pre>
-<p>The argument can also be quoted, e.g. <code>"./test/config.yml"</code></p>
-</div>
 <div id="open-a-terminal" class="section level3">
 <h3>Open a terminal</h3>
 <ul>
@@ -31,5 +20,19 @@ weight: 22
 </li>
 <li>For Linux users, well, you know already.</li>
 </ul>
+</div>
+<div id="run-archimed-φ" class="section level3">
+<h3>Run ARCHIMED-φ</h3>
+<p>Open a terminal as presented before and run the following command:</p>
+<pre class="shell"><code>java -jar archimed-phys.jar config.yml</code></pre>
+<p>And that’s it ! You ran an ARCHIMED-φ simulation ! Note that it can take a minute to finish.</p>
+</div>
+<div id="command-details" class="section level3">
+<h3>Command details</h3>
+<p>The <code>java -jar archimed-phys.jar</code> part of the command just tells Java to execute the <code>archimed-phys.jar</code> file. If your ARCHIMED-φ <code>.jar</code> file is named differently, please name it properly, e.g.:</p>
+<pre class="shell"><code>java -jar archimed_custom_name.jar config.yml</code></pre>
+<p>The last argument (<code>config.yml</code>) is used by ARCHIMED-φ itself. It is the path to the configuration file for the simulation. If you’re executing ARCHIMED-φ from a folder and the simulation files are in another, you can use this argument as a relative or absolute path, e.g.:</p>
+<pre class="shell"><code>java -jar archimed-phys.jar C:/users/yourusername/test/config.yml</code></pre>
+<p>The argument can also be quoted, e.g. <code>"./test/config.yml"</code> when there are spaces in the path.</p>
 </div>
 </div>

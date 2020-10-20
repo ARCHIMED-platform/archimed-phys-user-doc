@@ -50,7 +50,7 @@ $$\gamma = \frac{Cp_{air} \cdot P}{water\_vapour\_to\_dry\_air\_molecular\_weigh
 
 - `air_specific_heat_constant_pressure` is the [specific heat](https://en.wikipedia.org/wiki/Specific_heat_capacity) of air at constant pressure in $J \cdot K^{-1} \cdot kg^{-1}$. Default to 1013. It is used to compute the [psychrometric constant](https://en.wikipedia.org/wiki/Psychrometric_constant) (see equation above).
 
-- `gravitational_acceleration` is the gravitational acceleration in $m \cdot s^{-2}$ and is used to compute the pressure from the elevation. See @stull2012introduction and the [BigLeaf](https://bitbucket.org/juergenknauer/bigleaf/src/master/) R package for more details.
+- `gravitational_acceleration` is the gravitational acceleration in $m \cdot s^{-2}$ and is used to compute the pressure from the elevation. Default to 9.81. See @stull2012introduction and the [BigLeaf](https://bitbucket.org/juergenknauer/bigleaf/src/master/) R package for more details.
 
 
 - `celsius_to_kelvin` is used to convert Celsius degrees into Kelvin degrees. Default to 273.15. 

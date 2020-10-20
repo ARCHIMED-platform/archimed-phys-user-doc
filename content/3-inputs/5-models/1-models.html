@@ -9,9 +9,9 @@ weight: 39
 <script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
 
 
-<p>In ARCIHMED, an object is defined by:<br />
+<p>In ARCHIMED-φ, an object is defined by:<br />
 - its geometry, read from an <code>.opf</code> or a <code>.gwa</code> file;<br />
-- (optionally) its topology, only read from an <code>.opf</code> file;<br />
+- (optionally) its topology and the types of components used to build it, only read from an <code>.opf</code> file;<br />
 - its functional group, read from an <code>.ops</code> file.</p>
 <p>The geometry (and topology) of an object is built using components (see the <a href="../../4-scene/2-opf/">opf documentation</a>). For example a simple coffee tree can be built using two components: leaves and internodes. Each component can have its own models and parameters. For example we know that internodes won’t make any photosynthesis, so they don’t have any photosynthesis model.</p>
 <p>You can download the example file to follow along here:</p>
@@ -27,7 +27,7 @@ Group: coffee</code></pre>
 </div>
 <div id="component-type" class="section level3">
 <h3>Component type</h3>
-<p>The <code>Type</code> parameter defines the component types used to build the object (e.g. leaves and branches components are used to build a plant). The names of the components listed here should match the same names given in the <code>topology</code> node of the <code>.opf</code> file (see <a href="../../4-scene/2-opf/">the documentation about the opf files</a>). In the example given earlier in the <a href="../../1-organisation/">organization chapter</a>, the <code>.opf</code> file for a coffee tree gives two different components: <code>Leaf</code> and <code>Metamer</code> (read internode here). A model file adapted for this <code>.opf</code> will list those components as follows:</p>
+<p>The <code>Type</code> parameter defines the component types used to build the object (e.g. leaves and branches components are used to build a plant). The names of the components listed here should match the names given in the <code>topology</code> node of the <code>.opf</code> file (see <a href="../../4-scene/2-opf/">the documentation about the opf files</a>). In the example given earlier in the <a href="../../1-organisation/">organization chapter</a>, the <code>.opf</code> file for a coffee tree gives two different components: <code>Leaf</code> and <code>Metamer</code> (read internode here). A model file adapted for this <code>.opf</code> will list those components as follows:</p>
 <pre class="yml"><code>---
 Group: coffee
 Type:
@@ -86,7 +86,7 @@ Type:
 <p>{{% notice info %}}
 The PAR and NIR bands are mandatory for the computation of the energy balance and the photosynthesis using the Farquhar model (see <a href="../2-models_list/">this section</a> for more details).<br />
 {{% /notice %}}</p>
-<p>The <code>Leaf</code> component simulates the light interception too, but also add the photosynthesis and stomatal conductance. Here is an example parametrization for the models used:</p>
+<p>The <code>Leaf</code> component requires a simulation of the light interception too, but also add the photosynthesis and stomatal conductance. Here is an example parametrization for the models used:</p>
 <pre class="yml"><code>Group: coffee                     # -&gt; functional group
 Type:                             # -&gt; component types
   Metamer:                        # -&gt; Metamer component (name must match OPF values)
@@ -106,7 +106,7 @@ Type:                             # -&gt; component types
           model: Medlyn           # -&gt; Name of the model used
           g0: -0.03               # -&gt; Parameter name and value
           g1: 12                  # -&gt; Parameter name and value</code></pre>
-<p>So here we have a <code>coffee</code> as a functional group, and two component types called <code>Metamer</code> and <code>Leaf</code>, for which the <code>Interception</code> process will be simulated using the <code>Translucent</code> model that has 3 parameters - the transparency, the scattering factor for the PAR, and for the NIR - all parameterized with some values. The <code>Leaf</code> component type also simulates the <code>Photosynthesis</code> and the <code>StomatalConductance</code> processes, with a given model (<code>FarquharEnBalance</code> and <code>Medlyn</code> resp.) and their respective parameters.</p>
+<p>So here we have a <code>coffee</code> as a functional group, and two component types called <code>Metamer</code> and <code>Leaf</code>, for which the <code>Interception</code> process will be simulated using the <code>Translucent</code> model that has 3 parameters - the transparency, the scattering factor for the PAR, and for the NIR - all parameterized with some values. The <code>Leaf</code> component type also requires a simulation of the <code>Photosynthesis</code> and the <code>StomatalConductance</code> processes, with a given model (<code>FarquharEnBalance</code> and <code>Medlyn</code> resp.) and their respective parameters.</p>
 <p>{{% notice info %}}
 A list of all models available for each process is available in the <a href="../2-models_list/">next page</a>.
 {{% /notice %}}</p>

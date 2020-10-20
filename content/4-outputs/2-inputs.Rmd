@@ -8,7 +8,7 @@ weight: 42
 
 # Input files
 
-Several input files are re-written in the simulation folder and eventually enriched with new information from the simulation.
+Several input files are re-written in the simulation folder and possibly enriched with new information from the simulation.
 
 ## const.yml
 
@@ -22,7 +22,7 @@ In our example, we only simulated time-steps 2 and 3 of the input meteorology fi
 
 ## 3D scene
 
-The 3D scene is composed of a scene file (`.ops` file) and object files (`.opf` and `.gwa` files). These files can be copied into the simulation if needed, and then enriched by simulated values (see `opf_variables` argument from [config.yml](../../3-inputs/2-general_config/)).  
+The 3D scene is composed of a scene file (`.ops` file) and object files (`.opf` and `.gwa` files). These files can be copied into the simulation directory if needed, and then enriched by simulated values (see `opf_variables` argument from [config.yml](../../3-inputs/2-general_config/)).  
 
 In our example, the scene is copied back and enriched with several variables. For example the light interception is given by the `Ra_PAR_q` attribute in the plant (`coffee-1-step00002.opf`) and soil (`pavement-1-step00002.gwa`) files.
 

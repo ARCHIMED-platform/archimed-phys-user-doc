@@ -18,13 +18,13 @@ weight: 31
 ├── 📜config.yml               # -&gt; Here is the general configuration file
 ├── 📜const.yml                # -&gt; constants used in the model
 ├── 📜meteo.csv                # -&gt; the meteorology file
-├── 📂model                    # -&gt; all the models configuration files are listed in this folder
-│   └── 📜plant_coffee.yml     # An example config for a Coffea plant.
-├── 📂scene                    # -&gt; all the 3D scenes files are listed in this folder
-│   ├── 📜coffee.ops           # An example scene with one coffee
-│   └── 📂opf                  # The folder that list the available `.opf` files for the plant geometry
-│       └── 📜coffee.opf       # An example coffee plant geometry and topology file)
-└── 📜soil.yml                 # An example soil file</code></pre>
+├── 📂models                   # -&gt; all the models configuration files are listed in this folder
+│   ├── 📜plant_coffee.yml     # An example config for a Coffea plant
+│   └── 📜soil.yml             # An example soil file
+└── 📂scene                    # -&gt; all the 3D scenes files are listed in this folder
+    ├── 📜coffee.ops           # An example scene with one coffee
+    └── 📂opf                  # The folder that list the available `.opf` files for the plant geometry
+        └── 📜coffee.opf       # An example coffee plant geometry and topology file)</code></pre>
 <p>Many input files use the YAML format. It is a data serialization language designed to be directly writable and readable by humans. There are tons of resources on the web (<em>e.g.</em> <a href="https://learnxinyminutes.com/docs/yaml/">learnxinyminutes.com</a>, <a href="https://en.wikipedia.org/wiki/YAML">Wikipedia</a>, <a href="https://rollout.io/blog/yaml-tutorial-everything-you-need-get-started/">this blog post</a>), but you should be fine just by seeing the files structure.</p>
 <p>{{% notice note %}}
 The names of the input files are not mandatory, but it is best to keep a rather standard naming nevertheless. For example <code>soil.yml</code> can become <code>soil_1.yml</code> or <code>soil_montpellier.yml</code>, but it is still recommended to keep “soil” in the name.

@@ -48,6 +48,6 @@ Light interception and photosynthesis on 3D plant models
    --scattering-end-method <arg>  scattering iteration ending method (0,1,2)```
 ```
 
-You can run ARCHIMED-φ with any of these options enabled, but at the moment it is best not digging into much details about this. We will see those details later in the [documentation for power users](../../2-inputs/7-power_users/). 
+You can run ARCHIMED-φ with any of these options enabled, but at the moment it is best not digging into much details about this. We will see those details later in the [documentation for power users](../../3-inputs/7-power_users/). 
 
 

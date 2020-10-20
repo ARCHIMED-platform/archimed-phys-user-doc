@@ -12,7 +12,7 @@ To run an ARCHIMED-φ simulation, you'll need a working example. Please download
 
 {{%attachments pattern=\"example_inputs.zip\" /%}}
 
-At the moment, don't worry about the organization of the folder nor the file contents. We'll get into this very soon in the [organization page](../../2-inputs/1-organisation/).
+At the moment, don't worry about the organization of the folder or the file contents. We'll get into this very soon in the [organization page](../../3-inputs/1-organisation/).
 
 # ARCHIMED-φ executable
 

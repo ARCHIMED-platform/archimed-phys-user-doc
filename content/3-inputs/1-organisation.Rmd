@@ -19,13 +19,13 @@ Here is a tree view of the files and folders with a little description for each:
 ├── 📜config.yml               # -> Here is the general configuration file
 ├── 📜const.yml                # -> constants used in the model
 ├── 📜meteo.csv                # -> the meteorology file
-├── 📂model                    # -> all the models configuration files are listed in this folder
-│   └── 📜plant_coffee.yml     # An example config for a Coffea plant.
-├── 📂scene                    # -> all the 3D scenes files are listed in this folder
-│   ├── 📜coffee.ops           # An example scene with one coffee
-│   └── 📂opf                  # The folder that list the available `.opf` files for the plant geometry
-│       └── 📜coffee.opf       # An example coffee plant geometry and topology file)
-└── 📜soil.yml                 # An example soil file
+├── 📂models                   # -> all the models configuration files are listed in this folder
+│   ├── 📜plant_coffee.yml     # An example config for a Coffea plant
+│   └── 📜soil.yml             # An example soil file
+└── 📂scene                    # -> all the 3D scenes files are listed in this folder
+    ├── 📜coffee.ops           # An example scene with one coffee
+    └── 📂opf                  # The folder that list the available `.opf` files for the plant geometry
+        └── 📜coffee.opf       # An example coffee plant geometry and topology file)
 ```
 
 Many input files use the YAML format. It is a data serialization language designed to be directly writable and readable by humans. There are tons of resources on the web (*e.g.* [learnxinyminutes.com](https://learnxinyminutes.com/docs/yaml/), [Wikipedia](https://en.wikipedia.org/wiki/YAML), [this blog post](https://rollout.io/blog/yaml-tutorial-everything-you-need-get-started/)), but you should be fine just by seeing the files structure. 

@@ -11,25 +11,25 @@ weight: 32
 
 <div id="config.yaml" class="section level1">
 <h1><code>config.yaml</code></h1>
-<p>This file lists the main configuration parameters for a simulation. It controls the simulation by pointing towards the files for the meteorology data (<em>e.g.</em> <code>meteo.csv</code>), the models configuration (<em>e.g.</em> <code>plant_coffee.yml</code>), and the scene (<em>e.g.</em> <code>cafeier.ops</code>).</p>
+<p>This file lists the main configuration parameters for a simulation. It controls the simulation by pointing towards the files for the meteorology data (<em>e.g.</em> <code>meteo.csv</code>), the models configuration (<em>e.g.</em> <code>plant_coffee.yml</code>), and the scene (<em>e.g.</em> <code>coffee.ops</code>).</p>
 <p>Although entries in the configuration file are not ordered, the following
 example is organized in sections for clarity.</p>
 <p>A full working example is available in the folder presented in the previous page (“config.yml”). It is highly recommended to open this file to follow along.</p>
 <div id="input-files" class="section level3">
 <h3>Input files</h3>
 <p>At the beginning of the example file, we find the three parameters used to enter the path to the other files:</p>
-<pre class="yaml"><code>scene: scene/cafeier.ops     # Path to a scene, i.e. ops, opf or gwa file.
+<pre class="yaml"><code>scene: scene/coffee.ops     # Path to a scene, i.e. ops, opf or gwa file.
 models:
   - models/plant_coffee.yml  # Path to the models for the coffee
-  - soil.yml                 # Path to the models for the soil file
+  - models/soil.yml          # Path to the models for the soil file
 meteo: meteo.csv             # Path to the meteo file</code></pre>
-<p>The <code>scene</code> file is typically an <code>.ops</code> file that is used to build a 3D scene with plants and other geometries. It lists each instance of an object in the scene (<em>e.g.</em> a coffee plant), the <code>Group</code> it belongs to and its position (see the sections about <a href="#scene-file"><code>.ops</code></a> and <a href="#3d-model-files"><code>.opf</code>/<code>.gwa</code></a> files for more details).</p>
-<p>The <a href="(#model-file)"><code>model</code> files</a> store the parameters associated to a <code>Group</code> named in the <code>.ops</code> file. Each <code>Group</code> present in the <code>.ops</code> file must have a model file listed in the <code>models</code> parameter. The example <code>.ops</code> file lists the files to the models for the <code>coffee</code> group and the <code>soil</code> group. The models associated to the <code>coffee</code> are found in the <code>models/plant_coffee.yml</code> file, and the models associated to the soil module are found in the <code>soil.yml</code> file. This file is empty at the moment but prefigures future model implementations related to the soil (<em>e.g</em> water transfer).</p>
+<p>The <code>scene</code> file is typically an <code>.ops</code> file that is used to build a 3D scene with plants and other geometries. It lists each instance of an object in the scene (<em>e.g.</em> a coffee plant), the <code>Group</code> it belongs to and its position (see the sections about <a href="../4-scene/1-ops/">.ops</a> and <a href="../4-scene/2-opf/">.opf</a>/<a href="../4-scene/3-gwa/">.gwa</a> files for more details).</p>
+<p>The <a href="../5-models/1-models/"><code>model</code> files</a> store the parameters associated to a <code>Group</code> named in the <code>.ops</code> file. Each <code>Group</code> present in the <code>.ops</code> file must have a model file listed in the <code>models</code> parameter. The example <code>config.yml</code> file lists the files to the models for the <code>coffee</code> group and the <code>soil</code> group. The models associated to the <code>coffee</code> are found in the <code>models/plant_coffee.yml</code> file, and the models associated to the soil module are found in the <code>models/soil.yml</code> file.</p>
 <p>If there are several groups (<em>e.g.</em> a coffee tree and an oil palm) in the scene (<code>.ops</code>), the models files should all be listed as follows:</p>
 <pre class="yaml"><code>models:
   - models/plant_coffee.yml  # Path to the models for the coffee
   - models/plant_elaeis.yml  # Path to the models for the palm plant
-  - soil.yml                 # Path to the models for the soil file</code></pre>
+  - models/soil.yml          # Path to the models for the soil file</code></pre>
 <p>The <code>meteo</code> parameter points to a meteo file. See <a href="../6-meteo/index.html">this section</a> for more details.</p>
 </div>
 <div id="simulation-controls" class="section level3">
@@ -37,9 +37,9 @@ meteo: meteo.csv             # Path to the meteo file</code></pre>
 <p>The next parameter allows to filter the meteorology steps from the configuration file if needed:</p>
 <pre class="yaml"><code>meteo_range: 2, 3        # use only steps from 2 to 3 (inclusive, start from 1) in meteo file
 #meteo_range: 2016/07/01 8:00:00, 2016/07/01 12:00:00       # use only steps between given date/time</code></pre>
-<p>It is given as a range in terms of either:
-- steps index (starting from 1), <em>e.g.: <code>2,5</code> for steps 2, 3, 4 and 5</em>
-- dates, <em>e.g. <code>2016/07/01 8:00:00, 2016/07/01 12:00:00</code></em>.</p>
+<p>It is given as a range in terms of either:<br />
+- steps index (starting from 1), <em>e.g.: <code>2,5</code> for steps 2, 3, 4 and 5</em><br />
+- dates, <em>e.g. <code>2016/07/01 8:00:00, 2016/07/01 12:00:00</code></em></p>
 <p>Then we find some parameters for the simulation:</p>
 <pre class="yaml"><code>scene_rotation: 0        # Rotation of the scene from the North axis (degrees)
 sky_sectors: 16          # Must be either 1, 6, 16, 46, 136 or 406
@@ -50,8 +50,8 @@ pixel_size: 3            # Size of the side of the pixel, relates to the number 
 toricity: true           # Make the scene toric (if false, increase the plot boundaries so all components are sampled)
 cache_pixel_table: false # true: pixel tables are cached on disc instead of kept in memory (slower but use less memory + allow to reuse them).
 cache_radiation : true   # true : precomputed intercepted/scattered radiation to speed up simulation</code></pre>
-<p><code>scene_rotation</code> is used to rotate the scene from the North axis, and is provided in degrees.</p>
-<p><code>sky_sectors</code> is used to define how many sectors are used to divide the semi-hemisphere of the sky (called the turtle). ARCHIMED-φ uses discrete directions for the computation of light interception (at least for the diffuse light). These directions are given by each sector of the turtle, so the more directions there are, the most precise is the computation of light interception, but also the more computation there are, so the more time it will take to complete a simulation. A good rule of thumb is to take at least 16 directions if the interception is needed at plant scale, 46 if it is for branch-scale, and 136 or even 406 for leaf scale.</p>
+<p><code>scene_rotation</code> is used to rotate the scene around the vertical axis, starting from the North axis, and is provided in degrees.</p>
+<p><code>sky_sectors</code> is used to define how many sectors are used to divide the hemisphere of the sky (called the turtle). ARCHIMED-φ uses discrete directions for the computation of light interception (at least for the diffuse light). These directions are given by each sector of the turtle, so the more directions there are, the most precise is the computation of light interception, but also the more computations there are, so the more time it will take to complete a simulation. A good rule of thumb is to take at least 16 directions if the interception is needed at plant scale, 46 if it is for branch-scale, and 136 or even 406 for leaf scale.</p>
 <blockquote>
 <p>This recommendation is quite robust because the error tends to be compensated from one scale to the other. For example if we simulate a palm tree with 16 directions, the error would be quite high if we compare with observations at leaflet scale. But if we integrate at leaf scale, it would be quite close to the observations, and even closer if we integrate over the whole plant.</p>
 </blockquote>
@@ -59,18 +59,18 @@ cache_radiation : true   # true : precomputed intercepted/scattered radiation to
 <img src="/images/turtle.png" id="fig:turtle" alt="" />
 <p class="caption">Sky sectors defined for a turtle splitting of 46 sectors</p>
 </div>
-<p><code>all_in_turtle</code> is a Boolean that defines if the direct radiation is computed using the true sun position (<code>true</code>), or if the direct radiation is computed using sky sectors (<code>false</code>). In the second case, the sun direction is still computed precisely, but the radiation is divided between sky sectors close to the sun position, using the same computation as for the diffuse light. The latter method is faster than the former. In general it is more precise to use <code>all_in_turtle: true</code>, but the difference tends to disappear when there is a sufficient number of sectors (<em>e.g.</em> 46 sectors).</p>
-<p><code>radiation_timestep</code>. The duration of each time-step for the simulation is given in the <a href="../6-meteo/index.html">meteorology file</a>. Because the sun moves rapidly in the sky, especially in the morning, the direct radiation received on a plane at the surface of the earth changes rapidly too. Think of the radiation you receive at 8h in the morning and then at 9h00. They differ quite a bit. Hence, the computation of the light interception could be biased if we were to use only the average position of the sun for a time-step due to the non-uniformity of the radiation inside this time-step (<em>i.e.</em> the average radiation in the time-step is different than the radiation at the average sun position).</p>
+<p><code>all_in_turtle</code> is a boolean that defines if the direct radiation is computed using the true sun position (<code>true</code>), or if the direct radiation is computed using sky sectors (<code>false</code>). In the second case, the sun direction is still computed precisely, but the radiation is spread between sky sectors close to the sun position, using the same computation as for the diffuse light. The latter method is faster than the former. In general it is more precise to use <code>all_in_turtle: true</code>, but the difference tends to disappear when there is a sufficient number of sectors (<em>e.g.</em> 46 sectors).</p>
+<p><code>radiation_timestep</code>. The duration of each time-step for the simulation is given in the <a href="../6-meteo/index.html">meteorology file</a>. Because the sun moves rapidly in the sky, especially in the morning, the direct radiation received on a plane at the surface of the earth changes rapidly too. Think of the radiation you receive at 8 in the morning and then at 9 am. They differ quite a bit. Hence, the computation of the light interception could be biased if we were to use only the average position of the sun for a time-step due to the non-uniformity of the radiation inside this time-step (<em>i.e.</em> the average radiation in the time-step is different than the radiation at the average sun position).</p>
 <p>To alleviate this issue, it is possible to discretize the time-step in sub-steps of <code>radiation_timestep</code> minutes. The sun position and the radiation are both computed for each sub-step, and the resulting position and radiation used for the time-step come from the position at the barycenter of all positions, and the integrated radiation of all the sub-steps inside the time-step. It is an efficient way to approximate the effective radiation in a time-step when the time-step duration implies a substantial movement of the sun.</p>
 <p>It is generally admitted that a <code>radiation_timestep</code> of <code>5</code> is largely sufficient.</p>
-<p><code>scattering</code> is a Boolean to choose if light scattering is computed or not. This computation is probably the most ressource demanding in ARCHIMED-φ, but is quite important for a precise estimation of the light interception of an object, especially when computing photosynthesis.</p>
-<p><code>pixel_size</code> defines the size of the side of a pixel (cm pixels-1). The light interception is computed using “pixel tables” in ARCHIMED-φ. There is a pixel table for each sky sector of the turtle, and it is projected onto the ground of the scene. Light rays are sent from the sky sector to each pixel from the pixel table, and the “hits” with the objects from the scene are computed using these rays. Because the <code>pixel_size</code> defines the size of the pixels in the scene, it can be viewed as a way to change the “resolution” of the computation. If we decrease its value, we get more pixels with a smaller size, so we cast more rays through the scene.</p>
+<p><code>scattering</code> is a boolean to choose if light scattering is computed or not. This computation is probably the most resource demanding in ARCHIMED-φ, but is quite important for a precise estimation of the light interception of an object, especially when computing photosynthesis.</p>
+<p><code>pixel_size</code> defines the size of the side of a pixel (cm pixels-1). It is the way the plot is spatially sampled in horizontal directions. The light interception is computed using “pixel tables” in ARCHIMED-φ. There is a pixel table for each sky sector of the turtle. The scene is projected onto the ground of the scene for each direction defined by a sky sector. Light rays are sent from the sky sector to each pixel from the pixel table, and the “hits” with the objects from the scene are computed using these rays. Because the <code>pixel_size</code> defines the size of the pixels in the scene, it can be viewed as a way to change the “resolution” of the computation. If we decrease its value, we get more pixels with a smaller size, so we cast more rays through the scene.</p>
 <div id="toricity" class="section level4">
 <h4>Toricity</h4>
-<p><code>toricity</code> is a Boolean controlling the plot toricity. The use of the toricity option allows generating virtually infinite canopies from the plot defined in the <code>.ops</code>. The name <code>toricity</code> comes from the shape and properties of a Torus, where the conditions of one end are close to the ones from the other end.</p>
+<p><code>toricity</code> is a Boolean controlling the plot toricity. The use of the toricity option allows generating virtually infinite canopies from the plot defined in the <code>.ops</code>. The name <code>toricity</code> comes from the shape and properties of a torus, where the conditions of one end are close to the ones from the other end.</p>
 <div class="figure">
 <img src="/images/torus_from_rectangle.gif" id="fig:torus" alt="" />
-<p class="caption">A flat scene can be turned into a torus to connect the scene boundaries between each others. Attribution: Lucas Vieira / Public domain, from <a href="https://commons.wikimedia.org/wiki/File:Torus_from_rectangle.gif" class="uri">https://commons.wikimedia.org/wiki/File:Torus_from_rectangle.gif</a></p>
+<p class="caption">A flat scene can be turned into a torus to connect the scene boundaries between each others. <em>Attribution: Lucas Vieira / Public domain, from <a href="https://commons.wikimedia.org/wiki/File:Torus_from_rectangle.gif" class="uri">https://commons.wikimedia.org/wiki/File:Torus_from_rectangle.gif</a></em></p>
 </div>
 <p>In ARCHIMED-φ, the light rays reaching an horizontal boundary of the scene (<em>e.g</em> maximum Y boundary) re-enter the scene from the opposite direction of the scene (<em>e.g</em> minimum Y boundary).</p>
 <p>Here is our example 3D scene with a coffee tree planted near the boundary of the scene:</p>
@@ -90,8 +90,8 @@ The scene toricity can be seen looking at the projected shade by the coffee onto
 <img src="/images/coffee_scene_toricity_4_times.png" alt="" />
 <p class="caption">A coffee tree in a toric 3x3m scene, repeated 4 times <strong>after</strong> simulation. The soil is colored by <code>Ra_PAR_f</code>, the in <span class="math inline">\(W m_{component}^{-2}\)</span>.</p>
 </div>
-<p><code>cache_pixel_table</code> is a Boolean used to define if the pixel tables are cached on disc instead of keeping them in-memory. Caching the pixel tables (<code>true</code>) result in a slower simulation due to writing, but uses less RAM. Users with low-end computers can activate this option if they have not enough memory for a simulation.</p>
-<p>The <code>cache_radiation</code> parameter allows to cache in-memory the computation of light interception (interception and scattering) for each node in all directions of the turtle. This allows to compute only once the light received by a node from each direction in terms of relative radiation, and then to only compute the absolute value using the global radiation of the step for the following steps. It is generally admitted this parameter should be set to <code>true</code> when the number of time-steps to simulate is greater than the number of directions, i.e. <code>nrows(meteo) &gt; sky_sectors</code>. It should be set to <code>false</code> otherwise because the extra computations needed for the cache is generally greater than the independent simulation of each step (computation overhead).</p>
+<p><code>cache_pixel_table</code> is a boolean used to define if the pixel tables are cached on disc instead of keeping them in-memory. Caching the pixel tables (<code>true</code>) result in a slower simulation due to writing, but uses less RAM. Users with low-end computers can activate this option if they have not enough memory for a simulation.</p>
+<p>The <code>cache_radiation</code> parameter allows to cache in-memory the computation of light interception (interception and scattering) for each component in all directions of the turtle. This allows to compute only once the light received by a component from each direction in terms of relative radiation, and then to only compute the absolute value using the global radiation of the step for the following steps. It is generally admitted this parameter should be set to <code>true</code> when the number of time-steps to simulate is greater than the number of directions, i.e. <code>nrows(meteo) &gt; sky_sectors</code>. It should be set to <code>false</code> otherwise because the extra computations needed for the cache is generally greater than the independent simulation of each step (computation overhead).</p>
 <p>{{% notice info %}}
 For example a simulation taking ~3.4 minutes (23M rays, 46 directions) for each time-step can be decreased to ~2 seconds with the option activated.<br />
 {{% /notice %}}</p>
@@ -103,14 +103,14 @@ This option can be used to cache the radiation interception computation on disk 
 </div>
 <div id="outputs" class="section level3">
 <h3>Outputs</h3>
-<p>Then, the following parameters control the outputs from the model.
+<p>Then, the following parameters control the model outputs.
 In ARCHIMED-φ, the outputs of the model are placed in a folder associated to a given simulation, which are all grouped in a more general output directory.</p>
 <pre class="yaml"><code># OUTPUTS
 output_directory: output     # Path to the output directory (the folder is created if not already existing)
 simulation_directory: simdir # Optional : path to the simulation directory (replace the automatic counter based directory name generation)</code></pre>
-<p>The <code>output_directory</code> parameter design the name of the general output directory where the simulation folders will be grouped.</p>
+<p>The <code>output_directory</code> parameter names the general output directory where the simulation folders will be grouped.</p>
 <p>The simulation folders are named automatically following an incremental numbering, e.g. the first simulation is named <code>000001</code>, the second <code>000002</code>, etc…
-If the user wants to name the simulation folder differently, he can use the <code>simulation_directory</code> to provide it. To use again the automatic numbering, please remove the parameter altogether.</p>
+If the user wants to name the simulation folder differently, he can use the <code>simulation_directory</code> to provide it (it is overwritten if pre-existing). To use again the automatic numbering, please remove the parameter altogether.</p>
 <blockquote>
 <p>It is good practice to use a separate <code>output_directory</code> for different unrelated projects, and to name the simulation using <code>simulation_directory</code> after the use case, such as a particular planting design or a different age.<br />
 For example if we have two projects, one to simulate different planting designs of coffee trees in Costa Rica, and one to simulate eucalyptus trees in Brazil, we would use <code>output_directory: output_coffee_designs</code>, and then <code>output_directory: output_euca_brazil</code> respectively. And the simulation names would be adapted to the use case to get a folder structure such as:</p>
@@ -129,16 +129,15 @@ For example if we have two projects, one to simulate different planting designs 
 │   ├── 📂design_2
 │   │   └── ...
 │   └── 📂...
-├── 📂output_euca_brazil
-│   ├── 📂age_1
-│   │   └── ...
-│   ├── 📂age_2
-│   │   └── ...
-│   └── 📂...
-└── 📜soil.yml</code></pre>
+└── 📂output_euca_brazil
+    ├── 📂age_1
+    │   └── ...
+    ├── 📂age_2
+    │   └── ...
+    └── 📂...</code></pre>
 <p>Several files are written in each <code>simulation_directory</code>, but the user can control if some are needed or not.</p>
 <pre class="yaml"><code>write_summary: true    # If true export the simulation summary in a csv file</code></pre>
-<p>The <code>write_summary</code> parameter is a Boolean to choose if a summary file is needed for the simulation. This file is a <code>.csv</code> file summarizing the area and intercepted radiation (<code>Ri_q</code>) grouped by time step, group, type, and item_id.</p>
+<p>The <code>write_summary</code> parameter is a boolean to choose if a summary file is needed for the simulation. This file is a <code>.csv</code> file summarizing the area and intercepted radiation (<code>Ri_q</code>) grouped by time step, group, type, and item_id.</p>
 <p>More files are available for simulation outputs:</p>
 <ul>
 <li><p>the <code>component_values.csv</code> file that provide the values of the variables needed at component scale (<em>e.g.</em> the interception of each leaf) for each individual object (<em>i.e.</em> a plant, or a <code>.gwa</code>);</p></li>
@@ -148,7 +147,7 @@ For example if we have two projects, one to simulate different planting designs 
 <pre class="yaml"><code>export_ops: true</code></pre>
 <div id="component-variables" class="section level4">
 <h4>Component variables</h4>
-<p>Many variables are available as outputs from ARCHIMED-φ to write into the <code>component_values.csv</code> file. The <code>component_variables</code> parameter lists the variables needed as outputs:</p>
+<p>Many variables are available as ARCHIMED-φ outputs to write into the <code>component_values.csv</code> file. The <code>component_variables</code> parameter lists the variables needed as outputs:</p>
 <pre class="yaml"><code># List of columns in the component_values.csv file:
 component_variables:
   step_number: true    # Index of the step
@@ -197,7 +196,7 @@ component_variables:
   Tr_f: false          # Transpiration flux (mm m[component]-2 s-1)
   Tr_q: false          # Transpiration quantity (mm component-1 timestep-1)
   T: true              # Temperature (Celsius degree)</code></pre>
-<p>In the example file all variables available as outputs from the model are listed, but the list can be reduced to only provide the variables needed, such as:</p>
+<p>In the example file all variables available as model outputs are listed, but the list can be reduced to only provide the variables needed, such as:</p>
 <pre class="yaml"><code># List of columns in the component_values.csv file:
 component_variables:
   step_number: true    # Index of the step
@@ -225,7 +224,7 @@ opf_variables: *outvars # The content of the parameter where &quot;&amp;outvars&
 <p>Finally, there is a last parameter:</p>
 <pre class="yaml"><code>opf_overwrite_variables: true
 # NB: if you need the same as component_variables, use YAML anchors as in this example.</code></pre>
-<p>This parameter is a Boolean for choosing if a variable that would already exist in the OPF should be overwritten or not. Keep in mind that the original <code>.opf</code> files are not modified, only the copy made in the simulation folder changes.</p>
+<p>This parameter is a boolean for choosing if a variable that would already exist in the OPF should be overwritten or not. Keep in mind that the original <code>.opf</code> files are not modified, only the copy made in the simulation folder changes.</p>
 </div>
 <div id="summary-table-of-the-parameters" class="section level4">
 <h4>Summary table of the parameters</h4>
@@ -271,7 +270,7 @@ opf_variables: *outvars # The content of the parameter where &quot;&amp;outvars&
 <td>path</td>
 <td></td>
 <td>Y</td>
-<td>false</td>
+<td></td>
 </tr>
 <tr class="even">
 <td>scene_rotation</td>
@@ -324,10 +323,10 @@ opf_variables: *outvars # The content of the parameter where &quot;&amp;outvars&
 <tr class="even">
 <td>toricity</td>
 <td>Determines if plot is virtually infinitely repeated in all directions.</td>
-<td>TORIC_INFINITE_BOX_TOPOLOGY</td>
+<td>boolean</td>
 <td></td>
 <td>N</td>
-<td>TORIC_INFINITE_BOX_TOPOLOGY</td>
+<td>true</td>
 </tr>
 <tr class="odd">
 <td>cache_pixel_table</td>
@@ -348,7 +347,7 @@ opf_variables: *outvars # The content of the parameter where &quot;&amp;outvars&
 <tr class="odd">
 <td>output_directory</td>
 <td>Path to the general output directory</td>
-<td>Path to folder (create it if missing)</td>
+<td>Path to folder (created if missing)</td>
 <td></td>
 <td>Y</td>
 <td></td>

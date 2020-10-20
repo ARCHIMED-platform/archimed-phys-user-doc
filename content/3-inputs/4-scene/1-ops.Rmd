@@ -37,7 +37,7 @@ Here is a step-by-step description of the content of the `.ops` file.
 Comments can be added by starting a line with a hash sign: `#`.
 {{% /notice %}}
 
-The first line defines the terrain properties, with its boundaries in X and Y, the lower value for Z, and the slope:
+The first line defines the terrain properties, with its dimensions in X and Y, the lower value for Z, and the slope:
 
 ```
 T 0 0 0 2 2 flat

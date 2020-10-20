@@ -11,9 +11,9 @@ weight: 43
 
 ## component values
 
-The `component_values.csv` file regroup the output of the simulation at component scale  (`e.g.` the light interception of each leaf) for each individual object (`e.g.` a plant). The variables written in this file are controlled by the `component_variables` parameter in [config.yml](../../3-inputs/2-general_config/)).
+The `component_values.csv` file contains the outputs of the simulation at component scale  (`e.g.` the light interception of each leaf) for each individual object (`e.g.` a plant). The variables written in this file are controlled by the `component_variables` parameter in [config.yml](../../3-inputs/2-general_config/)).
 
-Here is a table summarizing the information about all possible variables:
+The table below summarizes the information about all possible variables. All values in $W \cdot m^{-2}$ are per component surface ($W \cdot m_{component}^{-2}$). All other values are integrated at the component scale, and possibly over the time-step (*e.g.* $J$ can be considered $J \cdot component^{-1} \cdot timestep^{-1}$, or $\mu mol$ can be considered $\mu mol\cdot component^{-1} \cdot timestep^{-1}$).
 
 ```{r echo=FALSE}
 df = read.csv("3-results.files/component_variables.csv", sep = ";")
@@ -28,7 +28,7 @@ Note that all `barycentre_*` variables are computed when required, so they slow 
 
 ## summary
 
-The `summary.csv` file summarizes simulated values at plot scale for for each Item in the scene (*e.g.* plant, soil) each time-step, such as the total leaf area or intercepted shortwave radiation.
+The `summary.csv` file summarizes simulated values at plot scale for each Item in the scene (*e.g.* plant, soil) for each time-step, such as the total leaf area or intercepted shortwave radiation.
 
 ## scene values
 
