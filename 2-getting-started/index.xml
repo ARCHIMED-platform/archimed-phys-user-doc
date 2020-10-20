@@ -18,7 +18,7 @@
       
       <guid>/2-getting-started/1-example-data/</guid>
       <description>Data To run an ARCHIMED-φ simulation, you’ll need a working example. Please download it from here:
-  Attachments   example_inputs.zip  (423 ko)    At the moment, don’t worry about the organization of the folder nor the file contents. We’ll get into this very soon in the organization page.
+  Attachments   example_inputs.zip  (423 ko)    At the moment, don’t worry about the organization of the folder or the file contents. We’ll get into this very soon in the organization page.
  ARCHIMED-φ executable ARCHIMED-φ is programmed in Java. The main benefit is that a same .</description>
     </item>
     
@@ -28,10 +28,9 @@
       <pubDate>Tue, 09 Jun 2020 12:15:33 +0200</pubDate>
       
       <guid>/2-getting-started/2-download_archimed/</guid>
-      <description>Run a simulation Then, open a terminal and run the following command:
-java -jar archimed-phys.jar config.yml And that’s it ! You ran an ARCHIMED-φ simulation ! Note that it can take a minute to finish.
-Command details The java -jar archimed-phys.jar part of the command just tells Java to execute the archimed-phys.jar file. If your ARCHIMED-φ .jar file is named differently, please name it properly, e.g.:
-java -jar archimed_custom_name.</description>
+      <description>Run a simulation Open a terminal  For windows users: right click inside the folder while holding the shift key, and click on “open Powershell”. It will open a Powershell prompt in the right folder. Then you can execute the command given above;
+ For Mac users, press command + spacebar from the folder;
+ For Linux users, well, you know already.   Run ARCHIMED-φ Open a terminal as presented before and run the following command:</description>
     </item>
     
     <item>
@@ -41,7 +40,7 @@ java -jar archimed_custom_name.</description>
       
       <guid>/2-getting-started/3-visualize_output/</guid>
       <description>Render the output After executing ARCHIMED-φ in the example folder, the simulation outputs are found at this path: ./output/simdir. There are several files here, and one is especially useful for visualizing the results in 3D: coffee.opf.
-To render the results, please download XPlo from the AMAPStudio website. Then open XPlo, press ctrl+I, choose opf, and navigate to the location of coffee.opf and open it.
+To render the results, please download XPlo from the AMAPStudio website. Then open XPlo, press ctrl+I, choose opf, and navigate to the location of coffee-1-step00002.opf and open it.
 Xplo will open and 3D render the example coffee.</description>
     </item>
     

@@ -17,21 +17,21 @@
     <title>Meteorology :: ARCHIMED user documentation</title>
 
     
-    <link href="../../css/nucleus.css?1601890874" rel="stylesheet">
-    <link href="../../css/fontawesome-all.min.css?1601890874" rel="stylesheet">
-    <link href="../../css/hybrid.css?1601890874" rel="stylesheet">
-    <link href="../../css/featherlight.min.css?1601890874" rel="stylesheet">
-    <link href="../../css/perfect-scrollbar.min.css?1601890874" rel="stylesheet">
-    <link href="../../css/auto-complete.css?1601890874" rel="stylesheet">
-    <link href="../../css/atom-one-dark-reasonable.css?1601890874" rel="stylesheet">
-    <link href="../../css/theme.css?1601890874" rel="stylesheet">
-    <link href="../../css/hugo-theme.css?1601890874" rel="stylesheet">
+    <link href="../../css/nucleus.css?1603192785" rel="stylesheet">
+    <link href="../../css/fontawesome-all.min.css?1603192785" rel="stylesheet">
+    <link href="../../css/hybrid.css?1603192785" rel="stylesheet">
+    <link href="../../css/featherlight.min.css?1603192785" rel="stylesheet">
+    <link href="../../css/perfect-scrollbar.min.css?1603192785" rel="stylesheet">
+    <link href="../../css/auto-complete.css?1603192785" rel="stylesheet">
+    <link href="../../css/atom-one-dark-reasonable.css?1603192785" rel="stylesheet">
+    <link href="../../css/theme.css?1603192785" rel="stylesheet">
+    <link href="../../css/hugo-theme.css?1603192785" rel="stylesheet">
     
-    <link href="../../css/theme-archimed.css?1601890874" rel="stylesheet">
+    <link href="../../css/theme-archimed.css?1603192785" rel="stylesheet">
     
-    <link href="../../css/foo.css?1601890874" rel="stylesheet"><link href="../../css/bar.css?1601890874" rel="stylesheet">
+    <link href="../../css/foo.css?1603192785" rel="stylesheet"><link href="../../css/bar.css?1603192785" rel="stylesheet">
 
-    <script src="../../js/jquery-3.3.1.min.js?1601890874"></script>
+    <script src="../../js/jquery-3.3.1.min.js?1603192785"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -164,14 +164,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="../../js/lunr.min.js?1601890874"></script>
-<script type="text/javascript" src="../../js/auto-complete.js?1601890874"></script>
+<script type="text/javascript" src="../../js/lunr.min.js?1603192785"></script>
+<script type="text/javascript" src="../../js/auto-complete.js?1603192785"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="../../js/search.js?1601890874"></script>
+<script type="text/javascript" src="../../js/search.js?1603192785"></script>
 
     
   </div>
@@ -1112,8 +1112,8 @@ date;hour_start;hour_end;temperature;relativeHumidity;VPD;clearness;Re_SW_f;wind
 </ul>
 <p>These two wavebands represent the short wave radiation flux coming from the atmosphere. And their sum gives <code>Ri_SW_f</code>, with the PAR radiation representing typically 48% and the NIR 52%.</p>
 <p>The long wave radiation (TIR, i.e. thermal infrared) is the radiation emitted by any object due to its surface temperature. It is possible to provide the TIR coming from the atmosphere as an input to ARCHIMED-φ by providing the <code>Ri_TIR_f</code> variable.</p>
-<p>These variables are not necessarily measured, so ARCHIMED-φ provides a simpler way to parameterize the incoming radiation by using a simpler variable: the <code>clearness</code>. Indeed, it is simple to compute the extraterrestrial solar radiation (i.e. the radiation in yellow in Fig. 1) at a given location and time, but this radiation is partly absorbed, diffused and reflected by the atmosphere before getting to the ground. These effects are mainly driven by the composition of the atmosphere, which can be approximated (coarsely) by the <code>clearness</code> of the sky, <em>i.e.</em> the oposite of the cloud cover in the sky. It ranges from 0 (sky full of clouds) to 1 (clear sky), but values rarely goes below 0.2 or above 0.8.</p>
-<p>If any of these variable is missing, the model computes it, providing at least one of the <code>clearness</code>, <code>Ri_SW_f</code>, <code>Ri_PAR_f</code>, <code>Ri_NIR_f</code> is given. Please keep in mind the more variables are provided as inputs, the lower the simulation error because it is preferable to measure a variable than simulating it.</p>
+<p>These variables are not necessarily measured, so ARCHIMED-φ provides a simpler way to parameterize the incoming radiation by using a simpler variable: the <code>clearness</code>. Indeed, it is simple to compute the extraterrestrial solar radiation (i.e. the radiation in yellow in Fig. 1) at a given location and time, but this radiation is partly absorbed, diffused and reflected by the atmosphere before getting to the ground. These effects are mainly driven by the composition of the atmosphere, which can be approximated (coarsely) by the <code>clearness</code> of the sky, <em>i.e.</em> the opposite of the cloud cover in the sky. It ranges from 0 (sky full of clouds) to 1 (clear sky), but values rarely goes below 0.2 or above 0.8.</p>
+<p>If any of these variable is missing, the model computes it, provided at least one of the <code>clearness</code>, <code>Ri_SW_f</code>, <code>Ri_PAR_f</code>, <code>Ri_NIR_f</code> is given. Please keep in mind the more variables are provided as inputs, the lower the simulation error because it is preferable to measure a variable than simulating it.</p>
 <p>The user can also input any custom waveband for the incoming light using the “<code>Ri_xxx_f</code>” naming convention, <em>e.g.</em> for the red band: <code>Ri_red_f</code>. These custom wavebands can be used to compute the light interception and scattering for any waveband, but they don’t participate to the energy balance nor the photosynthesis (the shortwave is already conputed using PAR and NIR).</p>
 
 <div class="notices info" ><p>The custom wavebands must be part of the shortwave band, and the optical properties of the components in the scene must be provided (see <a href="../5-models/2-models_list/">this section</a> for more information).</p>
@@ -1132,7 +1132,7 @@ date;hour_start;hour_end;temperature;relativeHumidity;VPD;clearness;Re_SW_f;wind
 Shorter time-steps tends to give best results because they allow to better integrate non-linear processes that are not well integrated otherwise (<em>e.g.</em> a rapid change in the incoming radiation on a leaf can impact greatly its energy balance).</p>
 <p>In general we recommend time-steps of maximum 30-minutes for simulations with biophysical processes (<em>e.g.</em> photosynthesis, energy balance, transpiration). This is based on the assumption that these variables can be safely considered at steady-state at or below a 30-minute time range.</p>
 <p>If only the light interception is needed, the time step can be much larger because the model use the true position of the sun every <code>radiation_timestep</code> (parameter from the <a href="../2-general_config/index.html#simulation-controls">configuration file</a>), and not every step in the meteorology file.</p>
-<p>For all other variables, there is a trade-off between the duration of each step and their number to optimize both the predictions and the time of computation. For example if we need to simulate one day at 30-minute time-steps, it will require 48 time-steps in total, bu only 24 with one hour time-steps. The latter simulation will be almost twice as fast as the former, but will probably lead to a greater simulation error compared with measurements.</p>
+<p>For all other variables, there is a trade-off between the duration of each step and their number to optimize both the predictions and computation time. For example if we need to simulate one day at 30-minute time-steps, it will require 48 time-steps in total, but only 24 with one hour time-steps. The latter simulation will be almost twice as fast as the former, but will probably lead to a greater simulation error compared to measurements.</p>
 
 <div class="notices info" ><p>The <code>cache_radiation</code> parameter can alleviate this effect though (parameter from the <a href="../2-general_config/index.html#simulation-controls">configuration file</a>). It allows to compute the results of the light interception for each direction relative to the global radiation, and to cache the results for further use in other time-steps. It is generally admitted this parameter should be set to <code>true</code> when the number of time-steps to simulate is greater than the number of directions (due to overheads on computing the cached radiation).</p>
 </div>
@@ -1638,19 +1638,19 @@ Shorter time-steps tends to give best results because they allow to better integ
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="../../js/clipboard.min.js?1601890874"></script>
-    <script src="../../js/perfect-scrollbar.min.js?1601890874"></script>
-    <script src="../../js/perfect-scrollbar.jquery.min.js?1601890874"></script>
-    <script src="../../js/jquery.sticky.js?1601890874"></script>
-    <script src="../../js/featherlight.min.js?1601890874"></script>
-    <script src="../../js/highlight.pack.js?1601890874"></script>
+    <script src="../../js/clipboard.min.js?1603192785"></script>
+    <script src="../../js/perfect-scrollbar.min.js?1603192785"></script>
+    <script src="../../js/perfect-scrollbar.jquery.min.js?1603192785"></script>
+    <script src="../../js/jquery.sticky.js?1603192785"></script>
+    <script src="../../js/featherlight.min.js?1603192785"></script>
+    <script src="../../js/highlight.pack.js?1603192785"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="../../js/modernizr.custom-3.6.0.js?1601890874"></script>
-    <script src="../../js/learn.js?1601890874"></script>
-    <script src="../../js/hugo-learn.js?1601890874"></script>
+    <script src="../../js/modernizr.custom-3.6.0.js?1603192785"></script>
+    <script src="../../js/learn.js?1603192785"></script>
+    <script src="../../js/hugo-learn.js?1603192785"></script>
     
         
-            <script src="../../mermaid/mermaid.js?1601890874"></script>
+            <script src="../../mermaid/mermaid.js?1603192785"></script>
         
         <script>
             mermaid.initialize({ startOnLoad: true });

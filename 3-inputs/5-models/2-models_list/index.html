@@ -17,21 +17,21 @@
     <title>List of the models :: ARCHIMED user documentation</title>
 
     
-    <link href="../../../css/nucleus.css?1601890874" rel="stylesheet">
-    <link href="../../../css/fontawesome-all.min.css?1601890874" rel="stylesheet">
-    <link href="../../../css/hybrid.css?1601890874" rel="stylesheet">
-    <link href="../../../css/featherlight.min.css?1601890874" rel="stylesheet">
-    <link href="../../../css/perfect-scrollbar.min.css?1601890874" rel="stylesheet">
-    <link href="../../../css/auto-complete.css?1601890874" rel="stylesheet">
-    <link href="../../../css/atom-one-dark-reasonable.css?1601890874" rel="stylesheet">
-    <link href="../../../css/theme.css?1601890874" rel="stylesheet">
-    <link href="../../../css/hugo-theme.css?1601890874" rel="stylesheet">
+    <link href="../../../css/nucleus.css?1603192785" rel="stylesheet">
+    <link href="../../../css/fontawesome-all.min.css?1603192785" rel="stylesheet">
+    <link href="../../../css/hybrid.css?1603192785" rel="stylesheet">
+    <link href="../../../css/featherlight.min.css?1603192785" rel="stylesheet">
+    <link href="../../../css/perfect-scrollbar.min.css?1603192785" rel="stylesheet">
+    <link href="../../../css/auto-complete.css?1603192785" rel="stylesheet">
+    <link href="../../../css/atom-one-dark-reasonable.css?1603192785" rel="stylesheet">
+    <link href="../../../css/theme.css?1603192785" rel="stylesheet">
+    <link href="../../../css/hugo-theme.css?1603192785" rel="stylesheet">
     
-    <link href="../../../css/theme-archimed.css?1601890874" rel="stylesheet">
+    <link href="../../../css/theme-archimed.css?1603192785" rel="stylesheet">
     
-    <link href="../../../css/foo.css?1601890874" rel="stylesheet"><link href="../../../css/bar.css?1601890874" rel="stylesheet">
+    <link href="../../../css/foo.css?1603192785" rel="stylesheet"><link href="../../../css/bar.css?1603192785" rel="stylesheet">
 
-    <script src="../../../js/jquery-3.3.1.min.js?1601890874"></script>
+    <script src="../../../js/jquery-3.3.1.min.js?1603192785"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -164,14 +164,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="../../../js/lunr.min.js?1601890874"></script>
-<script type="text/javascript" src="../../../js/auto-complete.js?1601890874"></script>
+<script type="text/javascript" src="../../../js/lunr.min.js?1603192785"></script>
+<script type="text/javascript" src="../../../js/auto-complete.js?1603192785"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="../../../js/search.js?1601890874"></script>
+<script type="text/javascript" src="../../../js/search.js?1603192785"></script>
 
     
   </div>
@@ -930,29 +930,29 @@
 <p>Here is a list of all models available for each process.</p>
 <div id="interception" class="section level2">
 <h2>Interception</h2>
-<p>There are two three different models available in ARCHIMED-φ to compute their light interception and scattering: <code>Translucent</code>, <code>ignore</code> and <code>VirtualSensor</code>.</p>
+<p>There are three different models available in ARCHIMED-φ to compute their light interception and scattering: <code>Translucent</code>, <code>ignore</code> and <code>VirtualSensor</code>.</p>
 <div id="translucent" class="section level3">
 <h3>Translucent</h3>
 <p>This model has two set of parameters :</p>
 <ul>
 <li><p>transparency: between 0 and 1. 0 is not transparent (opaque), and 1 fully transparent.
-If e.g. 0.3, 30% of the incoming light is intercepted by the component (interception = radiation * (1-transparency)), and 30% is directly transmitted (not being part of the interception). Not to be confused with the scattering of the light that is computed using the <strong>intercepted</strong> light (transmitted + scattered light),</p></li>
+If it is set to <em>e.g.</em> 0.3, 70% of the incoming light is intercepted by the component (interception = radiation * (1-transparency)), and 30% is directly transmitted (not being part of the interception). Not to be confused with the scattering of the light (transmitted + scattered light) after the first order interception,</p></li>
 <li><p>optical_properties. Used to parametrize the scattering factors for each waveband to compute how much light is <a href="https://en.wikipedia.org/wiki/Absorptance">absorbed</a>, <a href="https://en.wikipedia.org/wiki/Reflectance">reflected</a> and <a href="https://en.wikipedia.org/wiki/Transmittance">transmitted</a> by the component (<em>i.e.</em> a range of wavelength).</p></li>
 </ul>
 <div class="figure">
 <img src="../../../images/reflectance_transmittance_absorbtance.jpg" id="fig:absrefltrans" alt="" />
 <p class="caption">Decomposition of light paths after a hit.</p>
 </div>
-<p>Usually the radiation remaining for each is computed using coefficients, such as the sum of all coefficients is equal to 1:</p>
+<p>Usually the radiation remaining for each component is computed using coefficients, such as the sum of all coefficients is equal to 1:</p>
 <p><span class="math inline">\(\alpha + \rho + \tau = 1\)</span></p>
 <p>with <span class="math inline">\(\alpha\)</span> the coefficient of absorptance, <span class="math inline">\(\rho\)</span> the reflectance and <span class="math inline">\(\tau\)</span> the transmittance.</p>
-<p>Then, the absorbed (<span class="math inline">\(R_a\)</span>), reflected (<span class="math inline">\(R_r\)</span>) and transmitted (<span class="math inline">\(R_t\)</span>) light are computed as:</p>
+<p>Then, the absorbed (<span class="math inline">\(R_a\)</span>), reflected (<span class="math inline">\(R_r\)</span>) and transmitted (<span class="math inline">\(R_t\)</span>) light are computed using the the intercepted radiation (<span class="math inline">\(R_i\)</span>) as follows:</p>
 <p><span class="math inline">\(R_a = \alpha \cdot R_i\)</span><br />
 <span class="math inline">\(R_r = \rho \cdot R_i\)</span><br />
 <span class="math inline">\(R_t = \tau \cdot R_i\)</span></p>
 <p>But in ARCHIMED-φ we consider the reflectance coefficient equal to the transmittance coefficient (<span class="math inline">\(\rho = \tau\)</span>), so we use only one value to parameterize the model: the scattering factor (<span class="math inline">\(\sigma\)</span>). It is the sum of <span class="math inline">\(\rho\)</span> and <span class="math inline">\(\tau\)</span>, such as <span class="math inline">\(\sigma = \rho + \tau\)</span>.
 Then we can compute <span class="math inline">\(R_a\)</span>, <span class="math inline">\(R_r\)</span> and <span class="math inline">\(R_t\)</span> as:</p>
-<p><span class="math inline">\(R_a = R_i \cdot (1 - \rho + \tau)\)</span></p>
+<p><span class="math inline">\(R_a = R_i \cdot (1 - \rho - \tau)\)</span></p>
 <p><span class="math inline">\(R_r = R_i \cdot \frac{(1-\sigma)}{2}\)</span></p>
 <p><span class="math inline">\(R_t = R_i \cdot \frac{(1-\sigma)}{2}\)</span></p>
 
@@ -987,7 +987,7 @@ Then we can compute <span class="math inline">\(R_a\)</span>, <span class="math 
 </div>
 <div id="virtualsensor" class="section level3">
 <h3>VirtualSensor</h3>
-<p>This model is used for special components called virtual sensors. They are used to know the incoming radiation for a given point in space. See <a href="../4-virtual_sensors/index.html">this chapter</a> for more details. No parameters.</p>
+<p>This model is used for special components called virtual sensors. They are used to know the incoming radiation for a given point in space. See <a href="../4-virtual_sensors/index.html">this chapter</a> for more details. No parameter.</p>
 <p>Here is an example parameterization using this model:</p>
 <pre class="yaml"><code>Interception:
     model: VirtualSensor</code></pre>
@@ -1060,10 +1060,10 @@ Here is an example parameterization using those models:</p>
 <li><p>vcMaxRef (<span class="math inline">\(\mu mol_{electron} \cdot m^{-2} \cdot s^{-1}\)</span>): Maximum carboxylation rate at the reference temperature</p></li>
 <li><p>rdRef (<span class="math inline">\(\mu mol_{CO_2} \cdot m^{-2} \cdot s^{-1}\)</span>): mitochondrial respiration in the light at reference temperature (other than that associated with the PCO cycle).</p></li>
 <li><p>theta: the curvature of the light-response curve of electron transport.</p></li>
-<li><p>LWratio: average lenght / width ratio for the component. Used to compute the boundary layer conductance.</p></li>
+<li><p>LWratio: average length / width ratio for the component. Used to compute the boundary layer conductance.</p></li>
 <li><p>nFaceStomata: number of faces of the component with stomata (1: hypostomatal, 2: amphistomatal leaf).</p></li>
 <li><p>leafEmissivity (0-1): Ratio between the leaf <a href="https://en.wikipedia.org/wiki/Radiant_exitance">radiant emittance</a> (also called radiant exitance) compared to the one of a black body.</p></li>
-<li><p>delta_T_init (°C): initialization of the leaf temperature in relation to Tair (Tleaf = Tair - delta_T_init). This initialization is done every time the function is called (at every iteration of the assimilation conmputation), then the leaf temperature is computed by iteration, and its last value is used on the computation of the assimilation, but is reset to delta_T_init before re-doing the calculation of Tleaf. This is done to avoid heavy divergence of both optimization algorithms.</p></li>
+<li><p>delta_T_init (°C): initialization of the leaf temperature in relation to Tair (Tleaf = Tair - delta_T_init). This initialization is done every time the function is called (at every iteration of the assimilation computation), then the leaf temperature is computed by iteration, and its last value is used on the computation of the assimilation, but is reset to delta_T_init before re-doing the calculation of Tleaf. This is done to avoid heavy divergence of both optimization algorithms.</p></li>
 <li><p>epsilon (°C): criteria for convergence of the leaf temperature computation (difference between previous Tleaf and current Tleaf)</p></li>
 <li><p>iter_T_max (-): maximum number of iterations allowed for leaf temperature computation</p></li>
 <li><p>iter_A_max (-): maximum number of iterations allowed for assimilation and conductance computation</p></li>
@@ -1646,19 +1646,19 @@ Here is an example parameterization of the models:</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="../../../js/clipboard.min.js?1601890874"></script>
-    <script src="../../../js/perfect-scrollbar.min.js?1601890874"></script>
-    <script src="../../../js/perfect-scrollbar.jquery.min.js?1601890874"></script>
-    <script src="../../../js/jquery.sticky.js?1601890874"></script>
-    <script src="../../../js/featherlight.min.js?1601890874"></script>
-    <script src="../../../js/highlight.pack.js?1601890874"></script>
+    <script src="../../../js/clipboard.min.js?1603192785"></script>
+    <script src="../../../js/perfect-scrollbar.min.js?1603192785"></script>
+    <script src="../../../js/perfect-scrollbar.jquery.min.js?1603192785"></script>
+    <script src="../../../js/jquery.sticky.js?1603192785"></script>
+    <script src="../../../js/featherlight.min.js?1603192785"></script>
+    <script src="../../../js/highlight.pack.js?1603192785"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="../../../js/modernizr.custom-3.6.0.js?1601890874"></script>
-    <script src="../../../js/learn.js?1601890874"></script>
-    <script src="../../../js/hugo-learn.js?1601890874"></script>
+    <script src="../../../js/modernizr.custom-3.6.0.js?1603192785"></script>
+    <script src="../../../js/learn.js?1603192785"></script>
+    <script src="../../../js/hugo-learn.js?1603192785"></script>
     
         
-            <script src="../../../mermaid/mermaid.js?1601890874"></script>
+            <script src="../../../mermaid/mermaid.js?1603192785"></script>
         
         <script>
             mermaid.initialize({ startOnLoad: true });

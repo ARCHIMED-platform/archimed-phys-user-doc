@@ -17,21 +17,21 @@
     <title>Simple model file :: ARCHIMED user documentation</title>
 
     
-    <link href="../../../css/nucleus.css?1601890874" rel="stylesheet">
-    <link href="../../../css/fontawesome-all.min.css?1601890874" rel="stylesheet">
-    <link href="../../../css/hybrid.css?1601890874" rel="stylesheet">
-    <link href="../../../css/featherlight.min.css?1601890874" rel="stylesheet">
-    <link href="../../../css/perfect-scrollbar.min.css?1601890874" rel="stylesheet">
-    <link href="../../../css/auto-complete.css?1601890874" rel="stylesheet">
-    <link href="../../../css/atom-one-dark-reasonable.css?1601890874" rel="stylesheet">
-    <link href="../../../css/theme.css?1601890874" rel="stylesheet">
-    <link href="../../../css/hugo-theme.css?1601890874" rel="stylesheet">
+    <link href="../../../css/nucleus.css?1603192785" rel="stylesheet">
+    <link href="../../../css/fontawesome-all.min.css?1603192785" rel="stylesheet">
+    <link href="../../../css/hybrid.css?1603192785" rel="stylesheet">
+    <link href="../../../css/featherlight.min.css?1603192785" rel="stylesheet">
+    <link href="../../../css/perfect-scrollbar.min.css?1603192785" rel="stylesheet">
+    <link href="../../../css/auto-complete.css?1603192785" rel="stylesheet">
+    <link href="../../../css/atom-one-dark-reasonable.css?1603192785" rel="stylesheet">
+    <link href="../../../css/theme.css?1603192785" rel="stylesheet">
+    <link href="../../../css/hugo-theme.css?1603192785" rel="stylesheet">
     
-    <link href="../../../css/theme-archimed.css?1601890874" rel="stylesheet">
+    <link href="../../../css/theme-archimed.css?1603192785" rel="stylesheet">
     
-    <link href="../../../css/foo.css?1601890874" rel="stylesheet"><link href="../../../css/bar.css?1601890874" rel="stylesheet">
+    <link href="../../../css/foo.css?1603192785" rel="stylesheet"><link href="../../../css/bar.css?1603192785" rel="stylesheet">
 
-    <script src="../../../js/jquery-3.3.1.min.js?1601890874"></script>
+    <script src="../../../js/jquery-3.3.1.min.js?1603192785"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -164,14 +164,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="../../../js/lunr.min.js?1601890874"></script>
-<script type="text/javascript" src="../../../js/auto-complete.js?1601890874"></script>
+<script type="text/javascript" src="../../../js/lunr.min.js?1603192785"></script>
+<script type="text/javascript" src="../../../js/auto-complete.js?1603192785"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="../../../js/search.js?1601890874"></script>
+<script type="text/javascript" src="../../../js/search.js?1603192785"></script>
 
     
   </div>
@@ -927,9 +927,9 @@
 <script src="../../../rmarkdown-libs/header-attrs/header-attrs.js"></script>
 
 
-<p>In ARCIHMED, an object is defined by:<br />
+<p>In ARCHIMED-φ, an object is defined by:<br />
 - its geometry, read from an <code>.opf</code> or a <code>.gwa</code> file;<br />
-- (optionally) its topology, only read from an <code>.opf</code> file;<br />
+- (optionally) its topology and the types of components used to build it, only read from an <code>.opf</code> file;<br />
 - its functional group, read from an <code>.ops</code> file.</p>
 <p>The geometry (and topology) of an object is built using components (see the <a href="../../4-scene/2-opf/">opf documentation</a>). For example a simple coffee tree can be built using two components: leaves and internodes. Each component can have its own models and parameters. For example we know that internodes won’t make any photosynthesis, so they don’t have any photosynthesis model.</p>
 <p>You can download the example file to follow along here:</p>
@@ -977,7 +977,7 @@ Group: coffee</code></pre>
 </div>
 <div id="component-type" class="section level3">
 <h3>Component type</h3>
-<p>The <code>Type</code> parameter defines the component types used to build the object (e.g. leaves and branches components are used to build a plant). The names of the components listed here should match the same names given in the <code>topology</code> node of the <code>.opf</code> file (see <a href="../../4-scene/2-opf/">the documentation about the opf files</a>). In the example given earlier in the <a href="../../1-organisation/">organization chapter</a>, the <code>.opf</code> file for a coffee tree gives two different components: <code>Leaf</code> and <code>Metamer</code> (read internode here). A model file adapted for this <code>.opf</code> will list those components as follows:</p>
+<p>The <code>Type</code> parameter defines the component types used to build the object (e.g. leaves and branches components are used to build a plant). The names of the components listed here should match the names given in the <code>topology</code> node of the <code>.opf</code> file (see <a href="../../4-scene/2-opf/">the documentation about the opf files</a>). In the example given earlier in the <a href="../../1-organisation/">organization chapter</a>, the <code>.opf</code> file for a coffee tree gives two different components: <code>Leaf</code> and <code>Metamer</code> (read internode here). A model file adapted for this <code>.opf</code> will list those components as follows:</p>
 <pre class="yml"><code>---
 Group: coffee
 Type:
@@ -1039,7 +1039,7 @@ Type:
 <div class="notices info" ><p>The PAR and NIR bands are mandatory for the computation of the energy balance and the photosynthesis using the Farquhar model (see <a href="../2-models_list/">this section</a> for more details).<br /></p>
 </div>
 
-<p>The <code>Leaf</code> component simulates the light interception too, but also add the photosynthesis and stomatal conductance. Here is an example parametrization for the models used:</p>
+<p>The <code>Leaf</code> component requires a simulation of the light interception too, but also add the photosynthesis and stomatal conductance. Here is an example parametrization for the models used:</p>
 <pre class="yml"><code>Group: coffee                     # -&gt; functional group
 Type:                             # -&gt; component types
   Metamer:                        # -&gt; Metamer component (name must match OPF values)
@@ -1059,7 +1059,7 @@ Type:                             # -&gt; component types
           model: Medlyn           # -&gt; Name of the model used
           g0: -0.03               # -&gt; Parameter name and value
           g1: 12                  # -&gt; Parameter name and value</code></pre>
-<p>So here we have a <code>coffee</code> as a functional group, and two component types called <code>Metamer</code> and <code>Leaf</code>, for which the <code>Interception</code> process will be simulated using the <code>Translucent</code> model that has 3 parameters - the transparency, the scattering factor for the PAR, and for the NIR - all parameterized with some values. The <code>Leaf</code> component type also simulates the <code>Photosynthesis</code> and the <code>StomatalConductance</code> processes, with a given model (<code>FarquharEnBalance</code> and <code>Medlyn</code> resp.) and their respective parameters.</p>
+<p>So here we have a <code>coffee</code> as a functional group, and two component types called <code>Metamer</code> and <code>Leaf</code>, for which the <code>Interception</code> process will be simulated using the <code>Translucent</code> model that has 3 parameters - the transparency, the scattering factor for the PAR, and for the NIR - all parameterized with some values. The <code>Leaf</code> component type also requires a simulation of the <code>Photosynthesis</code> and the <code>StomatalConductance</code> processes, with a given model (<code>FarquharEnBalance</code> and <code>Medlyn</code> resp.) and their respective parameters.</p>
 
 <div class="notices info" ><p>A list of all models available for each process is available in the <a href="../2-models_list/">next page</a>.</p>
 </div>
@@ -1586,19 +1586,19 @@ This method allows to parameterize several models or the same model with differe
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="../../../js/clipboard.min.js?1601890874"></script>
-    <script src="../../../js/perfect-scrollbar.min.js?1601890874"></script>
-    <script src="../../../js/perfect-scrollbar.jquery.min.js?1601890874"></script>
-    <script src="../../../js/jquery.sticky.js?1601890874"></script>
-    <script src="../../../js/featherlight.min.js?1601890874"></script>
-    <script src="../../../js/highlight.pack.js?1601890874"></script>
+    <script src="../../../js/clipboard.min.js?1603192785"></script>
+    <script src="../../../js/perfect-scrollbar.min.js?1603192785"></script>
+    <script src="../../../js/perfect-scrollbar.jquery.min.js?1603192785"></script>
+    <script src="../../../js/jquery.sticky.js?1603192785"></script>
+    <script src="../../../js/featherlight.min.js?1603192785"></script>
+    <script src="../../../js/highlight.pack.js?1603192785"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="../../../js/modernizr.custom-3.6.0.js?1601890874"></script>
-    <script src="../../../js/learn.js?1601890874"></script>
-    <script src="../../../js/hugo-learn.js?1601890874"></script>
+    <script src="../../../js/modernizr.custom-3.6.0.js?1603192785"></script>
+    <script src="../../../js/learn.js?1603192785"></script>
+    <script src="../../../js/hugo-learn.js?1603192785"></script>
     
         
-            <script src="../../../mermaid/mermaid.js?1601890874"></script>
+            <script src="../../../mermaid/mermaid.js?1603192785"></script>
         
         <script>
             mermaid.initialize({ startOnLoad: true });

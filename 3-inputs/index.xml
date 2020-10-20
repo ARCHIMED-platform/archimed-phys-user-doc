@@ -27,7 +27,7 @@ It is recommended to follow along with the example files provided in the previou
       <pubDate>Tue, 09 Jun 2020 12:15:33 +0200</pubDate>
       
       <guid>/3-inputs/2-general_config/</guid>
-      <description>config.yaml This file lists the main configuration parameters for a simulation. It controls the simulation by pointing towards the files for the meteorology data (e.g. meteo.csv), the models configuration (e.g. plant_coffee.yml), and the scene (e.g. cafeier.ops).
+      <description>config.yaml This file lists the main configuration parameters for a simulation. It controls the simulation by pointing towards the files for the meteorology data (e.g. meteo.csv), the models configuration (e.g. plant_coffee.yml), and the scene (e.g. coffee.ops).
 Although entries in the configuration file are not ordered, the following example is organized in sections for clarity.
 A full working example is available in the folder presented in the previous page (“config.</description>
     </item>
@@ -72,7 +72,7 @@ YAML anchors More information about using anchors in YAML files soon.
       
       <guid>/3-inputs/8-voxels/</guid>
       <description>  More information soon about using voxel files.
-📦 ├── 📜config_vox.yml # -&amp;gt; Same here, but for a voxel scene ├── 📜const.yml # -&amp;gt; constants used in the model ├── 📜meteo.csv # -&amp;gt; the meteorology file ├── 📂model # -&amp;gt; all the models configuration files are listed in this folder │ └── 📜turbid_medium.yml # An example config for a turbid medium (i.e. voxels) └── 📜soil.yml # An example soil file </description>
+📦 ├── 📜config_vox.yml # -&amp;gt; Same here, but for a voxel scene ├── 📜const.yml # -&amp;gt; constants used in the model ├── 📜meteo.csv # -&amp;gt; the meteorology file ├── 📂model # -&amp;gt; all the models configuration files are listed in this folder ├── 📜soil.yml # An example soil file └── 📜turbid_medium.yml # An example config for a turbid medium (i.e. voxels) </description>
     </item>
     
   </channel>

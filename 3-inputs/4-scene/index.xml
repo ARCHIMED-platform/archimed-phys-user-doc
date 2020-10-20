@@ -41,7 +41,7 @@ The file is encoded in the XML format, so many editors can render its structure.
       <description>.gwa The .gwa files are used to represent any geometrical object. It is based on the same format than the .opf (and is an XML too), but without the topology.
 A simple example of a virtual table is available here:
   Attachments   table.gwa  (12 ko)    And here is a 3d render of this file:
- A simple table by rvezy on Sketchfab  If you open the file, you’ll see several sextions.</description>
+ A simple table by rvezy on Sketchfab  If you open the file, you’ll see several sections.</description>
     </item>
     
   </channel>

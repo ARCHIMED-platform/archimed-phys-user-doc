@@ -28,7 +28,7 @@
       <pubDate>Wed, 23 Sep 2020 12:15:33 +0200</pubDate>
       
       <guid>/4-outputs/2-inputs/</guid>
-      <description>Input files Several input files are re-written in the simulation folder and eventually enriched with new information from the simulation.
+      <description>Input files Several input files are re-written in the simulation folder and possibly enriched with new information from the simulation.
 const.yml The constants file (const.yml) gives the constants values effectively used by the models during the simulation. If no constants file was given as input, then this file gives the default values given by the software. In case only some of the constant values were given as input, the other will again be taken as the default values.</description>
     </item>
     
@@ -38,9 +38,8 @@ const.yml The constants file (const.yml) gives the constants values effectively 
       <pubDate>Wed, 23 Sep 2020 12:15:33 +0200</pubDate>
       
       <guid>/4-outputs/3-results/</guid>
-      <description>Results files component values The component_values.csv file regroup the output of the simulation at component scale (e.g. the light interception of each leaf) for each individual object (e.g. a plant). The variables written in this file are controlled by the component_variables parameter in config.yml).
-Here is a table summarizing the information about all possible variables:
-    Variable.name Unit type Description    step_number - Integer Index of the step  step_duration seconds Integer Step duration  item_id - Integer Item ID (e.</description>
+      <description>Results files component values The component_values.csv file contains the outputs of the simulation at component scale (e.g. the light interception of each leaf) for each individual object (e.g. a plant). The variables written in this file are controlled by the component_variables parameter in config.yml).
+The table below summarizes the information about all possible variables. All values in \(W \cdot m^{-2}\) are per component surface (\(W \cdot m_{component}^{-2}\)). All other values are integrated at the component scale, and possibly over the time-step (e.</description>
     </item>
     
     <item>

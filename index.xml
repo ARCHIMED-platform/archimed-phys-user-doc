@@ -18,7 +18,7 @@
       
       <guid>/2-getting-started/1-example-data/</guid>
       <description>Data To run an ARCHIMED-φ simulation, you’ll need a working example. Please download it from here:
-  Attachments   example_inputs.zip  (423 ko)    At the moment, don’t worry about the organization of the folder nor the file contents. We’ll get into this very soon in the organization page.
+  Attachments   example_inputs.zip  (423 ko)    At the moment, don’t worry about the organization of the folder or the file contents. We’ll get into this very soon in the organization page.
  ARCHIMED-φ executable ARCHIMED-φ is programmed in Java. The main benefit is that a same .</description>
     </item>
     
@@ -28,10 +28,9 @@
       <pubDate>Tue, 09 Jun 2020 12:15:33 +0200</pubDate>
       
       <guid>/2-getting-started/2-download_archimed/</guid>
-      <description>Run a simulation Then, open a terminal and run the following command:
-java -jar archimed-phys.jar config.yml And that’s it ! You ran an ARCHIMED-φ simulation ! Note that it can take a minute to finish.
-Command details The java -jar archimed-phys.jar part of the command just tells Java to execute the archimed-phys.jar file. If your ARCHIMED-φ .jar file is named differently, please name it properly, e.g.:
-java -jar archimed_custom_name.</description>
+      <description>Run a simulation Open a terminal  For windows users: right click inside the folder while holding the shift key, and click on “open Powershell”. It will open a Powershell prompt in the right folder. Then you can execute the command given above;
+ For Mac users, press command + spacebar from the folder;
+ For Linux users, well, you know already.   Run ARCHIMED-φ Open a terminal as presented before and run the following command:</description>
     </item>
     
     <item>
@@ -41,7 +40,7 @@ java -jar archimed_custom_name.</description>
       
       <guid>/2-getting-started/3-visualize_output/</guid>
       <description>Render the output After executing ARCHIMED-φ in the example folder, the simulation outputs are found at this path: ./output/simdir. There are several files here, and one is especially useful for visualizing the results in 3D: coffee.opf.
-To render the results, please download XPlo from the AMAPStudio website. Then open XPlo, press ctrl+I, choose opf, and navigate to the location of coffee.opf and open it.
+To render the results, please download XPlo from the AMAPStudio website. Then open XPlo, press ctrl+I, choose opf, and navigate to the location of coffee-1-step00002.opf and open it.
 Xplo will open and 3D render the example coffee.</description>
     </item>
     
@@ -73,7 +72,7 @@ It is recommended to follow along with the example files provided in the previou
       <pubDate>Tue, 09 Jun 2020 12:15:33 +0200</pubDate>
       
       <guid>/3-inputs/2-general_config/</guid>
-      <description>config.yaml This file lists the main configuration parameters for a simulation. It controls the simulation by pointing towards the files for the meteorology data (e.g. meteo.csv), the models configuration (e.g. plant_coffee.yml), and the scene (e.g. cafeier.ops).
+      <description>config.yaml This file lists the main configuration parameters for a simulation. It controls the simulation by pointing towards the files for the meteorology data (e.g. meteo.csv), the models configuration (e.g. plant_coffee.yml), and the scene (e.g. coffee.ops).
 Although entries in the configuration file are not ordered, the following example is organized in sections for clarity.
 A full working example is available in the folder presented in the previous page (“config.</description>
     </item>
@@ -118,7 +117,7 @@ The file is encoded in the XML format, so many editors can render its structure.
       <description>.gwa The .gwa files are used to represent any geometrical object. It is based on the same format than the .opf (and is an XML too), but without the topology.
 A simple example of a virtual table is available here:
   Attachments   table.gwa  (12 ko)    And here is a 3d render of this file:
- A simple table by rvezy on Sketchfab  If you open the file, you’ll see several sextions.</description>
+ A simple table by rvezy on Sketchfab  If you open the file, you’ll see several sections.</description>
     </item>
     
     <item>
@@ -127,11 +126,11 @@ A simple example of a virtual table is available here:
       <pubDate>Tue, 09 Jun 2020 12:15:33 +0200</pubDate>
       
       <guid>/3-inputs/5-models/1-models/</guid>
-      <description>In ARCIHMED, an object is defined by:
+      <description>In ARCHIMED-φ, an object is defined by:
 - its geometry, read from an .opf or a .gwa file;
-- (optionally) its topology, only read from an .opf file;
+- (optionally) its topology and the types of components used to build it, only read from an .opf file;
 - its functional group, read from an .ops file.
-The geometry (and topology) of an object is built using components (see the opf documentation). For example a simple coffee tree can be built using two components: leaves and internodes. Each component can have its own models and parameters.</description>
+The geometry (and topology) of an object is built using components (see the opf documentation). For example a simple coffee tree can be built using two components: leaves and internodes.</description>
     </item>
     
     <item>
@@ -141,9 +140,9 @@ The geometry (and topology) of an object is built using components (see the opf 
       
       <guid>/3-inputs/5-models/2-models_list/</guid>
       <description>Here is a list of all models available for each process.
-Interception There are two three different models available in ARCHIMED-φ to compute their light interception and scattering: Translucent, ignore and VirtualSensor.
+Interception There are three different models available in ARCHIMED-φ to compute their light interception and scattering: Translucent, ignore and VirtualSensor.
 Translucent This model has two set of parameters :
- transparency: between 0 and 1. 0 is not transparent (opaque), and 1 fully transparent. If e.g. 0.3, 30% of the incoming light is intercepted by the component (interception = radiation * (1-transparency)), and 30% is directly transmitted (not being part of the interception).</description>
+ transparency: between 0 and 1. 0 is not transparent (opaque), and 1 fully transparent. If it is set to e.g. 0.3, 70% of the incoming light is intercepted by the component (interception = radiation * (1-transparency)), and 30% is directly transmitted (not being part of the interception).</description>
     </item>
     
     <item>
@@ -173,7 +172,7 @@ Translucent This model has two set of parameters :
       <pubDate>Wed, 23 Sep 2020 12:15:33 +0200</pubDate>
       
       <guid>/4-outputs/2-inputs/</guid>
-      <description>Input files Several input files are re-written in the simulation folder and eventually enriched with new information from the simulation.
+      <description>Input files Several input files are re-written in the simulation folder and possibly enriched with new information from the simulation.
 const.yml The constants file (const.yml) gives the constants values effectively used by the models during the simulation. If no constants file was given as input, then this file gives the default values given by the software. In case only some of the constant values were given as input, the other will again be taken as the default values.</description>
     </item>
     
@@ -192,9 +191,8 @@ const.yml The constants file (const.yml) gives the constants values effectively 
       <pubDate>Wed, 23 Sep 2020 12:15:33 +0200</pubDate>
       
       <guid>/4-outputs/3-results/</guid>
-      <description>Results files component values The component_values.csv file regroup the output of the simulation at component scale (e.g. the light interception of each leaf) for each individual object (e.g. a plant). The variables written in this file are controlled by the component_variables parameter in config.yml).
-Here is a table summarizing the information about all possible variables:
-    Variable.name Unit type Description    step_number - Integer Index of the step  step_duration seconds Integer Step duration  item_id - Integer Item ID (e.</description>
+      <description>Results files component values The component_values.csv file contains the outputs of the simulation at component scale (e.g. the light interception of each leaf) for each individual object (e.g. a plant). The variables written in this file are controlled by the component_variables parameter in config.yml).
+The table below summarizes the information about all possible variables. All values in \(W \cdot m^{-2}\) are per component surface (\(W \cdot m_{component}^{-2}\)). All other values are integrated at the component scale, and possibly over the time-step (e.</description>
     </item>
     
     <item>
@@ -238,7 +236,7 @@ YAML anchors More information about using anchors in YAML files soon.
       
       <guid>/3-inputs/8-voxels/</guid>
       <description>  More information soon about using voxel files.
-📦 ├── 📜config_vox.yml # -&amp;gt; Same here, but for a voxel scene ├── 📜const.yml # -&amp;gt; constants used in the model ├── 📜meteo.csv # -&amp;gt; the meteorology file ├── 📂model # -&amp;gt; all the models configuration files are listed in this folder │ └── 📜turbid_medium.yml # An example config for a turbid medium (i.e. voxels) └── 📜soil.yml # An example soil file </description>
+📦 ├── 📜config_vox.yml # -&amp;gt; Same here, but for a voxel scene ├── 📜const.yml # -&amp;gt; constants used in the model ├── 📜meteo.csv # -&amp;gt; the meteorology file ├── 📂model # -&amp;gt; all the models configuration files are listed in this folder ├── 📜soil.yml # An example soil file └── 📜turbid_medium.yml # An example config for a turbid medium (i.e. voxels) </description>
     </item>
     
   </channel>
