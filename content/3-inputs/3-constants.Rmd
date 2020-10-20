@@ -18,7 +18,7 @@ You can safely ignore this page for the vast majority of use cases. You don't ne
 {{% /notice %}}
 
 
-- `co2_to_heat_boundary_layer_conductance` is used to convert the boundary layer conductance to heat into the boundary layer conductance to $CO_2$ with the following equation (default value is 1.32):
+- `co2_to_heat_boundary_layer_conductance` is used to convert the boundary layer conductance to heat into the boundary layer conductance to $CO_2$ with the following equation. The default value is 1.32 as given in the [MAESPA model](https://bitbucket.org/remkoduursma/maespa/src/0cb01e8149f64bd2122831a41d73f97f4e08a34d/maestcom.f90#lines-56), or in the [bigleaf R package](https://rdrr.io/cran/bigleaf/man/Gb.Thom.html) following @hicks1987preliminary:
 
 $$Gb_{CO_2}=\frac{Gb_{heat}}{co2\_to\_heat\_boundary\_layer\_conductance}$$
 

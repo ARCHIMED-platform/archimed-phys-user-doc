@@ -18,7 +18,7 @@ bibliography: references.bib
 You can safely ignore this page for the vast majority of use cases. You don’t need to know or understand everything in this page, it is only provided for convenience in case the user has specific needs.
 {{% /notice %}}</p>
 <ul>
-<li><code>co2_to_heat_boundary_layer_conductance</code> is used to convert the boundary layer conductance to heat into the boundary layer conductance to <span class="math inline">\(CO_2\)</span> with the following equation (default value is 1.32):</li>
+<li><code>co2_to_heat_boundary_layer_conductance</code> is used to convert the boundary layer conductance to heat into the boundary layer conductance to <span class="math inline">\(CO_2\)</span> with the following equation. The default value is 1.32 as given in the <a href="https://bitbucket.org/remkoduursma/maespa/src/0cb01e8149f64bd2122831a41d73f97f4e08a34d/maestcom.f90#lines-56">MAESPA model</a>, or in the <a href="https://rdrr.io/cran/bigleaf/man/Gb.Thom.html">bigleaf R package</a> following <span class="citation">Hicks et al. (1987)</span>:</li>
 </ul>
 <p><span class="math display">\[Gb_{CO_2}=\frac{Gb_{heat}}{co2\_to\_heat\_boundary\_layer\_conductance}\]</span></p>
 <ul>
@@ -67,6 +67,9 @@ See <span class="citation">Farquhar, von Caemmerer, and Berry (1980)</span> for 
 </div>
 <div id="ref-foken2008micrometeorology">
 <p>Foken, Thomas, and Carmen J Napo. 2008. <em>Micrometeorology</em>. Vol. 2. Springer. <a href="https://doi.org/10.1007/978-3-540-74666-9">https://doi.org/10.1007/978-3-540-74666-9</a>.</p>
+</div>
+<div id="ref-hicks1987preliminary">
+<p>Hicks, BB, DD Baldocchi, TP Meyers, RP Hosker, and DR Matt. 1987. “A Preliminary Multiple Resistance Routine for Deriving Dry Deposition Velocities from Measured Quantities.” <em>Water, Air, and Soil Pollution</em> 36 (3-4): 311–30.</p>
 </div>
 <div id="ref-leuningLeafNitrogenPhotosynthesis1995">
 <p>Leuning, R., F. M. Kelliher, DGG de Pury, and E.-D. SCHULZE. 1995. “Leaf Nitrogen, Photosynthesis, Conductance and Transpiration: Scaling from Leaves to Canopies.” <em>Plant, Cell &amp; Environment</em> 18 (10): 1183–1200.</p>
