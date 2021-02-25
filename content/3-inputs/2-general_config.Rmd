@@ -192,6 +192,9 @@ The `component_values.csv` is written only if the `component_variables` paramete
 export_ops: true
 ```
 
+Note that when `export_ops` is set to `true`, only the last step of simulation is exported (if `false` nothing is exported). It can also take the value `all` to export every simulation step, or an integer value `n` to export the scene at nth meteo step, *e.g.*: `export_ops: 6` for the 6th simulated time-step.
+
+
 #### Component variables
 
 Many variables are available as ARCHIMED-φ outputs to write into the `component_values.csv` file. The `component_variables` parameter lists the variables needed as outputs:
