@@ -70,10 +70,10 @@ These variables are not necessarily measured, so ARCHIMED-φ provides a simpler 
 
 If any of these variable is missing, the model computes it, provided at least one of the `clearness`, `Ri_SW_f`, `Ri_PAR_f`, `Ri_NIR_f` is given. Please keep in mind the more variables are provided as inputs, the lower the simulation error because it is preferable to measure a variable than simulating it.
 
-The user can also input any custom waveband for the incoming light using the "`Ri_xxx_f`" naming convention, *e.g.* for the red band: `Ri_red_f`. These custom wavebands can be used to compute the light interception and scattering for any waveband, but they don't participate to the energy balance nor the photosynthesis (the shortwave is already conputed using PAR and NIR). 
+The user can also input any custom waveband for the incoming light using the "`Ri_xxx_f`" naming convention, *e.g.* for the red band: `Ri_red_f`. These custom wavebands can be used to compute the light interception and scattering for any waveband, but they don't participate to the energy balance nor the photosynthesis (the shortwave is already computed using PAR and NIR). 
 
 {{% notice info %}}
-The custom wavebands must be part of the shortwave band, and the optical properties of the components in the scene must be provided (see [this section](../5-models/2-models_list/) for more information).
+The custom wavebands must be part of the shortwave band (PAR and NIR), and the optical properties of the components in the scene must be provided (see [this section](../5-models/2-models_list/) for more information).
 {{% /notice %}}
 
 #### Micro-environment

@@ -145,6 +145,7 @@ For example if we have two projects, one to simulate different planting designs 
 </ul>
 <p>The <code>component_values.csv</code> is written only if the <code>component_variables</code> parameter is present in the <code>config.yml</code> file (see below). The scene files are only present if the <code>export_ops</code> parameter is set to <code>true</code>:</p>
 <pre class="yaml"><code>export_ops: true</code></pre>
+<p>Note that when <code>export_ops</code> is set to <code>true</code>, only the last step of simulation is exported (if <code>false</code> nothing is exported). It can also take the value <code>all</code> to export every simulation step, or an integer value <code>n</code> to export the scene at nth meteo step, <em>e.g.</em>: <code>export_ops: 6</code> for the 6th simulated time-step.</p>
 <div id="component-variables" class="section level4">
 <h4>Component variables</h4>
 <p>Many variables are available as ARCHIMED-φ outputs to write into the <code>component_values.csv</code> file. The <code>component_variables</code> parameter lists the variables needed as outputs:</p>

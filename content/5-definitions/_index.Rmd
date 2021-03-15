@@ -1,0 +1,15 @@
+---
+chapter: false
+date: "2020-09-23T12:15:33+02:00"
+pre: <b>3. </b>
+title: Definitions
+weight: 71
+---
+
+- **Shortwave radiation**: light in the visible and near-infrared wavelengths (400-3000 nm) *i.e.* PAR and NIR. UV light is ignored in Archimed. 
+- **Longwave radiation**: light in the thermal infrared wavelengths (>3000 nanometers), also called TIR in the model.
+- **PAR**: photosynthetically active radiation. Wave band of solar radiation in the ~400 to 700 nanometers range that photosynthetic organisms are able to use in the process of photosynthesis. Also called visible light.
+- **NIR**: near-infrared radiation. Wave band of solar radiation in the ~780 to 3000 nanometers range, participating in the energy balance of the system. In fact NIR in Archimed encompass near-infrared (780-1400 nm) and short-wavelengt infrared (1400-3000 nm). 
+
+- **TIR**: thermal infrared radiation. Wave band of solar radiation > 3000 nanometers. It is simply called thermal infrared radiation because grey-body radiation from objects in Archimed applications is almost all at far infrared wavelengths. It encompass mid (3000-8000 nm), long (8000-15000 nm) and far-wavelength (15000 nm - 1 mm) infrared radiation. 
+
