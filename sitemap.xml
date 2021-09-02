@@ -3,11 +3,6 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>/</loc>
-    <lastmod>2020-06-09T12:15:33+02:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/1-introduction/</loc>
     <lastmod>2020-06-09T12:15:33+02:00</lastmod>
   </url>
@@ -38,113 +33,8 @@
   </url>
   
   <url>
-    <loc>/3-inputs/</loc>
+    <loc>/</loc>
     <lastmod>2020-06-09T12:15:33+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/3-inputs/1-organisation/</loc>
-    <lastmod>2020-06-09T12:15:33+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/3-inputs/2-general_config/</loc>
-    <lastmod>2020-06-09T12:15:33+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/3-inputs/3-constants/</loc>
-    <lastmod>2020-06-09T12:15:33+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/3-inputs/4-scene/</loc>
-    <lastmod>2020-06-09T12:15:33+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/3-inputs/4-scene/1-ops/</loc>
-    <lastmod>2020-06-09T12:15:33+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/3-inputs/4-scene/2-opf/</loc>
-    <lastmod>2020-06-09T12:15:33+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/3-inputs/4-scene/3-gwa/</loc>
-    <lastmod>2020-06-09T12:15:33+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/3-inputs/5-models/</loc>
-    <lastmod>2020-06-09T12:15:33+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/3-inputs/5-models/1-models/</loc>
-    <lastmod>2020-06-09T12:15:33+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/3-inputs/5-models/2-models_list/</loc>
-    <lastmod>2020-06-09T12:15:33+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/4-outputs/1-organisation/</loc>
-    <lastmod>2020-09-23T12:15:33+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/3-inputs/5-models/3-soil_model/</loc>
-    <lastmod>2020-06-09T12:15:33+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/4-outputs/2-inputs/</loc>
-    <lastmod>2020-09-23T12:15:33+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/3-inputs/5-models/4-virtual_sensors/</loc>
-    <lastmod>2020-06-09T12:15:33+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/4-outputs/3-results/</loc>
-    <lastmod>2020-09-23T12:15:33+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/3-inputs/6-meteo/</loc>
-    <lastmod>2020-06-09T12:15:33+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/4-outputs/4-logs/</loc>
-    <lastmod>2020-09-23T12:15:33+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/3-inputs/7-power_users/</loc>
-    <lastmod>2020-06-09T12:15:33+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/3-inputs/8-voxels/</loc>
-    <lastmod>2020-06-09T12:15:33+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/4-outputs/</loc>
-    <lastmod>2020-06-09T12:15:33+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/5-definitions/</loc>
-    <lastmod>2020-09-23T12:15:33+02:00</lastmod>
   </url>
   
   <url>
