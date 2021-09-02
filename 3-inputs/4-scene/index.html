@@ -14,7 +14,7 @@
 
     <link rel="shortcut icon" href="../../images/favicon.png" type="image/x-icon" />
 
-    <title>Download :: ARCHIMED user documentation</title>
+    <title>3D scene :: ARCHIMED user documentation</title>
 
     
     <link href="../../css/nucleus.css?1630586634" rel="stylesheet">
@@ -41,7 +41,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/2-getting-started/1-example-data/">
+  <body class="" data-url="/3-inputs/4-scene/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -225,7 +225,7 @@
   
     
     <li data-nav-id="/2-getting-started/" title="Getting started" class="dd-item
-        parent
+        
         
         
         ">
@@ -253,7 +253,7 @@
  
   
     
-      <li data-nav-id="/2-getting-started/1-example-data/" title="Download" class="dd-item active">
+      <li data-nav-id="/2-getting-started/1-example-data/" title="Download" class="dd-item ">
         <a href="../../2-getting-started/1-example-data/">
         <b>0.1. </b>Download
         <i class="fas fa-check read-icon"></i>
@@ -345,7 +345,7 @@
   
     
     <li data-nav-id="/3-inputs/" title="Inputs" class="dd-item
-        
+        parent
         
         
         ">
@@ -439,8 +439,8 @@
   
     
     <li data-nav-id="/3-inputs/4-scene/" title="3D scene" class="dd-item
-        
-        
+        parent
+        active
         
         ">
       <a href="../../3-inputs/4-scene/">
@@ -908,7 +908,7 @@
                   
                   
                   <div id="top-github-link">
-                    <a class="github-link" title='Edit this page' href="https://github.com/VEZY/archimed_website/tree/master/content/2-Getting-started/1-example-data.html" target="blank">
+                    <a class="github-link" title='Edit this page' href="https://github.com/VEZY/archimed_website/tree/master/content/3-inputs/4-scene/_index.html" target="blank">
                       <i class="fas fa-code-branch"></i>
                       <span id="top-github-link-text">Edit this page</span>
                     </a>
@@ -923,22 +923,13 @@
                         </a>
                     </span>
                   
-                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
-                  
                   <span class="links">
                  
                  
-                   Download
+                   3D scene
                  
                   </span>
                 </div>
-                
-                    <div class="progress">
-    <div class="wrapper">
-
-    </div>
-</div>
-
                 
               </div>
             </div>
@@ -947,108 +938,39 @@
         
         </div>
         
+          <div id="chapter">
+        
         <div id="body-inner">
-          
-            <h1>
-              
-              Download
-            </h1>
           
 
         
 
 
 
+	
 <script src="../../rmarkdown-libs/header-attrs/header-attrs.js"></script>
 
 
-<div id="data" class="section level1">
-<h1>Data</h1>
-<p>To run an ARCHIMED-φ simulation, you’ll need a working example. Please download it from here:</p>
-
-<section class="attachments ">
-	<label>
-		<i class="fas fa-paperclip" aria-hidden="true"></i>
-		Attachments
-	</label>
-	
-		
-	
-	<div class="attachments-files">
-	
-		
-		
-			
-		
-	
-		
-		
-			
-				<li>
-					<a href="../../2-Getting-started/1-example-data.files/example_inputs.zip" >
-						example_inputs.zip
-					</a>
-					(423 kb)
-				</li>
-			
-		
-	
-	</div>
-	
-</section>
-
-
-<p>At the moment, don’t worry about the organization of the folder or the file contents. We’ll get into this very soon in the <a href="../../3-inputs/1-organisation/">organization page</a>.</p>
-</div>
-<div id="archimed-φ-executable" class="section level1">
-<h1>ARCHIMED-φ executable</h1>
-<p>ARCHIMED-φ is programmed in Java. The main benefit is that a same <code>.jar</code> file can be executed in all platforms compatible with Java (<em>i.e.</em> Windows, Mac, Linux…).
-Please download the executable (e.g. <code>archimed-phys.jar</code>):</p>
-
-<section class="attachments ">
-	<label>
-		<i class="fas fa-paperclip" aria-hidden="true"></i>
-		Attachments
-	</label>
-	
-		
-	
-	<div class="attachments-files">
-	
-		
-		
-			
-				<li>
-					<a href="../../2-Getting-started/1-example-data.files/archimed-phys.jar" >
-						archimed-phys.jar
-					</a>
-					(19782 kb)
-				</li>
-			
-		
-	
-		
-		
-			
-		
-	
-	</div>
-	
-</section>
-
-
-<p>Then, place it at the root of the example directory, <em>i.e.</em> next to the <code>config.yml</code> file.</p>
-
-<div class="notices note" ><p>You can place <code>archimed-phys.jar</code> wherever you please, but it is good practice to place the executable in the folder of each simulation project for enhanced reproducibility.</p>
-</div>
-
+<div id="d-scene" class="section level1">
+<h1>3D scene</h1>
+<p>The 3D scene is defined using several files. First, individual objects are defined using:</p>
+<ul>
+<li><code>.opf</code> files for plants. These files describe the geometry and topology of the plant;</li>
+<li><code>.gwa</code> objects for any other object, than defines its geometry.</li>
+</ul>
+<p>Then, a scene file (<code>.ops</code>) is used to place these individual objects in a 3D scene. This chapter presents the details about the scene files.</p>
 </div>
 
 
-<footer class="footline">
+
+
+
+<footer class=" footline" >
 	
 </footer>
 
+        
+            </div> 
         
         </div>
         
@@ -1099,97 +1021,10 @@ Please download the executable (e.g. <code>archimed-phys.jar</code>):</p>
             
                 
                     
-                    
                 
                 
 
                     
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                        
-                        
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                        
                     
                     
 
@@ -1255,10 +1090,100 @@ Please download the executable (e.g. <code>archimed-phys.jar</code>):</p>
                     
 
                     
+            
+        
+                    
+            
+        
+                    
                         
             
             
                 
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
                     
                 
                 
@@ -1542,10 +1467,10 @@ Please download the executable (e.g. <code>archimed-phys.jar</code>):</p>
 	 
 	 
 		
-			<a class="nav nav-prev" href="../../2-getting-started/" title="Getting started"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="../../3-inputs/3-constants/" title="Constant parameter file"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="../../2-getting-started/2-download_archimed/" title="Run ARCHIMED-φ" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="../../3-inputs/4-scene/1-ops/" title="Scene file" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -1577,4 +1502,3 @@ Please download the executable (e.g. <code>archimed-phys.jar</code>):</p>
 
   </body>
 </html>
-

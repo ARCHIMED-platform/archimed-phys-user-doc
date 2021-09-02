@@ -14,7 +14,7 @@
 
     <link rel="shortcut icon" href="../../images/favicon.png" type="image/x-icon" />
 
-    <title>Download :: ARCHIMED user documentation</title>
+    <title>Constant parameter file :: ARCHIMED user documentation</title>
 
     
     <link href="../../css/nucleus.css?1630586634" rel="stylesheet">
@@ -41,7 +41,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/2-getting-started/1-example-data/">
+  <body class="" data-url="/3-inputs/3-constants/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -225,7 +225,7 @@
   
     
     <li data-nav-id="/2-getting-started/" title="Getting started" class="dd-item
-        parent
+        
         
         
         ">
@@ -253,7 +253,7 @@
  
   
     
-      <li data-nav-id="/2-getting-started/1-example-data/" title="Download" class="dd-item active">
+      <li data-nav-id="/2-getting-started/1-example-data/" title="Download" class="dd-item ">
         <a href="../../2-getting-started/1-example-data/">
         <b>0.1. </b>Download
         <i class="fas fa-check read-icon"></i>
@@ -345,7 +345,7 @@
   
     
     <li data-nav-id="/3-inputs/" title="Inputs" class="dd-item
-        
+        parent
         
         
         ">
@@ -417,7 +417,7 @@
  
   
     
-      <li data-nav-id="/3-inputs/3-constants/" title="Constant parameter file" class="dd-item ">
+      <li data-nav-id="/3-inputs/3-constants/" title="Constant parameter file" class="dd-item active">
         <a href="../../3-inputs/3-constants/">
         <b>3. </b>Constant parameter file
         <i class="fas fa-check read-icon"></i>
@@ -908,7 +908,7 @@
                   
                   
                   <div id="top-github-link">
-                    <a class="github-link" title='Edit this page' href="https://github.com/VEZY/archimed_website/tree/master/content/2-Getting-started/1-example-data.html" target="blank">
+                    <a class="github-link" title='Edit this page' href="https://github.com/VEZY/archimed_website/tree/master/content/3-inputs/3-constants.html" target="blank">
                       <i class="fas fa-code-branch"></i>
                       <span id="top-github-link-text">Edit this page</span>
                     </a>
@@ -928,7 +928,7 @@
                   <span class="links">
                  
                  
-                   Download
+                   Constant parameter file
                  
                   </span>
                 </div>
@@ -951,7 +951,7 @@
           
             <h1>
               
-              Download
+              Constant parameter file
             </h1>
           
 
@@ -962,48 +962,9 @@
 <script src="../../rmarkdown-libs/header-attrs/header-attrs.js"></script>
 
 
-<div id="data" class="section level1">
-<h1>Data</h1>
-<p>To run an ARCHIMED-φ simulation, you’ll need a working example. Please download it from here:</p>
-
-<section class="attachments ">
-	<label>
-		<i class="fas fa-paperclip" aria-hidden="true"></i>
-		Attachments
-	</label>
-	
-		
-	
-	<div class="attachments-files">
-	
-		
-		
-			
-		
-	
-		
-		
-			
-				<li>
-					<a href="../../2-Getting-started/1-example-data.files/example_inputs.zip" >
-						example_inputs.zip
-					</a>
-					(423 kb)
-				</li>
-			
-		
-	
-	</div>
-	
-</section>
-
-
-<p>At the moment, don’t worry about the organization of the folder or the file contents. We’ll get into this very soon in the <a href="../../3-inputs/1-organisation/">organization page</a>.</p>
-</div>
-<div id="archimed-φ-executable" class="section level1">
-<h1>ARCHIMED-φ executable</h1>
-<p>ARCHIMED-φ is programmed in Java. The main benefit is that a same <code>.jar</code> file can be executed in all platforms compatible with Java (<em>i.e.</em> Windows, Mac, Linux…).
-Please download the executable (e.g. <code>archimed-phys.jar</code>):</p>
+<div id="const.yml" class="section level1">
+<h1><code>const.yml</code></h1>
+<p>This file lists all constants and their values used in ARCHIMED-φ. The file is optional. The example file provided below lists the default values used in ARCHIMED (their values are also provided in this page for information).</p>
 
 <section class="attachments ">
 	<label>
@@ -1019,16 +980,11 @@ Please download the executable (e.g. <code>archimed-phys.jar</code>):</p>
 		
 			
 				<li>
-					<a href="../../2-Getting-started/1-example-data.files/archimed-phys.jar" >
-						archimed-phys.jar
+					<a href="../../3-inputs/3-constants.files/const.yml" >
+						const.yml
 					</a>
-					(19782 kb)
+					(1 kb)
 				</li>
-			
-		
-	
-		
-		
 			
 		
 	
@@ -1037,11 +993,72 @@ Please download the executable (e.g. <code>archimed-phys.jar</code>):</p>
 </section>
 
 
-<p>Then, place it at the root of the example directory, <em>i.e.</em> next to the <code>config.yml</code> file.</p>
 
-<div class="notices note" ><p>You can place <code>archimed-phys.jar</code> wherever you please, but it is good practice to place the executable in the folder of each simulation project for enhanced reproducibility.</p>
+<div class="notices info" ><p>You can safely ignore this page for the vast majority of use cases. You don’t need to know or understand everything in this page, it is only provided for convenience in case the user has specific needs.</p>
 </div>
 
+<ul>
+<li><code>co2_to_heat_boundary_layer_conductance</code> is used to convert the boundary layer conductance to heat into the boundary layer conductance to <span class="math inline">\(CO_2\)</span> with the following equation. The default value is 1.32 as given in the <a href="https://bitbucket.org/remkoduursma/maespa/src/0cb01e8149f64bd2122831a41d73f97f4e08a34d/maestcom.f90#lines-56">MAESPA model</a>, or in the <a href="https://rdrr.io/cran/bigleaf/man/Gb.Thom.html">bigleaf R package</a> following <span class="citation"><a href="#ref-hicks1987preliminary" role="doc-biblioref">Hicks et al.</a> (<a href="#ref-hicks1987preliminary" role="doc-biblioref">1987</a>)</span>:</li>
+</ul>
+<p><span class="math display">\[Gb_{CO_2}=\frac{Gb_{heat}}{co2\_to\_heat\_boundary\_layer\_conductance}\]</span></p>
+<ul>
+<li><code>heat_to_water_boundary_layer_conductance</code> is used to convert boundary layer conductance to heat into boundary layer conductance to water (default to 1.075):</li>
+</ul>
+<p><span class="math display">\[Gb_{H_2O}= Gb_{heat} \cdot heat\_to\_water\_boundary\_layer\_conductance\]</span></p>
+<ul>
+<li><code>co2_to_water_conductance</code> is used to convert a stomatal conductance to <span class="math inline">\(CO_2\)</span> into a stomatal conductance for <span class="math inline">\(H_2O\)</span> (default to 1.57):</li>
+</ul>
+<p><span class="math display">\[Gb_{H_2O}= Gb_{CO_2} \cdot co2\_to\_water\_conductance\]</span></p>
+<ul>
+<li><code>forced_heat_BL_conductance_proportionality_factor</code> is used compute the boundary layer conductance for heat under forced convection (default to 1000/3):</li>
+</ul>
+<p><span class="math display">\[Gbh_{forced} = \frac{\sqrt{\frac{wind}{specificLength}}}{C}\]</span></p>
+<p>See <span class="citation"><a href="#ref-leuningLeafNitrogenPhotosynthesis1995" role="doc-biblioref">Leuning et al.</a> (<a href="#ref-leuningLeafNitrogenPhotosynthesis1995" role="doc-biblioref">1995</a>)</span> for more details (equation E1 from Appendix E).</p>
+<ul>
+<li><p><code>atmospheric_CO2_concentration</code> defines the default <span class="math inline">\(CO_2\)</span> concentration in the atmosphere in ppm. It is used only if the <span class="math inline">\(CO_2\)</span> variable is missing from the <a href="../6-meteo/index.html">meteorology file</a> (default to 400 ppm).</p></li>
+<li><p><code>atmospheric_O2_concentration</code> defines the <span class="math inline">\(O_2\)</span> concentration in the atmosphere in ppm. Default to 210.0 ppm. It is used to compute the rubisco-limited carboxylation rate <span class="math inline">\(W_c\)</span> (<span class="math inline">\(\mu mol_{CO_2} \cdot m^{-2} \cdot s^{-1}\)</span>):</p></li>
+</ul>
+<p><span class="math display">\[W_c = \frac{(Vc_{max} \cdot C_i)}{C_i + K_c \cdot (1.0 + \frac{atmospheric\_O2\_concentration}{K_o})}\]</span>
+See <span class="citation"><a href="#ref-farquharBiochemicalModelPhotosynthetic1980" role="doc-biblioref">Farquhar, von Caemmerer, and Berry</a> (<a href="#ref-farquharBiochemicalModelPhotosynthetic1980" role="doc-biblioref">1980</a>)</span> for more details (equation 9).</p>
+<ul>
+<li><code>water_vapour_to_dry_air_molecular_weight_ratio</code> is used to convert molecular weight of water vapour into dry air. Default to 0.622. It is used to compute the <a href="https://en.wikipedia.org/wiki/Psychrometric_constant">psychrometric constant</a> (<span class="math inline">\(\gamma\)</span>, in <span class="math inline">\(kPa \cdot °C^{-1}\)</span>) from atmospheric pressure (kPa):</li>
+</ul>
+<p><span class="math display">\[\gamma = \frac{Cp_{air} \cdot P}{water\_vapour\_to\_dry\_air\_molecular\_weight\_ratio \cdot lambda}\]</span></p>
+<ul>
+<li><p><code>air_specific_heat_constant_pressure</code> is the <a href="https://en.wikipedia.org/wiki/Specific_heat_capacity">specific heat</a> of air at constant pressure in <span class="math inline">\(J \cdot K^{-1} \cdot kg^{-1}\)</span>. Default to 1013. It is used to compute the <a href="https://en.wikipedia.org/wiki/Psychrometric_constant">psychrometric constant</a> (see equation above).</p></li>
+<li><p><code>gravitational_acceleration</code> is the gravitational acceleration in <span class="math inline">\(m \cdot s^{-2}\)</span> and is used to compute the pressure from the elevation. Default to 9.81. See <span class="citation"><a href="#ref-stull2012introduction" role="doc-biblioref">Stull</a> (<a href="#ref-stull2012introduction" role="doc-biblioref">2012</a>)</span> and the <a href="https://bitbucket.org/juergenknauer/bigleaf/src/master/">BigLeaf</a> R package for more details.</p></li>
+<li><p><code>celsius_to_kelvin</code> is used to convert Celsius degrees into Kelvin degrees. Default to 273.15.</p></li>
+<li><p><code>universal_gas_constant</code> defines the <a href="https://en.wikipedia.org/wiki/Gas_constant">universal gas constant</a> in <span class="math inline">\(J \cdot mol^{-1} \cdot K^{-1}\)</span>. Default to 8.314. It is used to compute the temperature dependence for the assimilation parameters and to convert conductance in <span class="math inline">\(mol \cdot m^{-2} \cdot s^{-1}\)</span> into <span class="math inline">\(m \cdot s^{-1}\)</span>.</p></li>
+<li><p><code>dry_air_gaz_constant</code> is the gaz constant of dry air (Rd) in <span class="math inline">\(J \cdot kg^{-1} \cdot K^{-1}\)</span>. Default to 287.0586. It is used to compute the air density following <span class="citation"><a href="#ref-foken2008micrometeorology" role="doc-biblioref">Foken and Napo</a> (<a href="#ref-foken2008micrometeorology" role="doc-biblioref">2008</a>)</span>:</p></li>
+</ul>
+<p><span class="math display">\[R_{specific} = \frac{P}{Rd \cdot T_{air}}\]</span></p>
+<p>See <a href="https://en.wikipedia.org/wiki/Gas_constant">here</a> for more details (Specific gas constant section).</p>
+<ul>
+<li><p><code>ref_atmospheric_pressure_sea_level</code> is the reference atmospheric pressure at sea level. It defaults to 101.325 kPa.</p></li>
+<li><p><code>Stefan_Boltzmann_sigma</code> is the <a href="https://en.wikipedia.org/wiki/Stefan%E2%80%93Boltzmann_law">Stefan-Boltzmann constant</a> (noted <span class="math inline">\(\sigma\)</span>). Its default value is at 5.67477e-08 <span class="math inline">\(W \cdot m^{-2} \cdot K^{-4}\)</span>. It is used to compute the emission of thermal infrared radiation (Re_TIR) by a black body:</p></li>
+</ul>
+<p><span class="math display">\[Re_{TIR} =  \sigma \cdot T^4\]</span>
+- <code>sun_irradiance_to_photons</code> is used to convert sunlight irradiance <span class="math inline">\(W \cdot m^{-2}\)</span> into PPFD (<span class="math inline">\(\mu mol \cdot m^{-2} \cdot s^{-1}\)</span>). It defaults to 4.57 <span class="math inline">\(\frac{\mu mol \cdot m^{-2} \cdot s^{-1}}{W \cdot m^{-2}}\)</span></p>
+<div id="references" class="section level2 unnumbered">
+<h2>References</h2>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-farquharBiochemicalModelPhotosynthetic1980" class="csl-entry">
+Farquhar, G. D., S. von von Caemmerer, and J. A. Berry. 1980. <span>“A Biochemical Model of Photosynthetic <span>Co2</span> Assimilation in Leaves of <span>C3</span> Species.”</span> <em>Planta</em> 149 (1): 78–90.
+</div>
+<div id="ref-foken2008micrometeorology" class="csl-entry">
+Foken, Thomas, and Carmen J Napo. 2008. <em>Micrometeorology</em>. Vol. 2. Springer. <a href="https://doi.org/10.1007/978-3-540-74666-9">https://doi.org/10.1007/978-3-540-74666-9</a>.
+</div>
+<div id="ref-hicks1987preliminary" class="csl-entry">
+Hicks, BB, DD Baldocchi, TP Meyers, RP Hosker, and DR Matt. 1987. <span>“A Preliminary Multiple Resistance Routine for Deriving Dry Deposition Velocities from Measured Quantities.”</span> <em>Water, Air, and Soil Pollution</em> 36 (3-4): 311–30.
+</div>
+<div id="ref-leuningLeafNitrogenPhotosynthesis1995" class="csl-entry">
+Leuning, R., F. M. Kelliher, DGG de Pury, and E.-D. SCHULZE. 1995. <span>“Leaf Nitrogen, Photosynthesis, Conductance and Transpiration: Scaling from Leaves to Canopies.”</span> <em>Plant, Cell &amp; Environment</em> 18 (10): 1183–1200.
+</div>
+<div id="ref-stull2012introduction" class="csl-entry">
+Stull, Roland B. 2012. <em>An Introduction to Boundary Layer Meteorology</em>. Vol. 13. Springer Science &amp; Business Media. <a href="https://doi.org/10.1007/978-94-009-3027-8">https://doi.org/10.1007/978-94-009-3027-8</a>.
+</div>
+</div>
+</div>
 </div>
 
 
@@ -1099,97 +1116,10 @@ Please download the executable (e.g. <code>archimed-phys.jar</code>):</p>
             
                 
                     
-                    
                 
                 
 
                     
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                        
-                        
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                        
                     
                     
 
@@ -1246,6 +1176,96 @@ Please download the executable (e.g. <code>archimed-phys.jar</code>):</p>
             
             
                 
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
                     
                 
                 
@@ -1542,10 +1562,10 @@ Please download the executable (e.g. <code>archimed-phys.jar</code>):</p>
 	 
 	 
 		
-			<a class="nav nav-prev" href="../../2-getting-started/" title="Getting started"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="../../3-inputs/2-general_config/" title="General configuration file"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="../../2-getting-started/2-download_archimed/" title="Run ARCHIMED-φ" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="../../3-inputs/4-scene/" title="3D scene" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>

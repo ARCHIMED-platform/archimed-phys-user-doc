@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>ARCHIMED user documentation</title>
+    <title>ARCHIMED-φ user documentation on ARCHIMED user documentation</title>
     <link>/</link>
-    <description>Recent content on ARCHIMED user documentation</description>
+    <description>Recent content in ARCHIMED-φ user documentation on ARCHIMED user documentation</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 09 Jun 2020 12:15:33 +0200</lastBuildDate>
@@ -54,6 +54,189 @@ Xplo will open and 3D render the example coffee.</description>
 java -jar archimed-phys.jar config.yml The java -jar archimed-phys.jar part of the command just tells Java to execute the archimed.jar file, and the second one (config.yml) is an argument used to give the path to the configuration file to ARCHIMED-φ.
 But more options are also available from ARCHIMED-φ.
 To get all the options from ARCHIMED-φ, you can consult the help by running it without any argument:</description>
+    </item>
+    
+    <item>
+      <title>Organisation</title>
+      <link>/3-inputs/1-organisation/</link>
+      <pubDate>Tue, 09 Jun 2020 12:15:33 +0200</pubDate>
+      
+      <guid>/3-inputs/1-organisation/</guid>
+      <description>Inputs organisation Several input files are mandatory for an ARCHIMED-φ simulation: the general configuration file (config.yml), the meteorology data (meteo.csv), the models configuration (e.g. plant_coffee.yml), and the scene (e.g. .ops and .opf files). There is also an input file for the physical constants (const.yml) that is optional because ARCHIMED defines default values if not provided.
+It is recommended to follow along with the example files provided in the previous page opened in your preferred editor.</description>
+    </item>
+    
+    <item>
+      <title>General configuration file</title>
+      <link>/3-inputs/2-general_config/</link>
+      <pubDate>Tue, 09 Jun 2020 12:15:33 +0200</pubDate>
+      
+      <guid>/3-inputs/2-general_config/</guid>
+      <description>config.yaml This file lists the main configuration parameters for a simulation. It controls the simulation by pointing towards the files for the meteorology data (e.g. meteo.csv), the models configuration (e.g. plant_coffee.yml), and the scene (e.g. coffee.ops).
+Although entries in the configuration file are not ordered, the following example is organized in sections for clarity.
+A full working example is available in the folder presented in the previous page (“config.</description>
+    </item>
+    
+    <item>
+      <title>Constant parameter file</title>
+      <link>/3-inputs/3-constants/</link>
+      <pubDate>Tue, 09 Jun 2020 12:15:33 +0200</pubDate>
+      
+      <guid>/3-inputs/3-constants/</guid>
+      <description>const.yml This file lists all constants and their values used in ARCHIMED-φ. The file is optional. The example file provided below lists the default values used in ARCHIMED (their values are also provided in this page for information).
+  Attachments   const.yml  (1 kb)    You can safely ignore this page for the vast majority of use cases. You don’t need to know or understand everything in this page, it is only provided for convenience in case the user has specific needs.</description>
+    </item>
+    
+    <item>
+      <title>Scene file</title>
+      <link>/3-inputs/4-scene/1-ops/</link>
+      <pubDate>Tue, 09 Jun 2020 12:15:33 +0200</pubDate>
+      
+      <guid>/3-inputs/4-scene/1-ops/</guid>
+      <description>.ops The .ops file defines a 3D scene compatible with ARCHIMED-φ and AMAPStudio. The file is used to define a scene, and place 3D objects inside. The .ops file used in ARCHIMED-φ is a subset of the .ops file from AMAPStudio, meaning they don’t implement all the features (e.g. chaining).
+Example Here is the content of an example file for a scene with two coffee trees:
+# T xOrigin yOrigin zOrigin xSize ySize flat T 0 0 0 2 2 flat #[Archimed] coffee #sceneId objectId FilePath x y z scale inclinationAzimut inclinationAngle rotation 1 1 opf/P6_Ru_ii_L2P02.</description>
+    </item>
+    
+    <item>
+      <title>Plant file</title>
+      <link>/3-inputs/4-scene/2-opf/</link>
+      <pubDate>Tue, 09 Jun 2020 12:15:33 +0200</pubDate>
+      
+      <guid>/3-inputs/4-scene/2-opf/</guid>
+      <description>.opf The .opf file extension stands for Open Plant Format. It allows to store the topology, the geometry and any other attribute of a plant. The format is heavily inspired by the MTG format (Multi-scale Tree Graph) for the topology representation.
+The file is encoded in the XML format, so many editors can render its structure. The .opf file describes vertices, faces, normals, texture coordinates, materials (colors), attributes and transformation matrices for the geometry.</description>
+    </item>
+    
+    <item>
+      <title>Geometry file</title>
+      <link>/3-inputs/4-scene/3-gwa/</link>
+      <pubDate>Tue, 09 Jun 2020 12:15:33 +0200</pubDate>
+      
+      <guid>/3-inputs/4-scene/3-gwa/</guid>
+      <description>.gwa The .gwa files are used to represent any geometrical object. It is based on the same format than the .opf (and is an XML too), but without the topology.
+A simple example of a virtual table is available here:
+  Attachments   table.gwa  (12 kb)    And here is a 3d render of this file:
+ A simple table by rvezy on Sketchfab  If you open the file, you’ll see several sections.</description>
+    </item>
+    
+    <item>
+      <title>Simple model file</title>
+      <link>/3-inputs/5-models/1-models/</link>
+      <pubDate>Tue, 09 Jun 2020 12:15:33 +0200</pubDate>
+      
+      <guid>/3-inputs/5-models/1-models/</guid>
+      <description>In ARCHIMED-φ, an object is defined by:
+- its geometry, read from an .opf or a .gwa file;
+- (optionally) its topology and the types of components used to build it, only read from an .opf file;
+- its functional group, read from an .ops file.
+The geometry (and topology) of an object is built using components (see the opf documentation). For example a simple coffee tree can be built using two components: leaves and internodes.</description>
+    </item>
+    
+    <item>
+      <title>List of the models</title>
+      <link>/3-inputs/5-models/2-models_list/</link>
+      <pubDate>Tue, 09 Jun 2020 12:15:33 +0200</pubDate>
+      
+      <guid>/3-inputs/5-models/2-models_list/</guid>
+      <description>Here is a list of all models available for each process.
+Interception There are three different models available in ARCHIMED-φ to compute their light interception and scattering: Translucent, ignore and VirtualSensor.
+Translucent This model has two set of parameters :
+ transparency: between 0 and 1. 0 is not transparent (opaque), and 1 fully transparent. If it is set to e.g. 0.3, 70% of the incoming light is intercepted by the component (interception = radiation * (1-transparency)), and 30% is directly transmitted (not being part of the interception).</description>
+    </item>
+    
+    <item>
+      <title>Organisation</title>
+      <link>/4-outputs/1-organisation/</link>
+      <pubDate>Wed, 23 Sep 2020 12:15:33 +0200</pubDate>
+      
+      <guid>/4-outputs/1-organisation/</guid>
+      <description>Outputs organisation Several output files are generated by an ARCHIMED-φ simulation. Depending on the options configured in the config.yaml input file (see this section), you’ll find:
+ inputs: several input files, eventually enriched by simulation results, such as the constants used as inputs (const.yml), the meteorology data (meteo.csv), the generated soil pavement (pavement.gwa), the scene file (.ops file) and the object files (e.g. .opf plant file).
+ results: simulation outputs at different scales, such as the simulated values for each component in the scene (component_values.</description>
+    </item>
+    
+    <item>
+      <title>Soil model</title>
+      <link>/3-inputs/5-models/3-soil_model/</link>
+      <pubDate>Tue, 09 Jun 2020 12:15:33 +0200</pubDate>
+      
+      <guid>/3-inputs/5-models/3-soil_model/</guid>
+      <description>The soil file is the same as any plant file so far (e.g. group, type, model parameters), but will be populated with new parameters soon. It is identified as a soil file if it uses the Cobblestone component type:
+--- Group: pavement Type: Cobblestone: Interception: model: Translucent transparency: 0 optical_properties: PAR: 0.15 NIR: 0.9 plot_paving: 80 ...  The Cobblestone type is a special type that defines a soil as a plane, discretized in cobblestones for the light interception.</description>
+    </item>
+    
+    <item>
+      <title>Inputs</title>
+      <link>/4-outputs/2-inputs/</link>
+      <pubDate>Wed, 23 Sep 2020 12:15:33 +0200</pubDate>
+      
+      <guid>/4-outputs/2-inputs/</guid>
+      <description>Input files Several input files are re-written in the simulation folder and possibly enriched with new information from the simulation.
+const.yml The constants file (const.yml) gives the constants values effectively used by the models during the simulation. If no constants file was given as input, then this file gives the default values given by the software. In case only some of the constant values were given as input, the other will again be taken as the default values.</description>
+    </item>
+    
+    <item>
+      <title>Virtual sensor</title>
+      <link>/3-inputs/5-models/4-virtual_sensors/</link>
+      <pubDate>Tue, 09 Jun 2020 12:15:33 +0200</pubDate>
+      
+      <guid>/3-inputs/5-models/4-virtual_sensors/</guid>
+      <description>More information on how to use virtual sensors soon.</description>
+    </item>
+    
+    <item>
+      <title>Results</title>
+      <link>/4-outputs/3-results/</link>
+      <pubDate>Wed, 23 Sep 2020 12:15:33 +0200</pubDate>
+      
+      <guid>/4-outputs/3-results/</guid>
+      <description>Results files component values The component_values.csv file contains the outputs of the simulation at component scale (e.g. the light interception of each leaf) for each individual object (e.g. a plant). The variables written in this file are controlled by the component_variables parameter in config.yml).
+The table below summarizes the information about all possible variables. All values in \(W \cdot m^{-2}\) are per component surface (\(W \cdot m_{component}^{-2}\)). All other values are integrated at the component scale, and possibly over the time-step (e.</description>
+    </item>
+    
+    <item>
+      <title>Meteorology</title>
+      <link>/3-inputs/6-meteo/</link>
+      <pubDate>Tue, 09 Jun 2020 12:15:33 +0200</pubDate>
+      
+      <guid>/3-inputs/6-meteo/</guid>
+      <description>meteo.csv The meteorology file is used to input variables related to the environment. It is a file prepared in the CSV format where each column is a variable, and each line is a time step. A time step is a given period of time, it can be a period of 1 minute or a period of 100 days (but see the section about that below).
+File format The file is a CSV file (semicolon separated) enriched by optional parameters as comments in the header (and following the YAML format).</description>
+    </item>
+    
+    <item>
+      <title>Logs</title>
+      <link>/4-outputs/4-logs/</link>
+      <pubDate>Wed, 23 Sep 2020 12:15:33 +0200</pubDate>
+      
+      <guid>/4-outputs/4-logs/</guid>
+      <description>  Log file The log file simply register all logs from the model. If the simulation ran successfully, it returns “Archimed 2018 END”.
+This file is useful for debugging.
+ </description>
+    </item>
+    
+    <item>
+      <title>Power users</title>
+      <link>/3-inputs/7-power_users/</link>
+      <pubDate>Tue, 09 Jun 2020 12:15:33 +0200</pubDate>
+      
+      <guid>/3-inputs/7-power_users/</guid>
+      <description>  More information soon about YAML anchors, more complex examples, advanced parameters…
+YAML anchors More information about using anchors in YAML files soon.
+ Command line args More information about using the command line options from ARCHIMED-φ soon.
+ Advanced parameters More information about using the advanced parameters soon.
+ </description>
+    </item>
+    
+    <item>
+      <title>Working with voxels</title>
+      <link>/3-inputs/8-voxels/</link>
+      <pubDate>Tue, 09 Jun 2020 12:15:33 +0200</pubDate>
+      
+      <guid>/3-inputs/8-voxels/</guid>
+      <description>  More information soon about using voxel files.
+📦 ├── 📜config_vox.yml # -&amp;gt; Same here, but for a voxel scene ├── 📜const.yml # -&amp;gt; constants used in the model ├── 📜meteo.csv # -&amp;gt; the meteorology file ├── 📂model # -&amp;gt; all the models configuration files are listed in this folder ├── 📜soil.yml # An example soil file └── 📜turbid_medium.yml # An example config for a turbid medium (i.e. voxels) </description>
     </item>
     
   </channel>

@@ -14,7 +14,7 @@
 
     <link rel="shortcut icon" href="../../images/favicon.png" type="image/x-icon" />
 
-    <title>Download :: ARCHIMED user documentation</title>
+    <title>Inputs :: ARCHIMED user documentation</title>
 
     
     <link href="../../css/nucleus.css?1630586634" rel="stylesheet">
@@ -41,7 +41,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/2-getting-started/1-example-data/">
+  <body class="" data-url="/4-outputs/2-inputs/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -225,7 +225,7 @@
   
     
     <li data-nav-id="/2-getting-started/" title="Getting started" class="dd-item
-        parent
+        
         
         
         ">
@@ -253,7 +253,7 @@
  
   
     
-      <li data-nav-id="/2-getting-started/1-example-data/" title="Download" class="dd-item active">
+      <li data-nav-id="/2-getting-started/1-example-data/" title="Download" class="dd-item ">
         <a href="../../2-getting-started/1-example-data/">
         <b>0.1. </b>Download
         <i class="fas fa-check read-icon"></i>
@@ -732,7 +732,7 @@
   
     
     <li data-nav-id="/4-outputs/" title="Outputs" class="dd-item
-        
+        parent
         
         
         ">
@@ -781,7 +781,7 @@
  
   
     
-      <li data-nav-id="/4-outputs/2-inputs/" title="Inputs" class="dd-item ">
+      <li data-nav-id="/4-outputs/2-inputs/" title="Inputs" class="dd-item active">
         <a href="../../4-outputs/2-inputs/">
         <b>2. </b>Inputs
         <i class="fas fa-check read-icon"></i>
@@ -908,7 +908,7 @@
                   
                   
                   <div id="top-github-link">
-                    <a class="github-link" title='Edit this page' href="https://github.com/VEZY/archimed_website/tree/master/content/2-Getting-started/1-example-data.html" target="blank">
+                    <a class="github-link" title='Edit this page' href="https://github.com/VEZY/archimed_website/tree/master/content/4-outputs/2-inputs.html" target="blank">
                       <i class="fas fa-code-branch"></i>
                       <span id="top-github-link-text">Edit this page</span>
                     </a>
@@ -928,7 +928,7 @@
                   <span class="links">
                  
                  
-                   Download
+                   Inputs
                  
                   </span>
                 </div>
@@ -951,7 +951,7 @@
           
             <h1>
               
-              Download
+              Inputs
             </h1>
           
 
@@ -962,86 +962,29 @@
 <script src="../../rmarkdown-libs/header-attrs/header-attrs.js"></script>
 
 
-<div id="data" class="section level1">
-<h1>Data</h1>
-<p>To run an ARCHIMED-φ simulation, you’ll need a working example. Please download it from here:</p>
-
-<section class="attachments ">
-	<label>
-		<i class="fas fa-paperclip" aria-hidden="true"></i>
-		Attachments
-	</label>
-	
-		
-	
-	<div class="attachments-files">
-	
-		
-		
-			
-		
-	
-		
-		
-			
-				<li>
-					<a href="../../2-Getting-started/1-example-data.files/example_inputs.zip" >
-						example_inputs.zip
-					</a>
-					(423 kb)
-				</li>
-			
-		
-	
-	</div>
-	
-</section>
-
-
-<p>At the moment, don’t worry about the organization of the folder or the file contents. We’ll get into this very soon in the <a href="../../3-inputs/1-organisation/">organization page</a>.</p>
+<div id="input-files" class="section level1">
+<h1>Input files</h1>
+<p>Several input files are re-written in the simulation folder and possibly enriched with new information from the simulation.</p>
+<div id="const.yml" class="section level2">
+<h2>const.yml</h2>
+<p>The constants file (<code>const.yml</code>) gives the constants values effectively used by the models during the simulation. If no constants file was given as input, then this file gives the default values given by the software. In case only some of the constant values were given as input, the other will again be taken as the default values. The output constants file is then a good way to keep track of which values were used.</p>
 </div>
-<div id="archimed-φ-executable" class="section level1">
-<h1>ARCHIMED-φ executable</h1>
-<p>ARCHIMED-φ is programmed in Java. The main benefit is that a same <code>.jar</code> file can be executed in all platforms compatible with Java (<em>i.e.</em> Windows, Mac, Linux…).
-Please download the executable (e.g. <code>archimed-phys.jar</code>):</p>
-
-<section class="attachments ">
-	<label>
-		<i class="fas fa-paperclip" aria-hidden="true"></i>
-		Attachments
-	</label>
-	
-		
-	
-	<div class="attachments-files">
-	
-		
-		
-			
-				<li>
-					<a href="../../2-Getting-started/1-example-data.files/archimed-phys.jar" >
-						archimed-phys.jar
-					</a>
-					(19782 kb)
-				</li>
-			
-		
-	
-		
-		
-			
-		
-	
-	</div>
-	
-</section>
-
-
-<p>Then, place it at the root of the example directory, <em>i.e.</em> next to the <code>config.yml</code> file.</p>
-
-<div class="notices note" ><p>You can place <code>archimed-phys.jar</code> wherever you please, but it is good practice to place the executable in the folder of each simulation project for enhanced reproducibility.</p>
+<div id="meteo.csv" class="section level2">
+<h2>meteo.csv</h2>
+<p>The meteorology file (<code>meteo.csv</code>) corresponds to the meteorology effectively used for the simulation, and enriched with simulated variables (e.g. the sun azimuth and elevation). For example if only two time-steps of the input meteorology file were simulated (instead of say 48 time-steps), then the output meteorology file will only have these two time-steps (it is a sub-set of the input file).</p>
+<p>In our example, we only simulated time-steps 2 and 3 of the input meteorology file (see <code>meteo_range</code> argument from the <a href="../../3-inputs/2-general_config/">config.yml</a>), so our output only has 2 time-steps.</p>
 </div>
-
+<div id="d-scene" class="section level2">
+<h2>3D scene</h2>
+<p>The 3D scene is composed of a scene file (<code>.ops</code> file) and object files (<code>.opf</code> and <code>.gwa</code> files). These files can be copied into the simulation directory if needed, and then enriched by simulated values (see <code>opf_variables</code> argument from <a href="../../3-inputs/2-general_config/">config.yml</a>).</p>
+<p>In our example, the scene is copied back and enriched with several variables. For example the light interception is given by the <code>Ra_PAR_q</code> attribute in the plant (<code>coffee-1-step00002.opf</code>) and soil (<code>pavement-1-step00002.gwa</code>) files.</p>
+<p>The name of the file is prefixed by the index of the time-step for which the simulated attributes are given (see <code>export_ops</code> argument from <a href="../../3-inputs/2-general_config/">config.yml</a>).</p>
+<p>Then, the scene can be viewed using XPlo. Here is our example scene, colored by the <code>LE_q</code> attribute (latent heat flux):</p>
+<div class="figure">
+<img src="../../images/coffee_LE_q.png" alt="" />
+<p class="caption">Fig. 1: Latent heat flux of a 3d scene with a <em>Coffee arabica</em> plant (W m[component]-2)</p>
+</div>
+</div>
 </div>
 
 
@@ -1099,7 +1042,6 @@ Please download the executable (e.g. <code>archimed-phys.jar</code>):</p>
             
                 
                     
-                    
                 
                 
 
@@ -1112,7 +1054,6 @@ Please download the executable (e.g. <code>archimed-phys.jar</code>):</p>
             
             
                 
-                    
                     
                 
                 
@@ -1129,9 +1070,6 @@ Please download the executable (e.g. <code>archimed-phys.jar</code>):</p>
             
             
                 
-                    
-                        
-                        
                     
                 
                 
@@ -1442,6 +1380,7 @@ Please download the executable (e.g. <code>archimed-phys.jar</code>):</p>
             
                 
                     
+                    
                 
                 
 
@@ -1454,6 +1393,9 @@ Please download the executable (e.g. <code>archimed-phys.jar</code>):</p>
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1471,6 +1413,7 @@ Please download the executable (e.g. <code>archimed-phys.jar</code>):</p>
             
                 
                     
+                    
                 
                 
 
@@ -1486,6 +1429,9 @@ Please download the executable (e.g. <code>archimed-phys.jar</code>):</p>
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1542,10 +1488,10 @@ Please download the executable (e.g. <code>archimed-phys.jar</code>):</p>
 	 
 	 
 		
-			<a class="nav nav-prev" href="../../2-getting-started/" title="Getting started"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="../../4-outputs/1-organisation/" title="Organisation"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="../../2-getting-started/2-download_archimed/" title="Run ARCHIMED-φ" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="../../4-outputs/3-results/" title="Results" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
