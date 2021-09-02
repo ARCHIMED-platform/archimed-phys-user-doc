@@ -1,0 +1,134 @@
+---
+chapter: false
+date: "2020-06-09T12:15:33+02:00"
+pre: <b>5.1. </b>
+title: Simple model file
+weight: 39
+---
+
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<p>In ARCHIMED-φ, an object is defined by:<br />
+- its geometry, read from an <code>.opf</code> or a <code>.gwa</code> file;<br />
+- (optionally) its topology and the types of components used to build it, only read from an <code>.opf</code> file;<br />
+- its functional group, read from an <code>.ops</code> file.</p>
+<p>The geometry (and topology) of an object is built using components (see the <a href="../../4-scene/2-opf/">opf documentation</a>). For example a simple coffee tree can be built using two components: leaves and internodes. Each component can have its own models and parameters. For example we know that internodes won’t make any photosynthesis, so they don’t have any photosynthesis model.</p>
+<p>You can download the example file to follow along here:</p>
+<p>{{%attachments pattern="plant_coffee_simple.yml" /%}}</p>
+<div id="description" class="section level2">
+<h2>Description</h2>
+<div id="functional-group" class="section level3">
+<h3>Functional group</h3>
+<p>The model files are in the <code>YAML</code> format, so they always start with a <code>---</code> line. Then comes the <code>Group</code> parameter that defines the name of the functional group of the given model file:</p>
+<pre class="yml"><code>---
+Group: coffee</code></pre>
+<p>A functional group can be anything: <em>e.g.</em> a plant species, a family, a variety or even a progeny. The point being that each plant in a scene belongs to a functional group, and that all plants from a given functional group share the same component types and the same model properties defined in the model file of its functional group.</p>
+</div>
+<div id="component-type" class="section level3">
+<h3>Component type</h3>
+<p>The <code>Type</code> parameter defines the component types used to build the object (e.g. leaves and branches components are used to build a plant). The names of the components listed here should match the names given in the <code>topology</code> node of the <code>.opf</code> file (see <a href="../../4-scene/2-opf/">the documentation about the opf files</a>). In the example given earlier in the <a href="../../1-organisation/">organization chapter</a>, the <code>.opf</code> file for a coffee tree gives two different components: <code>Leaf</code> and <code>Metamer</code> (read internode here). A model file adapted for this <code>.opf</code> will list those components as follows:</p>
+<pre class="yml"><code>---
+Group: coffee
+Type:
+  Metamer:
+      [...]
+  Leaf:
+      [...]</code></pre>
+<p>With the <code>[...]</code> further information not given here for clarity but that will be detailed hereafter.</p>
+<p>{{% notice warning %}}
+The name of the Type should match exactly the names given in the <code>topology</code> node of the <code>.opf</code> file. Read <a href="../../4-scene/2-opf/">the documentation about the opf files</a> if in doubt.
+{{% /notice %}}</p>
+</div>
+<div id="processes" class="section level3">
+<h3>Processes</h3>
+<p>For each component type, we can simulate at the moment three different processes:<br />
+- the light interception: <code>Interception</code>;<br />
+- the photosynthesis: <code>Photosynthesis</code>;<br />
+- and the stomatal conductance: <code>StomatalConductance</code>.</p>
+<p>If a process has to be simulated for a given component, it should be listed under the component name such as:</p>
+<pre class="yml"><code>---
+Group: coffee
+Type:
+  Metamer:
+      Interception:
+          [...]
+  Leaf:
+      Interception:
+          [...]
+      Photosynthesis:
+          [...]
+      StomatalConductance:
+        [...]</code></pre>
+<p>{{% notice warning %}}
+The name of the process should match exactly: Interception, Photosynthesis and StomatalConductance
+{{% /notice %}}</p>
+<p>In this example, only the light interception will be simulated for the <code>Metamer</code> type, and the light interception, photosynthesis and stomatal conductance will be simulated for the <code>Leaf</code> type.</p>
+</div>
+<div id="models" class="section level3">
+<h3>Models</h3>
+<p>The processes are simulated by dedicated models. There can be one or more models available to simulate a process, with a set of parameters for each.</p>
+<p>Here is a simple example of a model used to simulate the interception process for the <code>Metamer</code>:</p>
+<pre class="yml"><code>---
+Group: coffee
+Type:
+  Metamer:
+      Interception:
+          model: Translucent
+          transparency: 0
+          optical_properties:
+              PAR: 0.15
+              NIR: 0.9
+  [...]</code></pre>
+<p>Here the light interception process is simulated using the <code>Translucent</code> model. This model has two main parameters:<br />
+- the <code>transparency</code>, which is set to 0 (the <code>Metamer</code> is not transparent at all);<br />
+- the <code>optical_properties</code> of the <code>Metamer</code>, defined for each simulated waveband, here for the PAR (0.15) and for the NIR (0.9). The optical properties of custom user-defined wavebands can also be given here, <em>e.g.</em> for the red band: <code>red: 0.20</code>.</p>
+<p>{{% notice info %}}
+The PAR and NIR bands are mandatory for the computation of the energy balance and the photosynthesis using the Farquhar model (see <a href="../2-models_list/">this section</a> for more details).<br />
+{{% /notice %}}</p>
+<p>The <code>Leaf</code> component requires a simulation of the light interception too, but also add the photosynthesis and stomatal conductance. Here is an example parametrization for the models used:</p>
+<pre class="yml"><code>Group: coffee                     # -&gt; functional group
+Type:                             # -&gt; component types
+  Metamer:                        # -&gt; Metamer component (name must match OPF values)
+      [...]                       # -&gt; further information not displayed here for clarity
+  Leaf:                           # -&gt; Leaf component (name must match OPF values)
+      Interception:               # -&gt; Light interception process
+        model: Translucent        # -&gt; Name of the model used
+        transparency: 0           # -&gt; Parameter name and value
+        optical_properties:       # -&gt; Parameter with several values
+            PAR: 0.15             # -&gt; First value for the optical_properties parameter (PAR)
+            NIR: 0.9              # -&gt; Second value for parameter, here for NIR
+       Photosynthesis:            # -&gt; Photosynthesis process
+        model: FarquharEnBalance  # -&gt; Name of the model used
+        tempCRef: 25              # -&gt; Parameter name and value
+        [...]
+      StomatalConductance:        # -&gt; Stomatal conductance process
+          model: Medlyn           # -&gt; Name of the model used
+          g0: -0.03               # -&gt; Parameter name and value
+          g1: 12                  # -&gt; Parameter name and value</code></pre>
+<p>So here we have a <code>coffee</code> as a functional group, and two component types called <code>Metamer</code> and <code>Leaf</code>, for which the <code>Interception</code> process will be simulated using the <code>Translucent</code> model that has 3 parameters - the transparency, the scattering factor for the PAR, and for the NIR - all parameterized with some values. The <code>Leaf</code> component type also requires a simulation of the <code>Photosynthesis</code> and the <code>StomatalConductance</code> processes, with a given model (<code>FarquharEnBalance</code> and <code>Medlyn</code> resp.) and their respective parameters.</p>
+<p>{{% notice info %}}
+A list of all models available for each process is available in the <a href="../2-models_list/">next page</a>.
+{{% /notice %}}</p>
+<p>Several models can be parameterized at the same time for each process using several model instances, in which case the input format is modified to:</p>
+<pre class="yaml"><code>[...]
+    StomatalConductance:        # -&gt; Process
+        use: Medlyn_generic     # -&gt; Name of the model instance to use
+        Medlyn_generic:         # -&gt; Name of a model instance (free name)
+            model: Medlyn       # -&gt; Name of the model used in the Medlyn_generic instance
+            g0: -0.03           # -&gt; Parameter names and values
+            g1: 12
+        Medlyn_caturra:         # -&gt; Name of a 2nd model instance (free name)
+            model: Medlyn       # -&gt; Name of the model used in this instance
+            g0: -0.03
+            g1: 12.5
+        Yin-Struik_caturra:     # -&gt; Name of a 3rd model instance (free name)
+            model: Yin-Struik   # -&gt; Name of the model used in the instance
+            g0: 0.02089956
+            a1: 0.9
+            b1: 0.15
+[...]</code></pre>
+<p>Here for the conductance process, we have three model instances: <code>Medlyn_generic</code>, <code>Medlyn_caturra</code> and <code>Yin-Struik_caturra</code>. The first two model instances use the same model (<em>i.e.</em> <code>Medlyn</code>), but have a different name (<code>Medlyn_generic</code> and <code>Medlyn_caturra</code>) and different parameter values. The last one is an instance of the <code>Yin-Struik</code> model called <code>Yin-Struik_caturra</code>.
+This method allows to parameterize several models or the same model with different values on the same file, and to chose only one to use. This is especially useful when dealing with different possible parameterization in the same file, or to be able to easily share a file with different possible parametrizations.</p>
+</div>
+</div>

@@ -1,0 +1,35 @@
+---
+chapter: false
+date: "2020-09-23T12:15:33+02:00"
+pre: <b>2. </b>
+title: Inputs
+weight: 42
+---
+
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<div id="input-files" class="section level1">
+<h1>Input files</h1>
+<p>Several input files are re-written in the simulation folder and possibly enriched with new information from the simulation.</p>
+<div id="const.yml" class="section level2">
+<h2>const.yml</h2>
+<p>The constants file (<code>const.yml</code>) gives the constants values effectively used by the models during the simulation. If no constants file was given as input, then this file gives the default values given by the software. In case only some of the constant values were given as input, the other will again be taken as the default values. The output constants file is then a good way to keep track of which values were used.</p>
+</div>
+<div id="meteo.csv" class="section level2">
+<h2>meteo.csv</h2>
+<p>The meteorology file (<code>meteo.csv</code>) corresponds to the meteorology effectively used for the simulation, and enriched with simulated variables (e.g. the sun azimuth and elevation). For example if only two time-steps of the input meteorology file were simulated (instead of say 48 time-steps), then the output meteorology file will only have these two time-steps (it is a sub-set of the input file).</p>
+<p>In our example, we only simulated time-steps 2 and 3 of the input meteorology file (see <code>meteo_range</code> argument from the <a href="../../3-inputs/2-general_config/">config.yml</a>), so our output only has 2 time-steps.</p>
+</div>
+<div id="d-scene" class="section level2">
+<h2>3D scene</h2>
+<p>The 3D scene is composed of a scene file (<code>.ops</code> file) and object files (<code>.opf</code> and <code>.gwa</code> files). These files can be copied into the simulation directory if needed, and then enriched by simulated values (see <code>opf_variables</code> argument from <a href="../../3-inputs/2-general_config/">config.yml</a>).</p>
+<p>In our example, the scene is copied back and enriched with several variables. For example the light interception is given by the <code>Ra_PAR_q</code> attribute in the plant (<code>coffee-1-step00002.opf</code>) and soil (<code>pavement-1-step00002.gwa</code>) files.</p>
+<p>The name of the file is prefixed by the index of the time-step for which the simulated attributes are given (see <code>export_ops</code> argument from <a href="../../3-inputs/2-general_config/">config.yml</a>).</p>
+<p>Then, the scene can be viewed using XPlo. Here is our example scene, colored by the <code>LE_q</code> attribute (latent heat flux):</p>
+<div class="figure">
+<img src="/images/coffee_LE_q.png" alt="" />
+<p class="caption">Fig. 1: Latent heat flux of a 3d scene with a <em>Coffee arabica</em> plant (W m[component]-2)</p>
+</div>
+</div>
+</div>
