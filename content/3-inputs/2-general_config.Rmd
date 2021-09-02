@@ -245,8 +245,8 @@ component_variables:
   H_q: true            # Sensible heat quantity (J component-1 timestep-1)
   LE_f: true           # Latent heat flux (W m[component]-2)
   LE_q: true           # Latent heat quantity (J component-1 timestep-1)
-  Tr_f: false          # Transpiration flux (mm m[component]-2 s-1)
-  Tr_q: false          # Transpiration quantity (mm component-1 timestep-1)
+  Tr_f: false          # Transpiration flux (l m[component]-2 s-1)
+  Tr_q: false          # Transpiration quantity (l component-1 timestep-1)
   T: true              # Temperature (Celsius degree)
 ```
 

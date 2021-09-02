@@ -38,6 +38,6 @@ H_f           ;W m-2;Float;  Sensible heat flux
 H_q           ;J;Float;  Sensible heat quantity
 LE_f          ;W m-2;Float;  Latent heat flux
 LE_q          ;J;Float;  Latent heat quantity
-Tr_f          ;mm m-2 s-1;Float;  Transpiration flux
-Tr_q          ;mm;Float;  Transpiration quantity
+Tr_f          ;l m-2 s-1;Float;  Transpiration flux
+Tr_q          ;l;Float;  Transpiration quantity
 T             ;Celsius degree;Float;  Temperature
